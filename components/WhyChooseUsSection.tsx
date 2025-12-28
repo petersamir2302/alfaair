@@ -25,7 +25,7 @@ export function WhyChooseUsSection() {
     },
     {
       icon: Shield,
-      title: t('warranty'),
+      title: t('warrantyTitle'),
       description: t('warrantyDesc'),
       number: t('warrantyYears'),
       color: 'bg-yellow-100 text-yellow-700',
