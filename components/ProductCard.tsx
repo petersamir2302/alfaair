@@ -30,7 +30,7 @@ export function ProductCard({ product }: ProductCardProps) {
 
   return (
     <Link href={`/products/${product.id}`} className="h-full flex">
-      <div className="bg-white rounded-lg shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border border-primary/10 hover:border-primary/30 group flex flex-col w-full h-full">
+      <div className="bg-white rounded-lg transition-all duration-300 overflow-hidden group flex flex-col w-full h-full">
         {product.image_url && (
           <div className="relative w-full h-48 bg-gradient-to-br from-accent-light to-white overflow-hidden flex-shrink-0">
             <Image

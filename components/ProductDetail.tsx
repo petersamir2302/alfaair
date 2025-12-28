@@ -40,7 +40,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
         <span>{language === 'ar' ? 'العودة' : 'Back'}</span>
       </Link>
 
-      <div className="bg-white rounded-lg shadow-lg overflow-hidden border border-primary/10">
+      <div className="bg-white rounded-lg overflow-hidden">
         <div className="grid md:grid-cols-2 gap-8 p-8">
           {product.image_url && (
             <div className="relative w-full h-96 bg-gradient-to-br from-accent-light to-white rounded-lg overflow-hidden">

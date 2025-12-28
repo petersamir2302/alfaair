@@ -40,19 +40,19 @@ export function WhyChooseUsSection() {
   ];
 
   return (
-    <section id="why-choose-us" className="mb-16 py-12 bg-white/50 rounded-2xl">
+    <section id="why-choose-us" className="mb-8 md:mb-16 py-6 md:py-12 bg-white/50 rounded-2xl">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">{t('whyChooseUs')}</h2>
+        <div className="text-center mb-6 md:mb-12">
+          <h2 className="text-2xl md:text-4xl font-bold text-primary mb-4">{t('whyChooseUs')}</h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
           {features.map((feature, index) => {
             const Icon = feature.icon;
             return (
               <div
                 key={index}
-                className="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-all duration-300 border border-primary/10 text-center"
+                className="bg-white rounded-lg p-4 md:p-6 transition-all duration-300 text-center"
               >
                 <div className={`inline-flex items-center justify-center w-16 h-16 rounded-full ${feature.color} mb-4`}>
                   <Icon className="w-8 h-8" />

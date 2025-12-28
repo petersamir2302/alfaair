@@ -9,11 +9,11 @@ export function AboutSection() {
   const t = (key: keyof typeof import('@/lib/i18n').translations.ar) => getTranslation(language, key);
 
   return (
-    <section id="about" className="mb-16 py-12">
-      <div className="bg-white rounded-2xl p-8 md:p-12 shadow-lg border border-primary/10">
+    <section id="about" className="mb-8 md:mb-16 py-6 md:py-12">
+      <div className="bg-white rounded-2xl p-4 md:p-12">
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-8">
-            <div className="flex justify-center mb-6">
+          <div className="text-center mb-4 md:mb-8">
+            <div className="flex justify-center mb-4 md:mb-6">
               <Image
                 src="/logo.png"
                 alt="AlfaAir"

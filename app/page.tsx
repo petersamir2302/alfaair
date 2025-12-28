@@ -17,15 +17,15 @@ export default async function HomePage() {
   return (
     <main className="min-h-screen">
       <Header />
-      <div className="container mx-auto px-4 py-8 pt-24">
-        <section className="mb-12">
-          <div className="relative rounded-2xl overflow-hidden shadow-lg border border-primary/10 mb-8">
-            <div className="relative h-[320px] md:h-[400px]">
+      <div className="container mx-auto px-4 py-4 pt-20 md:py-8 md:pt-24">
+        <section className="mb-6 md:mb-12">
+          <div className="relative rounded-2xl overflow-hidden mb-4 md:mb-8">
+            <div className="relative h-[240px] md:h-[400px]">
               <Image
                 src="/hero.jpeg"
                 alt="AlfaAir Hero"
                 fill
-                className="object-cover"
+                className="object-contain"
                 priority
               />
             </div>
@@ -34,7 +34,7 @@ export default async function HomePage() {
 
         <ServicesSection />
 
-        <section id="products" className="mb-12">
+        <section id="products" className="mb-6 md:mb-12">
           <ProductList initialProducts={products || []} />
         </section>
 

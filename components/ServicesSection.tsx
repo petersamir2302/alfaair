@@ -37,12 +37,12 @@ export function ServicesSection() {
   ];
 
   return (
-    <section id="services" className="mb-16 py-12">
-      <div className="text-center mb-12">
-        <h2 className="text-3xl md:text-4xl font-bold text-primary mb-8">{t('ourServices')}</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto mb-8">
+    <section id="services" className="mb-8 md:mb-16 py-6 md:py-12">
+      <div className="text-center mb-6 md:mb-12">
+        <h2 className="text-2xl md:text-4xl font-bold text-primary mb-4 md:mb-8">{t('ourServices')}</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 max-w-5xl mx-auto mb-4 md:mb-8">
           {/* AlfaAir Card */}
-          <div className="bg-white rounded-lg p-6 shadow-md border border-primary/10 hover:shadow-lg transition-all duration-300">
+          <div className="bg-white rounded-lg p-4 md:p-6 transition-all duration-300">
             <div className="flex justify-center mb-4">
               <Image
                 src="/logo.png"
@@ -61,7 +61,7 @@ export function ServicesSection() {
           </div>
 
           {/* Al Warsha Card */}
-          <div className="bg-white rounded-lg p-6 shadow-md border border-primary/10 hover:shadow-lg transition-all duration-300">
+          <div className="bg-white rounded-lg p-4 md:p-6 transition-all duration-300">
             <div className="flex justify-center mb-4">
               <Image
                 src="/warsha.png"
@@ -83,7 +83,7 @@ export function ServicesSection() {
           return (
             <div
               key={index}
-              className="bg-white rounded-lg p-6 shadow-md hover:shadow-xl transition-all duration-300 border border-primary/10 hover:border-primary/30"
+              className="bg-white rounded-lg p-4 md:p-6 transition-all duration-300"
             >
               <div className={`inline-flex items-center justify-center w-12 h-12 rounded-lg ${service.color} mb-4`}>
                 <Icon className="w-6 h-6" />

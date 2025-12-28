@@ -75,7 +75,7 @@ export function OrderForm({ product }: OrderFormProps) {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-lg border border-primary/10 p-6 mt-8">
+    <div className="bg-white rounded-lg p-6 mt-8">
       <div className="flex items-center gap-2 mb-6">
         <ShoppingCart className="w-6 h-6 text-primary" />
         <h2 className="text-2xl font-bold text-primary">{t('orderNow')}</h2>
