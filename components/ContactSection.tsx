@@ -15,7 +15,7 @@ export function ContactSection() {
       type: 'email',
       icon: Mail,
       qr: '/qr/mail.png',
-      label: t('email'),
+      label: t('contactEmail'),
       value: 'alfa.air.condition.1995@gmail.com',
       link: 'mailto:alfa.air.condition.1995@gmail.com',
       color: 'bg-green-100 text-green-700',

@@ -96,7 +96,7 @@ export const translations = {
     contactUs: 'تواصل معنا',
     getInTouch: 'تواصل معنا',
     phone: 'الهاتف',
-    email: 'البريد الإلكتروني',
+    contactEmail: 'البريد الإلكتروني',
     address: 'العنوان',
     
     // Order form
@@ -207,7 +207,7 @@ export const translations = {
     contactUs: 'Contact Us',
     getInTouch: 'Get In Touch',
     phone: 'Phone',
-    email: 'Email',
+    contactEmail: 'Email',
     address: 'Address',
     
     // Order form
