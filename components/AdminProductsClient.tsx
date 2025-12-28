@@ -1,0 +1,36 @@
+'use client';
+
+import { Product } from '@/lib/supabase/types';
+import { ProductTable } from './ProductTable';
+import { useLanguage } from './LanguageProvider';
+import { getTranslation } from '@/lib/i18n';
+import { Plus } from 'lucide-react';
+import Link from 'next/link';
+
+interface AdminProductsClientProps {
+  products: Product[];
+}
+
+export function AdminProductsClient({ products }: AdminProductsClientProps) {
+  const { language } = useLanguage();
+  const t = (key: keyof typeof import('@/lib/i18n').translations.ar) => getTranslation(language, key);
+
+  return (
+    <div>
+      <div className="flex items-center justify-between mb-6">
+        <h1 className="text-3xl font-bold text-primary">{t('products')}</h1>
+        <Link
+          href="/admin/products/new"
+          className="flex items-center gap-2 px-4 py-2 bg-primary hover:bg-primary-dark text-white rounded-lg transition-colors"
+        >
+          <Plus className="w-5 h-5" />
+          <span>{t('addNewProduct')}</span>
+        </Link>
+      </div>
+
+      <ProductTable products={products} />
+    </div>
+  );
+}
+
+
