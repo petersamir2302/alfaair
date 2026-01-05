@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { LanguageProvider } from "@/components/LanguageProvider";
+import { WhatsAppButton } from "@/components/WhatsAppButton";
+import { CallButton } from "@/components/CallButton";
 import { Cairo } from "next/font/google";
 
 const cairo = Cairo({
@@ -22,7 +24,11 @@ export default function RootLayout({
   return (
     <html lang="ar" dir="rtl" className={`light scroll-smooth ${cairo.variable}`}>
       <body className="text-gray-900 font-sans">
-        <LanguageProvider>{children}</LanguageProvider>
+        <LanguageProvider>
+          {children}
+          <WhatsAppButton />
+          <CallButton />
+        </LanguageProvider>
       </body>
     </html>
   );

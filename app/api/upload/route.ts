@@ -19,13 +19,36 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'No file provided' }, { status: 400 });
     }
 
-    const fileExt = file.name.split('.').pop();
+    const fileExt = file.name.split('.').pop()?.toLowerCase();
     const fileName = `${Math.random()}.${fileExt}`;
     const filePath = `products/${fileName}`;
 
+    // Determine content type based on file extension
+    let contentType = file.type;
+    if (fileExt === 'svg') {
+      contentType = 'image/svg+xml';
+    } else if (!contentType) {
+      // Fallback content types
+      const contentTypes: Record<string, string> = {
+        'jpg': 'image/jpeg',
+        'jpeg': 'image/jpeg',
+        'png': 'image/png',
+        'webp': 'image/webp',
+        'gif': 'image/gif',
+      };
+      contentType = contentTypes[fileExt || ''] || 'application/octet-stream';
+    }
+
+    // Convert File to ArrayBuffer for better control over content type
+    const arrayBuffer = await file.arrayBuffer();
+    const blob = new Blob([arrayBuffer], { type: contentType });
+
     const { error: uploadError } = await supabase.storage
       .from('product-images')
-      .upload(filePath, file);
+      .upload(filePath, blob, {
+        contentType: contentType,
+        upsert: false,
+      });
 
     if (uploadError) {
       return NextResponse.json({ error: uploadError.message }, { status: 500 });

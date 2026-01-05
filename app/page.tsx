@@ -1,5 +1,6 @@
 import { Header } from '@/components/Header';
 import { ProductList } from '@/components/ProductList';
+import { ProductSearchWizard } from '@/components/ProductSearchWizard';
 import { ServicesSection } from '@/components/ServicesSection';
 import { WhyChooseUsSection } from '@/components/WhyChooseUsSection';
 import { AboutSection } from '@/components/AboutSection';
@@ -33,6 +34,8 @@ export default async function HomePage() {
         </section>
 
         <ServicesSection />
+
+        <ProductSearchWizard />
 
         <section id="products" className="mb-6 md:mb-12">
           <ProductList initialProducts={products || []} />

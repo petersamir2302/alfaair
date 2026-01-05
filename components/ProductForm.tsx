@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { Product } from '@/lib/supabase/types';
+import { Product, Brand, Category } from '@/lib/supabase/types';
 import { createClient } from '@/lib/supabase/client';
 import { useLanguage } from './LanguageProvider';
 import { getTranslation } from '@/lib/i18n';
@@ -36,14 +36,33 @@ export function ProductForm({ product }: ProductFormProps) {
     warranty_years: product?.warranty_years?.toString() || '',
     price: product?.price?.toString() || '',
     inventory: product?.inventory?.toString() || '0',
+    coverage_area_sqm: product?.coverage_area_sqm?.toString() || '',
     additional_specs_ar: product?.additional_specs_ar || '',
     additional_specs_en: product?.additional_specs_en || '',
+    brand_id: product?.brand_id || '',
+    category_id: product?.category_id || '',
   });
 
+  const [brands, setBrands] = useState<Brand[]>([]);
+  const [categories, setCategories] = useState<Category[]>([]);
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(product?.image_url || null);
   const [uploading, setUploading] = useState(false);
   const [saving, setSaving] = useState(false);
+
+  useEffect(() => {
+    const fetchBrandsAndCategories = async () => {
+      const [brandsRes, categoriesRes] = await Promise.all([
+        supabase.from('brands').select('*').order('name_ar'),
+        supabase.from('categories').select('*').order('name_ar'),
+      ]);
+      
+      if (brandsRes.data) setBrands(brandsRes.data);
+      if (categoriesRes.data) setCategories(categoriesRes.data);
+    };
+    
+    fetchBrandsAndCategories();
+  }, []);
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -106,7 +125,10 @@ export function ProductForm({ product }: ProductFormProps) {
       warranty_years: formData.warranty_years ? parseFloat(formData.warranty_years) : null,
       price: formData.price ? parseFloat(formData.price) : null,
       inventory: formData.inventory ? parseInt(formData.inventory) : 0,
+      coverage_area_sqm: formData.coverage_area_sqm ? parseFloat(formData.coverage_area_sqm) : null,
       image_url: imageUrl || product?.image_url || null,
+      brand_id: formData.brand_id || null,
+      category_id: formData.category_id || null,
     };
 
     if (product) {
@@ -168,6 +190,42 @@ export function ProductForm({ product }: ProductFormProps) {
               required
               className="w-full px-4 py-2 bg-white text-gray-900 border border-primary/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
             />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-secondary mb-2">
+              {t('brand')}
+            </label>
+            <select
+              value={formData.brand_id}
+              onChange={(e) => setFormData({ ...formData, brand_id: e.target.value })}
+              className="w-full px-4 py-2 bg-white text-gray-900 border border-primary/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+            >
+              <option value="">{t('selectBrand')}</option>
+              {brands.map((brand) => (
+                <option key={brand.id} value={brand.id}>
+                  {language === 'ar' ? brand.name_ar : brand.name_en}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-secondary mb-2">
+              {t('category')}
+            </label>
+            <select
+              value={formData.category_id}
+              onChange={(e) => setFormData({ ...formData, category_id: e.target.value })}
+              className="w-full px-4 py-2 bg-white text-gray-900 border border-primary/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+            >
+              <option value="">{t('selectCategory')}</option>
+              {categories.map((category) => (
+                <option key={category.id} value={category.id}>
+                  {language === 'ar' ? category.name_ar : category.name_en}
+                </option>
+              ))}
+            </select>
           </div>
 
           <div className="md:col-span-2">
@@ -261,6 +319,21 @@ export function ProductForm({ product }: ProductFormProps) {
               min="0"
               value={formData.inventory}
               onChange={(e) => setFormData({ ...formData, inventory: e.target.value })}
+              className="w-full px-4 py-2 bg-white text-gray-900 border border-primary/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-secondary mb-2">
+              {t('coverageArea')}
+            </label>
+            <input
+              type="number"
+              step="0.1"
+              min="0"
+              value={formData.coverage_area_sqm}
+              onChange={(e) => setFormData({ ...formData, coverage_area_sqm: e.target.value })}
+              placeholder={language === 'ar' ? 'متر مربع' : 'Square meters'}
               className="w-full px-4 py-2 bg-white text-gray-900 border border-primary/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
             />
           </div>

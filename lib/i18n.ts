@@ -24,6 +24,7 @@ export const translations = {
     warranty: 'مدة الضمان (سنة)',
     price: 'السعر',
     inventory: 'المخزون',
+    coverageArea: 'المساحة المغطاة (متر مربع)',
     soldOut: 'نفد المخزون',
     additionalSpecs: 'مواضفات اضافية',
     
@@ -62,6 +63,23 @@ export const translations = {
     selectImage: 'اختر صورة',
     saving: 'جاري الحفظ...',
     confirmDelete: 'هل أنت متأكد من حذف هذا المنتج؟',
+    
+    // Brands and Categories
+    brands: 'العلامات التجارية',
+    categories: 'الفئات',
+    brand: 'العلامة التجارية',
+    category: 'الفئة',
+    addBrand: 'إضافة علامة تجارية',
+    addCategory: 'إضافة فئة',
+    editBrand: 'تعديل العلامة التجارية',
+    editCategory: 'تعديل الفئة',
+    noBrands: 'لا توجد علامات تجارية',
+    noCategories: 'لا توجد فئات',
+    noLogo: 'لا يوجد شعار',
+    selectBrand: 'اختر العلامة التجارية',
+    selectCategory: 'اختر الفئة',
+    confirmDeleteBrand: 'هل أنت متأكد من حذف هذه العلامة التجارية؟',
+    confirmDeleteCategory: 'هل أنت متأكد من حذف هذه الفئة؟',
     
     // Homepage sections
     services: 'خدماتنا',
@@ -137,6 +155,7 @@ export const translations = {
     warranty: 'Warranty (Years)',
     price: 'Price',
     inventory: 'Inventory',
+    coverageArea: 'Coverage Area (m²)',
     soldOut: 'Sold Out',
     additionalSpecs: 'Additional Specifications',
     
@@ -175,6 +194,23 @@ export const translations = {
     selectImage: 'Select Image',
     saving: 'Saving...',
     confirmDelete: 'Are you sure you want to delete this product?',
+    
+    // Brands and Categories
+    brands: 'Brands',
+    categories: 'Categories',
+    brand: 'Brand',
+    category: 'Category',
+    addBrand: 'Add Brand',
+    addCategory: 'Add Category',
+    editBrand: 'Edit Brand',
+    editCategory: 'Edit Category',
+    noBrands: 'No brands found',
+    noCategories: 'No categories found',
+    noLogo: 'No Logo',
+    selectBrand: 'Select Brand',
+    selectCategory: 'Select Category',
+    confirmDeleteBrand: 'Are you sure you want to delete this brand?',
+    confirmDeleteCategory: 'Are you sure you want to delete this category?',
     
     // Homepage sections
     services: 'Our Services',
