@@ -21,11 +21,11 @@ export function Header() {
             <>
               <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
                 <Image
-                  src="/logo.png"
+                  src="/logo-v2.png"
                   alt="AlfaAir"
-                  width={120}
-                  height={40}
-                  className="h-10 w-auto"
+                  width={180}
+                  height={60}
+                  className="h-14 md:h-16 w-auto"
                   priority
                 />
               </Link>
@@ -33,35 +33,35 @@ export function Header() {
               <nav className="flex items-center gap-2">
                 <Link 
                   href="/" 
-                  className="flex items-center gap-2 px-3 py-2 rounded-lg text-secondary hover:text-primary hover:bg-white/60 transition-all duration-200 font-medium text-sm"
+                  className="flex items-center gap-2 px-3 py-2 rounded-lg text-white hover:text-primary-lighter hover:bg-white/60 transition-all duration-200 font-medium text-sm"
                 >
                   <Home className="w-4 h-4" />
                   <span className="hidden md:inline">{t('home')}</span>
                 </Link>
                 <Link 
                   href="/#services" 
-                  className="flex items-center gap-2 px-3 py-2 rounded-lg text-secondary hover:text-primary hover:bg-white/60 transition-all duration-200 font-medium text-sm"
+                  className="flex items-center gap-2 px-3 py-2 rounded-lg text-white hover:text-primary-lighter hover:bg-white/60 transition-all duration-200 font-medium text-sm"
                 >
                   <Wrench className="w-4 h-4" />
                   <span className="hidden md:inline">{t('services')}</span>
                 </Link>
                 <Link 
                   href="/#products" 
-                  className="flex items-center gap-2 px-3 py-2 rounded-lg text-secondary hover:text-primary hover:bg-white/60 transition-all duration-200 font-medium text-sm"
+                  className="flex items-center gap-2 px-3 py-2 rounded-lg text-white hover:text-primary-lighter hover:bg-white/60 transition-all duration-200 font-medium text-sm"
                 >
                   <Package className="w-4 h-4" />
                   <span className="hidden md:inline">{t('products')}</span>
                 </Link>
                 <Link 
                   href="/#about" 
-                  className="flex items-center gap-2 px-3 py-2 rounded-lg text-secondary hover:text-primary hover:bg-white/60 transition-all duration-200 font-medium text-sm"
+                  className="flex items-center gap-2 px-3 py-2 rounded-lg text-white hover:text-primary-lighter hover:bg-white/60 transition-all duration-200 font-medium text-sm"
                 >
                   <Info className="w-4 h-4" />
                   <span className="hidden md:inline">{t('aboutUs')}</span>
                 </Link>
                 <Link 
                   href="/#contact" 
-                  className="flex items-center gap-2 px-3 py-2 rounded-lg text-secondary hover:text-primary hover:bg-white/60 transition-all duration-200 font-medium text-sm"
+                  className="flex items-center gap-2 px-3 py-2 rounded-lg text-white hover:text-primary-lighter hover:bg-white/60 transition-all duration-200 font-medium text-sm"
                 >
                   <Phone className="w-4 h-4" />
                   <span className="hidden md:inline">{t('contactUs')}</span>
@@ -77,35 +77,35 @@ export function Header() {
                 <div className="pr-2 border-l border-primary/20 h-6"></div>
                 <Link 
                   href="/" 
-                  className="flex items-center gap-2 px-3 py-2 rounded-lg text-secondary hover:text-primary hover:bg-white/60 transition-all duration-200 font-medium text-sm"
+                  className="flex items-center gap-2 px-3 py-2 rounded-lg text-white hover:text-primary-lighter hover:bg-white/60 transition-all duration-200 font-medium text-sm"
                 >
                   <Home className="w-4 h-4" />
                   <span className="hidden md:inline">{t('home')}</span>
                 </Link>
                 <Link 
                   href="/#services" 
-                  className="flex items-center gap-2 px-3 py-2 rounded-lg text-secondary hover:text-primary hover:bg-white/60 transition-all duration-200 font-medium text-sm"
+                  className="flex items-center gap-2 px-3 py-2 rounded-lg text-white hover:text-primary-lighter hover:bg-white/60 transition-all duration-200 font-medium text-sm"
                 >
                   <Wrench className="w-4 h-4" />
                   <span className="hidden md:inline">{t('services')}</span>
                 </Link>
                 <Link 
                   href="/#products" 
-                  className="flex items-center gap-2 px-3 py-2 rounded-lg text-secondary hover:text-primary hover:bg-white/60 transition-all duration-200 font-medium text-sm"
+                  className="flex items-center gap-2 px-3 py-2 rounded-lg text-white hover:text-primary-lighter hover:bg-white/60 transition-all duration-200 font-medium text-sm"
                 >
                   <Package className="w-4 h-4" />
                   <span className="hidden md:inline">{t('products')}</span>
                 </Link>
                 <Link 
                   href="/#about" 
-                  className="flex items-center gap-2 px-3 py-2 rounded-lg text-secondary hover:text-primary hover:bg-white/60 transition-all duration-200 font-medium text-sm"
+                  className="flex items-center gap-2 px-3 py-2 rounded-lg text-white hover:text-primary-lighter hover:bg-white/60 transition-all duration-200 font-medium text-sm"
                 >
                   <Info className="w-4 h-4" />
                   <span className="hidden md:inline">{t('aboutUs')}</span>
                 </Link>
                 <Link 
                   href="/#contact" 
-                  className="flex items-center gap-2 px-3 py-2 rounded-lg text-secondary hover:text-primary hover:bg-white/60 transition-all duration-200 font-medium text-sm"
+                  className="flex items-center gap-2 px-3 py-2 rounded-lg text-white hover:text-primary-lighter hover:bg-white/60 transition-all duration-200 font-medium text-sm"
                 >
                   <Phone className="w-4 h-4" />
                   <span className="hidden md:inline">{t('contactUs')}</span>
@@ -114,11 +114,11 @@ export function Header() {
               
               <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
                 <Image
-                  src="/logo.png"
+                  src="/logo-v2.png"
                   alt="AlfaAir"
-                  width={120}
-                  height={40}
-                  className="h-10 w-auto"
+                  width={180}
+                  height={60}
+                  className="h-14 md:h-16 w-auto"
                   priority
                 />
               </Link>

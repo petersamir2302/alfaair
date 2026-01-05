@@ -40,10 +40,10 @@ export function WhyChooseUsSection() {
   ];
 
   return (
-    <section id="why-choose-us" className="mb-8 md:mb-16 py-6 md:py-12 bg-white/50 rounded-2xl">
+    <section id="why-choose-us" className="mb-8 md:mb-16 py-6 md:py-12 bg-slate-800/50 rounded-2xl">
       <div className="container mx-auto px-4">
         <div className="text-center mb-6 md:mb-12">
-          <h2 className="text-2xl md:text-4xl font-bold text-primary mb-4">{t('whyChooseUs')}</h2>
+          <h2 className="text-2xl md:text-4xl font-bold text-white mb-4">{t('whyChooseUs')}</h2>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
@@ -52,14 +52,14 @@ export function WhyChooseUsSection() {
             return (
               <div
                 key={index}
-                className="bg-white rounded-lg p-4 md:p-6 transition-all duration-300 text-center"
+                className="bg-slate-800 rounded-lg p-4 md:p-6 transition-all duration-300 text-center"
               >
                 <div className={`inline-flex items-center justify-center w-16 h-16 rounded-full ${feature.color} mb-4`}>
                   <Icon className="w-8 h-8" />
                 </div>
-                <div className="text-2xl md:text-3xl font-bold text-primary mb-2">{feature.number}</div>
-                <h3 className="text-lg font-semibold text-primary mb-2">{feature.title}</h3>
-                <p className="text-secondary text-sm">{feature.description}</p>
+                <div className="text-2xl md:text-3xl font-bold text-white mb-2">{feature.number}</div>
+                <h3 className="text-lg font-semibold text-white mb-2">{feature.title}</h3>
+                <p className="text-gray-300 text-sm">{feature.description}</p>
               </div>
             );
           })}

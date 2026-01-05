@@ -35,6 +35,7 @@ export function ProductForm({ product }: ProductFormProps) {
     ai: product?.ai || false,
     warranty_years: product?.warranty_years?.toString() || '',
     price: product?.price?.toString() || '',
+    inventory: product?.inventory?.toString() || '0',
     additional_specs_ar: product?.additional_specs_ar || '',
     additional_specs_en: product?.additional_specs_en || '',
   });
@@ -104,6 +105,7 @@ export function ProductForm({ product }: ProductFormProps) {
       power_hp: formData.power_hp ? parseFloat(formData.power_hp) : null,
       warranty_years: formData.warranty_years ? parseFloat(formData.warranty_years) : null,
       price: formData.price ? parseFloat(formData.price) : null,
+      inventory: formData.inventory ? parseInt(formData.inventory) : 0,
       image_url: imageUrl || product?.image_url || null,
     };
 
@@ -246,6 +248,19 @@ export function ProductForm({ product }: ProductFormProps) {
               step="0.01"
               value={formData.price}
               onChange={(e) => setFormData({ ...formData, price: e.target.value })}
+              className="w-full px-4 py-2 bg-white text-gray-900 border border-primary/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-secondary mb-2">
+              {t('inventory')}
+            </label>
+            <input
+              type="number"
+              min="0"
+              value={formData.inventory}
+              onChange={(e) => setFormData({ ...formData, inventory: e.target.value })}
               className="w-full px-4 py-2 bg-white text-gray-900 border border-primary/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
             />
           </div>

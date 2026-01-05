@@ -44,7 +44,7 @@ export default function AdminLoginPage() {
         <div className="text-center mb-6">
           <div className="flex justify-center mb-4">
             <Image
-              src="/logo.png"
+              src="/logo-v2.png"
               alt="AlfaAir"
               width={150}
               height={50}

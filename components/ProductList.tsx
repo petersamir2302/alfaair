@@ -51,18 +51,18 @@ export function ProductList({ initialProducts }: ProductListProps) {
     <div>
       <div className="mb-6 flex flex-col md:flex-row gap-4">
         <div className="flex-1 relative">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-secondary w-5 h-5" />
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
           <input
             type="text"
             placeholder={t('search')}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-10 pr-4 py-2 bg-white text-gray-900 border border-primary/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary/40 placeholder:text-secondary"
+            className="w-full pl-10 pr-4 py-2 bg-slate-800 text-white border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary/40 placeholder:text-gray-400"
           />
         </div>
         <button
           onClick={() => setShowFilters(!showFilters)}
-          className="flex items-center gap-2 px-4 py-2 bg-white border border-primary/20 rounded-lg hover:bg-accent-light hover:border-primary/40 transition-colors text-secondary hover:text-primary"
+          className="flex items-center gap-2 px-4 py-2 bg-slate-800 border border-gray-600 rounded-lg hover:bg-slate-700 hover:border-primary/40 transition-colors text-gray-300 hover:text-white"
         >
           <Filter className="w-5 h-5" />
           <span>{t('filter')}</span>
@@ -70,7 +70,7 @@ export function ProductList({ initialProducts }: ProductListProps) {
       </div>
 
       {showFilters && (
-        <div className="mb-6 p-4 bg-white rounded-lg">
+        <div className="mb-6 p-4 bg-slate-800 rounded-lg">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {[
               { key: 'cold', label: t('cold') },
@@ -81,7 +81,7 @@ export function ProductList({ initialProducts }: ProductListProps) {
               { key: 'plasma', label: t('plasma') },
               { key: 'ai', label: t('ai') },
             ].map(({ key, label }) => (
-              <label key={key} className="flex items-center gap-2 cursor-pointer hover:text-primary transition-colors">
+              <label key={key} className="flex items-center gap-2 cursor-pointer hover:text-white transition-colors">
                 <input
                   type="checkbox"
                   checked={filters[key as keyof typeof filters]}
@@ -90,7 +90,7 @@ export function ProductList({ initialProducts }: ProductListProps) {
                   }
                   className="w-4 h-4"
                 />
-                <span className="text-sm text-secondary">{label}</span>
+                <span className="text-sm text-gray-300">{label}</span>
               </label>
             ))}
           </div>
@@ -99,7 +99,7 @@ export function ProductList({ initialProducts }: ProductListProps) {
 
       {filteredProducts.length === 0 ? (
         <div className="text-center py-12">
-          <p className="text-secondary text-lg">{t('noProducts')}</p>
+          <p className="text-gray-300 text-lg">{t('noProducts')}</p>
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">

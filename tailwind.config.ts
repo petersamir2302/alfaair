@@ -21,9 +21,8 @@ const config: Config = {
           dark: "#4B5563",
         },
         accent: {
-          light: "#F0F7FF", // Light blue tint
-          DEFAULT: "#E8F4FD", // Soft blue accent
-          blue: "#B3D9FF", // Medium blue accent
+          light: "#E0F2FE",
+          DEFAULT: "#F0F9FF",
         },
         background: {
           dark: "#0F172A",

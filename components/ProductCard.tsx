@@ -28,11 +28,18 @@ export function ProductCard({ product }: ProductCardProps) {
     { key: 'ai' as const, value: product.ai, icon: Brain, color: 'bg-pink-100 text-pink-700 border-pink-200' },
   ].filter(f => f.value);
 
+  const isSoldOut = (product.inventory ?? 0) === 0;
+
   return (
     <Link href={`/products/${product.id}`} className="h-full flex">
-      <div className="bg-white rounded-lg transition-all duration-300 overflow-hidden group flex flex-col w-full h-full">
+      <div className="bg-slate-800 rounded-lg transition-all duration-300 overflow-hidden group flex flex-col w-full h-full relative">
+        {isSoldOut && (
+          <div className="absolute top-2 right-2 z-10 bg-red-500 text-white px-3 py-1 rounded-full text-xs font-bold">
+            {t('soldOut')}
+          </div>
+        )}
         {product.image_url && (
-          <div className="relative w-full h-48 bg-gradient-to-br from-accent-light to-white overflow-hidden flex-shrink-0">
+          <div className={`relative w-full h-48 bg-gradient-to-br from-slate-700 to-slate-800 overflow-hidden flex-shrink-0 ${isSoldOut ? 'opacity-60' : ''}`}>
             <Image
               src={product.image_url}
               alt={name}
@@ -42,9 +49,9 @@ export function ProductCard({ product }: ProductCardProps) {
           </div>
         )}
         <div className="p-4 flex flex-col flex-grow">
-          <h3 className="text-xl font-bold text-primary mb-2">{name}</h3>
+          <h3 className={`text-xl font-bold mb-2 ${isSoldOut ? 'text-gray-400' : 'text-white'}`}>{name}</h3>
           {description && (
-            <p className="text-secondary text-sm mb-4 line-clamp-2">{description}</p>
+            <p className="text-gray-300 text-sm mb-4 line-clamp-2">{description}</p>
           )}
           
           {features.length > 0 && (
@@ -61,27 +68,27 @@ export function ProductCard({ product }: ProductCardProps) {
             </div>
           )}
 
-          <div className="flex flex-wrap gap-3 text-sm pt-2 border-t border-primary/10 mt-auto">
+          <div className="flex flex-wrap gap-3 text-sm pt-2 border-t border-gray-700 mt-auto">
             {product.price && (
-              <div className="text-primary font-bold text-lg">
+              <div className="text-white font-bold text-lg">
                 {product.price.toLocaleString()} {language === 'ar' ? 'ج.م' : 'EGP'}
               </div>
             )}
             {product.power_hp && (
-              <div className="text-secondary">
-                <span className="font-medium text-primary">{t('power')}:</span>{' '}
+              <div className="text-gray-300">
+                <span className="font-medium text-white">{t('power')}:</span>{' '}
                 <span className="font-semibold">{product.power_hp} HP</span>
               </div>
             )}
             {product.color && (
-              <div className="text-secondary">
-                <span className="font-medium text-primary">{t('color')}:</span>{' '}
+              <div className="text-gray-300">
+                <span className="font-medium text-white">{t('color')}:</span>{' '}
                 <span className="font-semibold">{product.color}</span>
               </div>
             )}
             {product.warranty_years && (
-              <div className="text-secondary">
-                <span className="font-medium text-primary">{t('warranty')}:</span>{' '}
+              <div className="text-gray-300">
+                <span className="font-medium text-white">{t('warranty')}:</span>{' '}
                 <span className="font-semibold">{product.warranty_years} {language === 'ar' ? 'سنة' : 'years'}</span>
               </div>
             )}

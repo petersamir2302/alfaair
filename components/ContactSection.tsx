@@ -79,24 +79,25 @@ export function ContactSection() {
   return (
     <section id="contact" className="mb-8 md:mb-16 py-6 md:py-12">
       <div className="text-center mb-6 md:mb-12">
-        <h2 className="text-2xl md:text-4xl font-bold text-primary mb-4">{t('getInTouch')}</h2>
+        <h2 className="text-2xl md:text-4xl font-bold text-white mb-4">{t('getInTouch')}</h2>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
+      <div className="flex justify-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6 text-left">
         {contacts.map((contact) => {
           const Icon = contact.icon;
           return (
             <div
               key={contact.type}
-              className="bg-white rounded-lg p-4 md:p-6 transition-all duration-300 text-center"
+              className="bg-slate-800 rounded-lg p-4 md:p-6 transition-all duration-300 text-center"
             >
               <div className={`inline-flex items-center justify-center w-12 h-12 rounded-full ${contact.color} mb-4`}>
                 <Icon className="w-6 h-6" />
               </div>
-              <h3 className="text-lg font-bold text-primary mb-4">{contact.label}</h3>
+              <h3 className="text-lg font-bold text-white mb-4">{contact.label}</h3>
               
               <div className="mb-4 flex justify-center">
-                <div className="relative w-32 h-32 bg-white border-2 border-primary/10 rounded-lg p-2">
+                <div className="relative w-32 h-32 bg-white border-2 border-gray-600 rounded-lg p-2">
                   <Image
                     src={contact.qr}
                     alt={`${contact.label} QR Code`}
@@ -110,13 +111,14 @@ export function ContactSection() {
                 href={contact.link}
                 target={contact.type === 'email' ? undefined : '_blank'}
                 rel={contact.type === 'email' ? undefined : 'noopener noreferrer'}
-                className="text-primary hover:text-primary-dark font-medium text-sm transition-colors break-all"
+                className="text-white hover:text-gray-300 font-medium text-sm transition-colors break-all"
               >
                 {contact.value}
               </Link>
             </div>
           );
         })}
+        </div>
       </div>
     </section>
   );

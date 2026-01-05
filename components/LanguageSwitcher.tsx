@@ -9,7 +9,7 @@ export function LanguageSwitcher() {
   return (
     <button
       onClick={() => setLanguage(language === 'ar' ? 'en' : 'ar')}
-      className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/60 hover:bg-white/80 text-primary transition-all duration-200 font-medium backdrop-blur-sm border border-primary/30 hover:border-primary/50"
+      className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/90 hover:bg-white text-primary-dark hover:text-primary-dark transition-all duration-200 font-medium backdrop-blur-sm border-2 border-primary hover:border-primary-dark shadow-lg"
       aria-label="Switch language"
     >
       <Languages className="w-4 h-4" />

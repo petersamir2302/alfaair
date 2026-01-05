@@ -27,7 +27,7 @@ export function AdminHeader() {
         <div className="flex items-center justify-between">
           <Link href="/admin" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
             <Image
-              src="/logo.png"
+              src="/logo-v2.png"
               alt="AlfaAir"
               width={120}
               height={40}
@@ -37,22 +37,22 @@ export function AdminHeader() {
             <span className="text-lg font-semibold text-primary ml-2">{t('admin')}</span>
           </Link>
 
-          <nav className="flex items-center gap-4">
+          <nav className="flex items-center gap-2">
             <Link
               href="/admin"
-              className="flex items-center gap-2 px-4 py-2 rounded-lg text-secondary hover:text-primary hover:bg-white/60 transition-all duration-200 font-medium"
+              className="flex items-center gap-2 px-3 py-2 rounded-lg text-white hover:text-primary-lighter hover:bg-white/60 transition-all duration-200 font-medium text-sm"
             >
               <LayoutDashboard className="w-4 h-4" />
               <span>{t('dashboard')}</span>
             </Link>
             <Link
               href="/admin/products"
-              className="flex items-center gap-2 px-4 py-2 rounded-lg text-secondary hover:text-primary hover:bg-white/60 transition-all duration-200 font-medium"
+              className="flex items-center gap-2 px-3 py-2 rounded-lg text-white hover:text-primary-lighter hover:bg-white/60 transition-all duration-200 font-medium text-sm"
             >
               <Package className="w-4 h-4" />
               <span>{t('products')}</span>
             </Link>
-            <div className="pl-4 border-r border-primary/20 h-6"></div>
+            <div className="pl-2 border-r border-primary/20 h-6"></div>
             <LanguageSwitcher />
             <button
               onClick={handleLogout}

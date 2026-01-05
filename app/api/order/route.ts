@@ -21,17 +21,36 @@ export async function POST(request: NextRequest) {
     // Get product details if productId is provided
     let productNameArFinal = productNameAr || productName;
     let productNameEnFinal = productNameEn || productName;
+    let currentInventory = null;
     
     if (productId) {
       const { data: product } = await supabase
         .from('products')
-        .select('name_ar, name_en')
+        .select('name_ar, name_en, inventory')
         .eq('id', productId)
         .single();
       
       if (product) {
         productNameArFinal = product.name_ar;
         productNameEnFinal = product.name_en;
+        currentInventory = product.inventory ?? 0;
+        
+        // Check if product is in stock
+        if (currentInventory === 0) {
+          return NextResponse.json(
+            { error: 'Product is out of stock' },
+            { status: 400 }
+          );
+        }
+        
+        // Check if requested quantity exceeds available inventory
+        const requestedQuantity = parseInt(quantity);
+        if (requestedQuantity > currentInventory) {
+          return NextResponse.json(
+            { error: `Only ${currentInventory} items available in stock` },
+            { status: 400 }
+          );
+        }
       }
     }
 
@@ -194,6 +213,17 @@ AlfaAir Team
           email_error: emailErrorMsg,
         })
         .eq('id', order.id);
+    }
+
+    // Decrement inventory if productId is provided
+    if (productId && currentInventory !== null) {
+      const requestedQuantity = parseInt(quantity);
+      const newInventory = Math.max(0, currentInventory - requestedQuantity);
+      
+      await supabase
+        .from('products')
+        .update({ inventory: newInventory })
+        .eq('id', productId);
     }
 
     if (emailSuccess) {

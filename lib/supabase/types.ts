@@ -15,6 +15,7 @@ export interface Product {
   ai: boolean;
   warranty_years: number | null;
   price: number | null;
+  inventory: number | null;
   additional_specs_ar: string | null;
   additional_specs_en: string | null;
   image_url: string | null;

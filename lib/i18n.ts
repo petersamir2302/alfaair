@@ -23,6 +23,8 @@ export const translations = {
     ai: 'ذكاء اصطناعي',
     warranty: 'مدة الضمان (سنة)',
     price: 'السعر',
+    inventory: 'المخزون',
+    soldOut: 'نفد المخزون',
     additionalSpecs: 'مواضفات اضافية',
     
     // Common
@@ -134,6 +136,8 @@ export const translations = {
     ai: 'AI',
     warranty: 'Warranty (Years)',
     price: 'Price',
+    inventory: 'Inventory',
+    soldOut: 'Sold Out',
     additionalSpecs: 'Additional Specifications',
     
     // Common

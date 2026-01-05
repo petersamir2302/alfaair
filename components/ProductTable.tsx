@@ -46,6 +46,7 @@ export function ProductTable({ products }: ProductTableProps) {
               <th className="px-4 py-3 text-right text-sm font-semibold text-secondary">{t('image')}</th>
               <th className="px-4 py-3 text-right text-sm font-semibold text-secondary">{t('name')}</th>
               <th className="px-4 py-3 text-right text-sm font-semibold text-secondary">{t('price')}</th>
+              <th className="px-4 py-3 text-right text-sm font-semibold text-secondary">{t('inventory')}</th>
               <th className="px-4 py-3 text-right text-sm font-semibold text-secondary">{t('power')}</th>
               <th className="px-4 py-3 text-right text-sm font-semibold text-secondary">{t('color')}</th>
               <th className="px-4 py-3 text-right text-sm font-semibold text-secondary">{t('actions')}</th>
@@ -75,6 +76,13 @@ export function ProductTable({ products }: ProductTableProps) {
                   </td>
                   <td className="px-4 py-3 text-secondary">
                     {product.price ? `${product.price.toLocaleString()} ${language === 'ar' ? 'ج.م' : 'EGP'}` : '-'}
+                  </td>
+                  <td className="px-4 py-3">
+                    {product.inventory !== null ? (
+                      <span className={`font-semibold ${product.inventory === 0 ? 'text-red-600' : 'text-secondary'}`}>
+                        {product.inventory === 0 ? t('soldOut') : product.inventory}
+                      </span>
+                    ) : '-'}
                   </td>
                   <td className="px-4 py-3 text-secondary">
                     {product.power_hp ? `${product.power_hp} HP` : '-'}

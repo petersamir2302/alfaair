@@ -34,16 +34,16 @@ export function ProductDetail({ product }: ProductDetailProps) {
     <div>
       <Link
         href="/"
-        className="inline-flex items-center gap-2 text-secondary hover:text-primary mb-6 transition-colors"
+        className="inline-flex items-center gap-2 text-gray-300 hover:text-white mb-6 transition-colors"
       >
         <ArrowLeft className="w-4 h-4" />
         <span>{language === 'ar' ? 'العودة' : 'Back'}</span>
       </Link>
 
-      <div className="bg-white rounded-lg overflow-hidden">
+      <div className="bg-slate-800 rounded-lg overflow-hidden">
         <div className="grid md:grid-cols-2 gap-8 p-8">
           {product.image_url && (
-            <div className="relative w-full h-96 bg-gradient-to-br from-accent-light to-white rounded-lg overflow-hidden">
+            <div className="relative w-full h-96 bg-gradient-to-br from-slate-700 to-slate-800 rounded-lg overflow-hidden">
               <Image
                 src={product.image_url}
                 alt={name}
@@ -54,39 +54,52 @@ export function ProductDetail({ product }: ProductDetailProps) {
           )}
 
           <div>
-            <h1 className="text-3xl font-bold text-primary mb-4">{name}</h1>
+            <div className="flex items-center gap-4 mb-4">
+              <h1 className="text-3xl font-bold text-white">{name}</h1>
+              {(product.inventory ?? 0) === 0 && (
+                <span className="bg-red-500 text-white px-4 py-1 rounded-full text-sm font-bold">
+                  {t('soldOut')}
+                </span>
+              )}
+            </div>
             {description && (
-              <p className="text-secondary mb-6 leading-relaxed">{description}</p>
+              <p className="text-gray-300 mb-6 leading-relaxed">{description}</p>
             )}
 
             <div className="space-y-4 mb-6">
               {product.price && (
-                <div className="text-2xl font-bold text-primary mb-2">
+                <div className="text-2xl font-bold text-white mb-2">
                   {product.price.toLocaleString()} {language === 'ar' ? 'ج.م' : 'EGP'}
+                </div>
+              )}
+              {product.inventory !== null && product.inventory > 0 && (
+                <div>
+                  <span className="font-medium text-white">{t('inventory')}:</span>{' '}
+                  <span className="text-gray-300">{product.inventory}</span>
                 </div>
               )}
               {product.power_hp && (
                 <div>
-                  <span className="font-medium text-primary">{t('power')}:</span>{' '}
-                  <span className="text-secondary">{product.power_hp} HP</span>
+                  <span className="font-medium text-white">{t('power')}:</span>{' '}
+                  <span className="text-gray-300">{product.power_hp} HP</span>
                 </div>
               )}
               {product.color && (
                 <div>
-                  <span className="font-medium text-primary">{t('color')}:</span>{' '}
-                  <span className="text-secondary">{product.color}</span>
+                  <span className="font-medium text-white">{t('color')}:</span>{' '}
+                  <span className="text-gray-300">{product.color}</span>
                 </div>
               )}
               {product.warranty_years && (
                 <div>
-                  <span className="font-medium text-primary">{t('warranty')}:</span>{' '}
-                  <span className="text-secondary">{product.warranty_years} {language === 'ar' ? 'سنة' : 'years'}</span>
+                  <span className="font-medium text-white">{t('warranty')}:</span>{' '}
+                  <span className="text-gray-300">{product.warranty_years} {language === 'ar' ? 'سنة' : 'years'}</span>
                 </div>
               )}
             </div>
 
             <div className="mb-6">
-              <h3 className="font-bold text-primary mb-3">{language === 'ar' ? 'المميزات' : 'Features'}</h3>
+              <h3 className="font-bold text-white mb-3">{language === 'ar' ? 'المميزات' : 'Features'}</h3>
               <div className="grid grid-cols-2 gap-3">
                 {features.map(({ key, value, label }) => (
                   <div key={key} className="flex items-center gap-2">
@@ -95,7 +108,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
                     ) : (
                       <X className="w-5 h-5 text-red-500" />
                     )}
-                    <span className="text-secondary">{label}</span>
+                    <span className="text-gray-300">{label}</span>
                   </div>
                 ))}
               </div>
@@ -103,8 +116,8 @@ export function ProductDetail({ product }: ProductDetailProps) {
 
             {additionalSpecs && (
               <div>
-                <h3 className="font-bold text-primary mb-3">{t('additionalSpecs')}</h3>
-                <p className="text-secondary leading-relaxed">{additionalSpecs}</p>
+                <h3 className="font-bold text-white mb-3">{t('additionalSpecs')}</h3>
+                <p className="text-gray-300 leading-relaxed">{additionalSpecs}</p>
               </div>
             )}
           </div>

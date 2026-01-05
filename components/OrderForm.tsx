@@ -27,6 +27,7 @@ export function OrderForm({ product }: OrderFormProps) {
   const [error, setError] = useState('');
 
   const productName = language === 'ar' ? product.name_ar : product.name_en;
+  const isSoldOut = (product.inventory ?? 0) === 0;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -75,10 +76,10 @@ export function OrderForm({ product }: OrderFormProps) {
   };
 
   return (
-    <div className="bg-white rounded-lg p-6 mt-8">
+    <div className="bg-slate-800 rounded-lg p-6 mt-8">
       <div className="flex items-center gap-2 mb-6">
-        <ShoppingCart className="w-6 h-6 text-primary" />
-        <h2 className="text-2xl font-bold text-primary">{t('orderNow')}</h2>
+        <ShoppingCart className="w-6 h-6 text-white" />
+        <h2 className="text-2xl font-bold text-white">{t('orderNow')}</h2>
       </div>
 
       {success && (
@@ -93,21 +94,31 @@ export function OrderForm({ product }: OrderFormProps) {
         </div>
       )}
 
-      <form onSubmit={handleSubmit} className="space-y-4">
+      {isSoldOut ? (
+        <div className="bg-gray-700 rounded-lg p-6 text-center">
+          <p className="text-lg font-semibold text-white">{t('soldOut')}</p>
+          <p className="text-sm text-gray-300 mt-2">
+            {language === 'ar' 
+              ? 'عذراً، هذا المنتج غير متوفر حالياً'
+              : 'Sorry, this product is currently out of stock'}
+          </p>
+        </div>
+      ) : (
+        <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label className="block text-sm font-medium text-secondary mb-2">
+          <label className="block text-sm font-medium text-gray-300 mb-2">
             {t('productName')}
           </label>
           <input
             type="text"
             value={productName}
             disabled
-            className="w-full px-4 py-2 bg-gray-50 border border-primary/10 rounded-lg text-secondary cursor-not-allowed"
+            className="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-gray-300 cursor-not-allowed"
           />
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-secondary mb-2">
+          <label className="block text-sm font-medium text-gray-300 mb-2">
             {t('quantity')}
           </label>
           <input
@@ -116,16 +127,16 @@ export function OrderForm({ product }: OrderFormProps) {
             value={formData.quantity}
             onChange={(e) => setFormData({ ...formData, quantity: parseInt(e.target.value) || 1 })}
             required
-            className="w-full px-4 py-2 bg-white text-gray-900 border border-primary/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+            className="w-full px-4 py-2 bg-gray-700 text-white border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
           />
         </div>
 
-        <div className="border-t border-primary/10 pt-4">
-          <h3 className="text-lg font-bold text-primary mb-4">{t('contactInfo')}</h3>
+        <div className="border-t border-gray-700 pt-4">
+          <h3 className="text-lg font-bold text-white mb-4">{t('contactInfo')}</h3>
           
           <div className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-secondary mb-2">
+              <label className="block text-sm font-medium text-gray-300 mb-2">
                 {t('yourName')} *
               </label>
               <input
@@ -133,12 +144,12 @@ export function OrderForm({ product }: OrderFormProps) {
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 required
-                className="w-full px-4 py-2 bg-white text-gray-900 border border-primary/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                className="w-full px-4 py-2 bg-gray-700 text-white border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-secondary mb-2">
+              <label className="block text-sm font-medium text-gray-300 mb-2">
                 {t('yourPhone')} *
               </label>
               <input
@@ -146,12 +157,12 @@ export function OrderForm({ product }: OrderFormProps) {
                 value={formData.phone}
                 onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                 required
-                className="w-full px-4 py-2 bg-white text-gray-900 border border-primary/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                className="w-full px-4 py-2 bg-gray-700 text-white border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-secondary mb-2">
+              <label className="block text-sm font-medium text-gray-300 mb-2">
                 {t('yourEmail')} *
               </label>
               <input
@@ -159,19 +170,19 @@ export function OrderForm({ product }: OrderFormProps) {
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 required
-                className="w-full px-4 py-2 bg-white text-gray-900 border border-primary/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                className="w-full px-4 py-2 bg-gray-700 text-white border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-secondary mb-2">
+              <label className="block text-sm font-medium text-gray-300 mb-2">
                 {t('orderNotes')}
               </label>
               <textarea
                 value={formData.notes}
                 onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
                 rows={4}
-                className="w-full px-4 py-2 bg-white text-gray-900 border border-primary/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                className="w-full px-4 py-2 bg-gray-700 text-white border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
               />
             </div>
           </div>
@@ -186,6 +197,7 @@ export function OrderForm({ product }: OrderFormProps) {
           <span>{loading ? t('sending') : t('placeOrder')}</span>
         </button>
       </form>
+      )}
     </div>
   );
 }

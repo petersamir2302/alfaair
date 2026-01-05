@@ -22,7 +22,7 @@ export default async function HomePage() {
           <div className="relative rounded-2xl overflow-hidden mb-4 md:mb-8">
             <div className="relative h-[240px] md:h-[400px]">
               <Image
-                src="/hero.jpeg"
+                src="/hero-v2.jpeg"
                 alt="AlfaAir Hero"
                 fill
                 className="object-contain"
