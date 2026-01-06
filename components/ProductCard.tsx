@@ -94,16 +94,34 @@ export function ProductCard({ product }: ProductCardProps) {
             </button>
           )}
         </div>
-        {product.image_url && (
-          <div className={`relative w-full h-48 bg-gradient-to-br from-slate-700 to-slate-800 overflow-hidden flex-shrink-0 ${isSoldOut ? 'opacity-60' : ''}`}>
+        <div className={`relative w-full h-48 bg-gradient-to-br from-slate-700 to-slate-800 overflow-hidden flex-shrink-0 ${isSoldOut ? 'opacity-60' : ''}`}>
+          {(product.image_url || (product.images && product.images.length > 0)) ? (
             <Image
-              src={product.image_url}
+              src={product.images && product.images.length > 0 ? product.images[0] : product.image_url!}
               alt={name}
               fill
               className="object-cover group-hover:scale-105 transition-transform duration-300"
+              onError={(e) => {
+                // Fallback to placeholder if image fails to load
+                const target = e.target as HTMLImageElement;
+                target.style.display = 'none';
+                const parent = target.parentElement;
+                if (parent && !parent.querySelector('.placeholder')) {
+                  const placeholder = document.createElement('div');
+                  placeholder.className = 'placeholder absolute inset-0 flex items-center justify-center text-gray-500';
+                  placeholder.innerHTML = '<svg class="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>';
+                  parent.appendChild(placeholder);
+                }
+              }}
             />
-          </div>
-        )}
+          ) : (
+            <div className="absolute inset-0 flex items-center justify-center text-gray-500">
+              <svg className="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+            </div>
+          )}
+        </div>
         <div className="p-4 flex flex-col flex-grow">
           <h3 className={`text-xl font-bold mb-2 ${isSoldOut ? 'text-gray-400' : 'text-white'}`}>{name}</h3>
           {description && (

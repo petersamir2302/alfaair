@@ -5,3 +5,4 @@ ALTER TABLE products ADD COLUMN IF NOT EXISTS price NUMERIC;
 COMMENT ON COLUMN products.price IS 'Product price in EGP (Egyptian Pounds)';
 
 
+

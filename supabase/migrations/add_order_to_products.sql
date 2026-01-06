@@ -13,3 +13,4 @@ WHERE products.id = subquery.id;
 -- Create index on order column for better query performance
 CREATE INDEX IF NOT EXISTS idx_products_order ON products("order");
 
+

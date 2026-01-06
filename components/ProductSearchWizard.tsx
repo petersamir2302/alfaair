@@ -69,11 +69,17 @@ export function ProductSearchWizard() {
           .eq('category_id', selectedCategory)
           .eq('brand_id', selectedBrand)
           .eq('power_hp', parseFloat(selectedHorsePower))
-          .order('order', { ascending: true, nullsFirst: false })
-          .order('created_at', { ascending: false });
+          .order('order', { ascending: true, nullsFirst: false });
 
         if (data) {
-          setFilteredProducts(data);
+          // Sort by created_at as secondary sort (PostgREST doesn't support multiple order calls)
+          const sorted = data.sort((a, b) => {
+            if (a.order !== b.order) {
+              return (a.order ?? Infinity) - (b.order ?? Infinity);
+            }
+            return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
+          });
+          setFilteredProducts(sorted);
         }
         setLoading(false);
       };

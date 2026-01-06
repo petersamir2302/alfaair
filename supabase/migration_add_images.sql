@@ -17,3 +17,4 @@ WHERE images = '[]'::jsonb OR images IS NULL;
 -- You can optionally remove image_url column later if not needed:
 -- ALTER TABLE products DROP COLUMN IF EXISTS image_url;
 
+
