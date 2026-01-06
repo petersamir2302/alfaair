@@ -349,6 +349,8 @@ export function ProductForm({ product }: ProductFormProps) {
             >
               <option value="white">{language === 'ar' ? 'أبيض' : 'White'}</option>
               <option value="black">{language === 'ar' ? 'أسود' : 'Black'}</option>
+              <option value="silver">{language === 'ar' ? 'فضي' : 'Silver'}</option>
+              <option value="red">{language === 'ar' ? 'أحمر' : 'Red'}</option>
             </select>
           </div>
 
