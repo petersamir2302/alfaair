@@ -13,6 +13,7 @@ export default async function HomePage() {
   const { data: products, error } = await supabase
     .from('products')
     .select('*')
+    .order('order', { ascending: true, nullsFirst: false })
     .order('created_at', { ascending: false });
 
   return (

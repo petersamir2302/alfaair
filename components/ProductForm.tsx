@@ -185,9 +185,22 @@ export function ProductForm({ product }: ProductFormProps) {
         router.refresh();
       }
     } else {
+      // Get max order value to set new product at the end
+      const { data: maxOrderData } = await supabase
+        .from('products')
+        .select('order')
+        .order('order', { ascending: false, nullsFirst: false })
+        .limit(1);
+      
+      const maxOrder = maxOrderData && maxOrderData.length > 0 ? (maxOrderData[0]?.order ?? 0) : 0;
+      const newProductData = {
+        ...productData,
+        order: maxOrder + 1,
+      };
+
       const { error } = await supabase
         .from('products')
-        .insert([productData]);
+        .insert([newProductData]);
       
       if (error) {
         alert(error.message);

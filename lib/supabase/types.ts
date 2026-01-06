@@ -42,6 +42,7 @@ export interface Product {
   images: string[] | null;
   brand_id: string | null;
   category_id: string | null;
+  order: number | null;
   created_at: string;
   updated_at: string;
 }

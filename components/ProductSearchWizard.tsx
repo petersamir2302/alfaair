@@ -68,7 +68,9 @@ export function ProductSearchWizard() {
           .select('*')
           .eq('category_id', selectedCategory)
           .eq('brand_id', selectedBrand)
-          .eq('power_hp', parseFloat(selectedHorsePower));
+          .eq('power_hp', parseFloat(selectedHorsePower))
+          .order('order', { ascending: true, nullsFirst: false })
+          .order('created_at', { ascending: false });
 
         if (data) {
           setFilteredProducts(data);

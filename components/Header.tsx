@@ -82,7 +82,7 @@ export function Header() {
                   className="relative flex items-center gap-2 px-3 py-2 rounded-lg text-white hover:text-primary-lighter hover:bg-white/60 transition-all duration-200 font-medium text-sm"
                 >
                   <Scale className="w-4 h-4" />
-                  <span className="hidden md:inline">{language === 'ar' ? 'مقارنة' : 'Compare'}</span>
+                  <span className="hidden md:inline">{isRTL ? 'مقارنة' : 'Compare'}</span>
                   {compareCount > 0 && (
                     <span className="absolute -top-1 -right-1 bg-primary text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
                       {compareCount}
@@ -94,7 +94,7 @@ export function Header() {
                   className="relative flex items-center gap-2 px-3 py-2 rounded-lg text-white hover:text-primary-lighter hover:bg-white/60 transition-all duration-200 font-medium text-sm"
                 >
                   <ShoppingCart className="w-4 h-4" />
-                  <span className="hidden md:inline">{language === 'ar' ? 'السلة' : 'Cart'}</span>
+                  <span className="hidden md:inline">{isRTL ? 'السلة' : 'Cart'}</span>
                   {cartCount > 0 && (
                     <span className="absolute -top-1 -right-1 bg-primary text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
                       {cartCount}
@@ -150,7 +150,7 @@ export function Header() {
                   className="relative flex items-center gap-2 px-3 py-2 rounded-lg text-white hover:text-primary-lighter hover:bg-white/60 transition-all duration-200 font-medium text-sm"
                 >
                   <Scale className="w-4 h-4" />
-                  <span className="hidden md:inline">{language === 'ar' ? 'مقارنة' : 'Compare'}</span>
+                  <span className="hidden md:inline">{isRTL ? 'مقارنة' : 'Compare'}</span>
                   {compareCount > 0 && (
                     <span className="absolute -top-1 -right-1 bg-primary text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
                       {compareCount}
@@ -162,7 +162,7 @@ export function Header() {
                   className="relative flex items-center gap-2 px-3 py-2 rounded-lg text-white hover:text-primary-lighter hover:bg-white/60 transition-all duration-200 font-medium text-sm"
                 >
                   <ShoppingCart className="w-4 h-4" />
-                  <span className="hidden md:inline">{language === 'ar' ? 'السلة' : 'Cart'}</span>
+                  <span className="hidden md:inline">{isRTL ? 'السلة' : 'Cart'}</span>
                   {cartCount > 0 && (
                     <span className="absolute -top-1 -right-1 bg-primary text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
                       {cartCount}

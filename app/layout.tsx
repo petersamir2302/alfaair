@@ -7,6 +7,7 @@ import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { CallButton } from "@/components/CallButton";
 import { Loader } from "@/components/Loader";
 import { Cairo } from "next/font/google";
+import { Suspense } from "react";
 
 const cairo = Cairo({
   subsets: ["arabic", "latin"],
@@ -30,7 +31,9 @@ export default function RootLayout({
         <LanguageProvider>
           <CompareProvider>
             <CartProvider>
-              <Loader />
+              <Suspense fallback={null}>
+                <Loader />
+              </Suspense>
               {children}
               <WhatsAppButton />
               <CallButton />
