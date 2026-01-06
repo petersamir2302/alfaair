@@ -3,7 +3,7 @@
 import { Product } from '@/lib/supabase/types';
 import { useLanguage } from './LanguageProvider';
 import { getTranslation } from '@/lib/i18n';
-import { Edit, Trash2, GripVertical } from 'lucide-react';
+import { Edit, Trash2, GripVertical, Search } from 'lucide-react';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { createClient } from '@/lib/supabase/client';
@@ -135,11 +135,32 @@ export function ProductTable({ products: initialProducts }: ProductTableProps) {
   const [deletingId, setDeletingId] = useState<string | null>(null);
   const [products, setProducts] = useState<Product[]>(initialProducts);
   const [isUpdating, setIsUpdating] = useState(false);
+  const [searchQuery, setSearchQuery] = useState<string>('');
 
   // Sync products when initialProducts changes
   useEffect(() => {
     setProducts(initialProducts);
   }, [initialProducts]);
+
+  // Filter products based on search query
+  const filteredProducts = products.filter((product) => {
+    if (!searchQuery.trim()) return true;
+    
+    const query = searchQuery.toLowerCase().trim();
+    const nameAr = (product.name_ar || '').toLowerCase();
+    const nameEn = (product.name_en || '').toLowerCase();
+    const color = (product.color || '').toLowerCase();
+    const price = product.price?.toString() || '';
+    const powerHp = product.power_hp?.toString() || '';
+    
+    return (
+      nameAr.includes(query) ||
+      nameEn.includes(query) ||
+      color.includes(query) ||
+      price.includes(query) ||
+      powerHp.includes(query)
+    );
+  });
 
   const sensors = useSensors(
     useSensor(PointerSensor),
@@ -171,6 +192,7 @@ export function ProductTable({ products: initialProducts }: ProductTableProps) {
       return;
     }
 
+    // Find indices in the full products array (not filtered)
     const oldIndex = products.findIndex((p) => p.id === active.id);
     const newIndex = products.findIndex((p) => p.id === over.id);
 
@@ -222,6 +244,19 @@ export function ProductTable({ products: initialProducts }: ProductTableProps) {
           {t('saving') || 'Saving order...'}
         </div>
       )}
+      <div className="p-4 border-b border-primary/10">
+        <div className="relative">
+          <Search className="absolute right-3 top-1/2 transform -translate-y-1/2 text-secondary w-5 h-5" />
+          <input
+            type="text"
+            placeholder={t('search')}
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="w-full pr-10 pl-4 py-2 border border-secondary/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary text-right"
+            dir={language === 'ar' ? 'rtl' : 'ltr'}
+          />
+        </div>
+      </div>
       <div className="overflow-x-auto">
         <DndContext
           sensors={sensors}
@@ -243,10 +278,10 @@ export function ProductTable({ products: initialProducts }: ProductTableProps) {
             </thead>
             <tbody>
               <SortableContext
-                items={products.map((p) => p.id)}
+                items={filteredProducts.map((p) => p.id)}
                 strategy={verticalListSortingStrategy}
               >
-                {products.map((product) => (
+                {filteredProducts.map((product) => (
                   <SortableRow
                     key={product.id}
                     product={product}
@@ -260,9 +295,13 @@ export function ProductTable({ products: initialProducts }: ProductTableProps) {
             </tbody>
           </table>
         </DndContext>
-        {products.length === 0 && (
+        {filteredProducts.length === 0 && (
           <div className="p-8 text-center text-secondary">
-            {t('noProducts')}
+            {searchQuery.trim() ? (
+              language === 'ar' ? 'لا توجد نتائج للبحث' : 'No search results found'
+            ) : (
+              t('noProducts')
+            )}
           </div>
         )}
       </div>
