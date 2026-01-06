@@ -286,7 +286,11 @@ export function ProductSearchWizard() {
                 {s}
               </div>
               {s < 4 && (
-                <ChevronRight className="w-4 h-4 md:w-6 md:h-6 text-gray-600 mx-1 md:mx-2" />
+                language === 'ar' ? (
+                  <ChevronLeft className="w-4 h-4 md:w-6 md:h-6 text-gray-600 mx-1 md:mx-2" />
+                ) : (
+                  <ChevronRight className="w-4 h-4 md:w-6 md:h-6 text-gray-600 mx-1 md:mx-2" />
+                )
               )}
             </div>
           ))}
