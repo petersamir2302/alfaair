@@ -91,23 +91,37 @@ export function ProductForm({ product }: ProductFormProps) {
   };
 
   const removeImage = (index: number) => {
-    setImagePreviews((prev) => prev.filter((_, i) => i !== index));
-    setImageFiles((prev) => prev.filter((_, i) => i !== index));
+    setImagePreviews((prev) => {
+      const preview = prev[index];
+      const isNewFile = preview && preview.startsWith('data:');
+      
+      // If it's a new file (data URL), we need to remove the corresponding file from imageFiles
+      if (isNewFile) {
+        // Count how many existing URLs (http/https) come before this index
+        const existingUrlsBeforeIndex = prev.slice(0, index).filter(
+          (p) => p.startsWith('http') || p.startsWith('https')
+        ).length;
+        // The file index is: index - number of existing URLs before this index
+        const fileIndex = index - existingUrlsBeforeIndex;
+        
+        setImageFiles((files) => files.filter((_, i) => i !== fileIndex));
+      }
+      
+      return prev.filter((_, i) => i !== index);
+    });
   };
 
   const uploadImages = async (): Promise<string[]> => {
     // Get existing images from previews (these are the ones that weren't removed)
+    // These are URLs that start with http/https (already uploaded images)
     const existingImageUrls = imagePreviews.filter((preview) => 
       preview.startsWith('http') || preview.startsWith('https')
     );
     
+    // If no new files to upload, return only the existing images from previews
+    // This respects user's removals - if they removed images, they won't be in imagePreviews
     if (imageFiles.length === 0) {
-      // Return existing images if no new files
-      return existingImageUrls.length > 0 
-        ? existingImageUrls 
-        : (product?.images && product.images.length > 0 
-          ? product.images 
-          : (product?.image_url ? [product.image_url] : []));
+      return existingImageUrls;
     }
 
     setUploading(true);
@@ -136,6 +150,7 @@ export function ProductForm({ product }: ProductFormProps) {
       }
 
       // Combine existing images (from previews) with new uploaded ones
+      // This preserves the order: existing images first, then new uploads
       const allImages = [...existingImageUrls, ...uploadedUrls];
       setUploading(false);
       return allImages;
