@@ -135,6 +135,9 @@ export const translations = {
     orderError: 'حدث خطأ أثناء إرسال الطلب. يرجى المحاولة مرة أخرى.',
     sending: 'جاري الإرسال...',
     productName: 'اسم المنتج',
+    submitOrder: 'تقديم الطلب',
+    paymentMethod: 'طريقة الدفع',
+    cod: 'الدفع عند الاستلام',
   },
   en: {
     // Navigation
@@ -268,6 +271,9 @@ export const translations = {
     orderError: 'An error occurred while sending your order. Please try again.',
     sending: 'Sending...',
     productName: 'Product Name',
+    submitOrder: 'Submit Order',
+    paymentMethod: 'Payment Method',
+    cod: 'Cash on Delivery (COD)',
   },
 };
 

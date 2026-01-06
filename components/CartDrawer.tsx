@@ -183,7 +183,7 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
                 onClick={handleCheckout}
                 className="flex-1 px-4 py-2 bg-primary hover:bg-primary-dark text-white rounded-lg transition-colors flex items-center justify-center gap-2"
               >
-                <span>{language === 'ar' ? 'الدفع' : 'Checkout'}</span>
+                <span>{t('submitOrder')}</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
             </div>

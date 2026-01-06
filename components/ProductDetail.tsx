@@ -8,7 +8,6 @@ import { useCompare } from './CompareProvider';
 import { useCart } from './CartProvider';
 import { Check, X, Scale, ShoppingCart, Plus, Minus, Star, Award } from 'lucide-react';
 import { useState } from 'react';
-import { OrderForm } from './OrderForm';
 import { BackButton } from './BackButton';
 import { Breadcrumbs } from './Breadcrumbs';
 import Link from 'next/link';
@@ -221,8 +220,6 @@ export function ProductDetail({ product }: ProductDetailProps) {
           </div>
         </div>
       </div>
-
-      <OrderForm product={product} />
 
       {/* Sticky Bottom Bar - Mobile */}
       {!isSoldOut && (

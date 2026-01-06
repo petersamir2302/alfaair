@@ -9,6 +9,7 @@ import { BackButton } from './BackButton';
 import { Breadcrumbs } from './Breadcrumbs';
 import { X, Plus, Minus, ShoppingCart, ArrowRight, Trash2 } from 'lucide-react';
 import { useState } from 'react';
+import { CheckoutOrderForm } from './CheckoutOrderForm';
 
 export function CartView() {
   const { language } = useLanguage();
@@ -23,6 +24,7 @@ export function CartView() {
   } = useCart();
 
   const [loading, setLoading] = useState(false);
+  const [showCheckoutForm, setShowCheckoutForm] = useState(false);
 
   if (cartItems.length === 0) {
     return (
@@ -46,22 +48,8 @@ export function CartView() {
     );
   }
 
-  const handleCheckout = async () => {
-    setLoading(true);
-    // Redirect to checkout or process order
-    // For now, we'll use the existing order API for each item
-    try {
-      // You can implement checkout logic here
-      // For now, just show a message
-      alert(language === 'ar' 
-        ? 'سيتم إرسال طلبك قريباً. شكراً لك!'
-        : 'Your order will be processed soon. Thank you!'
-      );
-    } catch (error) {
-      console.error('Checkout error:', error);
-    } finally {
-      setLoading(false);
-    }
+  const handleCheckout = () => {
+    setShowCheckoutForm(true);
   };
 
   return (
@@ -202,13 +190,26 @@ export function CartView() {
               </div>
             </div>
 
+            {/* Payment Method - COD */}
+            <div className="mb-6 p-4 bg-primary/20 border border-primary/30 rounded-lg">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm text-gray-300 mb-1">{t('paymentMethod')}</p>
+                  <p className="text-primary font-bold text-lg">{t('cod')}</p>
+                </div>
+                <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center">
+                  <ShoppingCart className="w-6 h-6 text-primary" />
+                </div>
+              </div>
+            </div>
+
             <button
               onClick={handleCheckout}
-              disabled={loading}
+              disabled={loading || cartItems.length === 0}
               className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-primary hover:bg-primary-dark text-white rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed font-medium"
             >
               <ShoppingCart className="w-5 h-5" />
-              <span>{loading ? (language === 'ar' ? 'جاري المعالجة...' : 'Processing...') : (language === 'ar' ? 'إتمام الطلب' : 'Checkout')}</span>
+              <span>{loading ? t('sending') : t('submitOrder')}</span>
             </button>
 
             <Link
@@ -220,6 +221,12 @@ export function CartView() {
           </div>
         </div>
       </div>
+
+      {/* Checkout Order Form Popup */}
+      <CheckoutOrderForm 
+        isOpen={showCheckoutForm} 
+        onClose={() => setShowCheckoutForm(false)} 
+      />
     </div>
   );
 }
