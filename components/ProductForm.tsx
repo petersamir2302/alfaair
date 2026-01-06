@@ -33,6 +33,7 @@ export function ProductForm({ product }: ProductFormProps) {
     digital_screen: product?.digital_screen ?? (product ? false : true),
     plasma: product?.plasma || false,
     ai: product?.ai || false,
+    best_seller: product?.best_seller || false,
     warranty_years: product?.warranty_years?.toString() || '5',
     price: product?.price?.toString() || '',
     price_before: product?.price_before?.toString() || '',
@@ -438,6 +439,7 @@ export function ProductForm({ product }: ProductFormProps) {
             { key: 'digital_screen', label: t('digitalScreen') },
             { key: 'plasma', label: t('plasma') },
             { key: 'ai', label: t('ai') },
+            { key: 'best_seller', label: t('bestSeller') },
           ].map(({ key, label }) => (
             <label key={key} className="flex items-center gap-2 cursor-pointer">
               <input

@@ -32,6 +32,7 @@ export interface Product {
   digital_screen: boolean;
   plasma: boolean;
   ai: boolean;
+  best_seller: boolean;
   warranty_years: number | null;
   price: number | null;
   price_before: number | null;

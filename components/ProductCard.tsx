@@ -7,7 +7,7 @@ import { useLanguage } from './LanguageProvider';
 import { getTranslation } from '@/lib/i18n';
 import { useCompare } from './CompareProvider';
 import { useCart } from './CartProvider';
-import { Snowflake, Flame, Zap, Smartphone, Monitor, Wind, Brain, Scale, ShoppingCart } from 'lucide-react';
+import { Snowflake, Flame, Zap, Smartphone, Monitor, Wind, Brain, Scale, ShoppingCart, Star, Award } from 'lucide-react';
 
 interface ProductCardProps {
   product: Product;
@@ -66,6 +66,36 @@ export function ProductCard({ product }: ProductCardProps) {
         {isSoldOut && (
           <div className="absolute top-2 right-2 z-10 bg-red-500 text-white px-3 py-1 rounded-full text-xs font-bold">
             {t('soldOut')}
+          </div>
+        )}
+        {product.best_seller && !isSoldOut && (
+          <div className="absolute top-0 right-0 z-10 pointer-events-none">
+            <div className="relative">
+              {/* Badge Icon */}
+              <Award className="w-16 h-16 text-primary drop-shadow-lg" fill="#4A90E2" />
+              
+              {/* Text overlay */}
+              <div className="absolute inset-0 flex flex-col items-center justify-center">
+                {/* Stars */}
+                <div className="flex gap-0.5 mb-0.5 -mt-1">
+                  <Star className="w-2 h-2 fill-yellow-400 text-yellow-400" />
+                  <Star className="w-2 h-2 fill-yellow-400 text-yellow-400" />
+                  <Star className="w-2 h-2 fill-yellow-400 text-yellow-400" />
+                </div>
+                
+                {/* Text */}
+                <div className="text-white text-[9px] font-bold leading-tight text-center px-1 -mt-0.5">
+                  {language === 'ar' ? (
+                    <div className="leading-tight">{t('bestSeller')}</div>
+                  ) : (
+                    <>
+                      <div className="leading-tight">BEST</div>
+                      <div className="leading-tight">SELLER</div>
+                    </>
+                  )}
+                </div>
+              </div>
+            </div>
           </div>
         )}
         <div className="absolute top-2 left-2 z-10 flex flex-col gap-2">

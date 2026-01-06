@@ -6,7 +6,7 @@ import { useLanguage } from './LanguageProvider';
 import { getTranslation } from '@/lib/i18n';
 import { useCompare } from './CompareProvider';
 import { useCart } from './CartProvider';
-import { Check, X, Scale, ShoppingCart, Plus, Minus } from 'lucide-react';
+import { Check, X, Scale, ShoppingCart, Plus, Minus, Star, Award } from 'lucide-react';
 import { useState } from 'react';
 import { OrderForm } from './OrderForm';
 import { BackButton } from './BackButton';
@@ -119,8 +119,38 @@ export function ProductDetail({ product }: ProductDetailProps) {
           )}
 
           <div>
-            <div className="flex items-center gap-4 mb-4 flex-wrap">
+            <div className="flex items-center gap-4 mb-4 flex-wrap relative">
               <h1 className="text-3xl font-bold text-white">{name}</h1>
+              {product.best_seller && (product.inventory ?? 0) > 0 && (
+                <div className="relative inline-block pointer-events-none">
+                  <div className="relative">
+                    {/* Badge Icon */}
+                    <Award className="w-20 h-20 text-primary drop-shadow-xl" fill="#4A90E2" />
+                    
+                    {/* Text overlay */}
+                    <div className="absolute inset-0 flex flex-col items-center justify-center">
+                      {/* Stars */}
+                      <div className="flex gap-1 mb-1 -mt-1">
+                        <Star className="w-2.5 h-2.5 fill-yellow-400 text-yellow-400" />
+                        <Star className="w-2.5 h-2.5 fill-yellow-400 text-yellow-400" />
+                        <Star className="w-2.5 h-2.5 fill-yellow-400 text-yellow-400" />
+                      </div>
+                      
+                      {/* Text */}
+                      <div className="text-white text-xs font-bold leading-tight text-center px-1 -mt-0.5">
+                        {language === 'ar' ? (
+                          <div className="leading-tight">{t('bestSeller')}</div>
+                        ) : (
+                          <>
+                            <div className="leading-tight">BEST</div>
+                            <div className="leading-tight">SELLER</div>
+                          </>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
               {(product.inventory ?? 0) === 0 && (
                 <span className="bg-red-500 text-white px-4 py-1 rounded-full text-sm font-bold">
                   {t('soldOut')}
