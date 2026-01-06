@@ -143,11 +143,20 @@ export function ProductCard({ product }: ProductCardProps) {
           )}
 
           <div className="flex flex-wrap gap-3 text-sm pt-2 border-t border-gray-700 mt-auto">
-            {product.price && (
+            {product.price && product.price_before ? (
+              <div className="flex items-center gap-2">
+                <div className="text-red-400 line-through text-sm">
+                  {product.price_before.toLocaleString()} {language === 'ar' ? 'ج.م' : 'EGP'}
+                </div>
+                <div className="text-green-400 font-bold text-lg">
+                  {product.price.toLocaleString()} {language === 'ar' ? 'ج.م' : 'EGP'}
+                </div>
+              </div>
+            ) : product.price ? (
               <div className="text-white font-bold text-lg">
                 {product.price.toLocaleString()} {language === 'ar' ? 'ج.م' : 'EGP'}
               </div>
-            )}
+            ) : null}
             {product.power_hp && (
               <div className="text-gray-300">
                 <span className="font-medium text-white">{t('power')}:</span>{' '}

@@ -191,11 +191,20 @@ export function CompareView() {
                       <h3 className="text-white font-bold text-base md:text-lg mb-2 line-clamp-2 min-h-[3rem]">
                         {language === 'ar' ? product.name_ar : product.name_en}
                       </h3>
-                      {product.price && (
+                      {product.price && product.price_before ? (
+                        <div className="mb-3">
+                          <div className="text-red-400 line-through text-sm">
+                            {product.price_before.toLocaleString()}
+                          </div>
+                          <p className="text-green-400 font-bold text-lg md:text-xl">
+                            {product.price.toLocaleString()} {language === 'ar' ? 'ج.م' : 'EGP'}
+                          </p>
+                        </div>
+                      ) : product.price ? (
                         <p className="text-primary font-bold text-lg md:text-xl mb-3">
                           {product.price.toLocaleString()} {language === 'ar' ? 'ج.م' : 'EGP'}
                         </p>
-                      )}
+                      ) : null}
                     </Link>
                   </th>
                 ))}
@@ -209,7 +218,16 @@ export function CompareView() {
                 </td>
                 {compareItems.map((product) => (
                   <td key={product.id} className="px-4 md:px-6 py-4 text-center">
-                    {product.price ? (
+                    {product.price && product.price_before ? (
+                      <div>
+                        <div className="text-red-400 line-through text-sm">
+                          {product.price_before.toLocaleString()}
+                        </div>
+                        <span className="text-green-400 font-bold text-lg md:text-xl">
+                          {product.price.toLocaleString()} {language === 'ar' ? 'ج.م' : 'EGP'}
+                        </span>
+                      </div>
+                    ) : product.price ? (
                       <span className="text-white font-bold text-lg md:text-xl">
                         {product.price.toLocaleString()} {language === 'ar' ? 'ج.م' : 'EGP'}
                       </span>

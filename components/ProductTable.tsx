@@ -91,7 +91,9 @@ function SortableRow({ product, language, t, deletingId, onDelete }: SortableRow
         <div className="font-medium text-primary">{name}</div>
       </td>
       <td className="px-4 py-3 text-secondary">
-        {product.price ? `${product.price.toLocaleString()} ${language === 'ar' ? 'ج.م' : 'EGP'}` : '-'}
+        {product.price 
+          ? `${product.price.toLocaleString()} ${language === 'ar' ? 'ج.م' : 'EGP'}${product.price_before ? ` (${language === 'ar' ? 'كان' : 'was'} ${product.price_before.toLocaleString()})` : ''}`
+          : '-'}
       </td>
       <td className="px-4 py-3">
         {product.inventory !== null ? (

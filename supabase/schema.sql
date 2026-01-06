@@ -16,6 +16,7 @@ CREATE TABLE IF NOT EXISTS products (
   ai BOOLEAN DEFAULT false,
   warranty_years NUMERIC,
   price NUMERIC,
+  price_before NUMERIC,
   additional_specs_ar TEXT,
   additional_specs_en TEXT,
   image_url TEXT,

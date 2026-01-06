@@ -132,11 +132,20 @@ export function ProductDetail({ product }: ProductDetailProps) {
             )}
 
             <div className="space-y-4 mb-6">
-              {product.price && (
+              {product.price && product.price_before ? (
+                <div className="mb-2">
+                  <div className="text-red-400 line-through text-lg mb-1">
+                    {product.price_before.toLocaleString()} {language === 'ar' ? 'ج.م' : 'EGP'}
+                  </div>
+                  <div className="text-2xl font-bold text-green-400">
+                    {product.price.toLocaleString()} {language === 'ar' ? 'ج.م' : 'EGP'}
+                  </div>
+                </div>
+              ) : product.price ? (
                 <div className="text-2xl font-bold text-white mb-2">
                   {product.price.toLocaleString()} {language === 'ar' ? 'ج.م' : 'EGP'}
                 </div>
-              )}
+              ) : null}
               {product.power_hp && (
                 <div>
                   <span className="font-medium text-white">{t('power')}:</span>{' '}
@@ -209,11 +218,20 @@ export function ProductDetail({ product }: ProductDetailProps) {
               </button>
 
               {/* Price */}
-              {product.price && (
+              {product.price && product.price_before ? (
+                <div className="flex items-center gap-1 flex-shrink-0">
+                  <span className="text-red-400 line-through text-xs">
+                    {product.price_before.toLocaleString()}
+                  </span>
+                  <span className="text-green-400 font-bold text-xs">
+                    {product.price.toLocaleString()} {language === 'ar' ? 'ج.م' : 'EGP'}
+                  </span>
+                </div>
+              ) : product.price ? (
                 <div className="text-white font-bold text-xs flex-shrink-0">
                   {product.price.toLocaleString()} {language === 'ar' ? 'ج.م' : 'EGP'}
                 </div>
-              )}
+              ) : null}
               
               {/* Quantity Controls */}
               <div className="flex items-center gap-1 flex-shrink-0 h-10">
@@ -286,11 +304,20 @@ export function ProductDetail({ product }: ProductDetailProps) {
                 )}
                 <div className="flex-1 min-w-0">
                   <h3 className="text-white font-bold text-lg truncate">{name}</h3>
-                  {product.price && (
+                  {product.price && product.price_before ? (
+                    <div>
+                      <span className="text-red-400 line-through text-sm mr-2">
+                        {product.price_before.toLocaleString()}
+                      </span>
+                      <span className="text-green-400 font-bold text-xl">
+                        {product.price.toLocaleString()} {language === 'ar' ? 'ج.م' : 'EGP'}
+                      </span>
+                    </div>
+                  ) : product.price ? (
                     <p className="text-primary font-bold text-xl">
                       {product.price.toLocaleString()} {language === 'ar' ? 'ج.م' : 'EGP'}
                     </p>
-                  )}
+                  ) : null}
                 </div>
               </div>
 

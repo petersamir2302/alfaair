@@ -34,6 +34,7 @@ export interface Product {
   ai: boolean;
   warranty_years: number | null;
   price: number | null;
+  price_before: number | null;
   inventory: number | null;
   coverage_area_sqm: number | null;
   additional_specs_ar: string | null;
