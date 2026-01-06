@@ -4,6 +4,8 @@ import { Product } from '@/lib/supabase/types';
 import { ProductTable } from './ProductTable';
 import { useLanguage } from './LanguageProvider';
 import { getTranslation } from '@/lib/i18n';
+import { Breadcrumbs } from './Breadcrumbs';
+import { BackButton } from './BackButton';
 import { Plus } from 'lucide-react';
 import Link from 'next/link';
 
@@ -17,6 +19,8 @@ export function AdminProductsClient({ products }: AdminProductsClientProps) {
 
   return (
     <div>
+      <Breadcrumbs />
+      <BackButton />
       <div className="flex items-center justify-between mb-6">
         <h1 className="text-3xl font-bold text-primary">{t('products')}</h1>
         <Link
@@ -32,5 +36,6 @@ export function AdminProductsClient({ products }: AdminProductsClientProps) {
     </div>
   );
 }
+
 
 

@@ -5,7 +5,9 @@ import Image from 'next/image';
 import { Product } from '@/lib/supabase/types';
 import { useLanguage } from './LanguageProvider';
 import { getTranslation } from '@/lib/i18n';
-import { Snowflake, Flame, Zap, Smartphone, Monitor, Wind, Brain } from 'lucide-react';
+import { useCompare } from './CompareProvider';
+import { useCart } from './CartProvider';
+import { Snowflake, Flame, Zap, Smartphone, Monitor, Wind, Brain, Scale, ShoppingCart } from 'lucide-react';
 
 interface ProductCardProps {
   product: Product;
@@ -14,9 +16,39 @@ interface ProductCardProps {
 export function ProductCard({ product }: ProductCardProps) {
   const { language } = useLanguage();
   const t = (key: keyof typeof import('@/lib/i18n').translations.ar) => getTranslation(language, key);
+  const { addToCompare, removeFromCompare, isInCompare, canAddMore } = useCompare();
+  const { addToCart, isInCart } = useCart();
 
   const name = language === 'ar' ? product.name_ar : product.name_en;
   const description = language === 'ar' ? product.description_ar : product.description_en;
+  const inCompare = isInCompare(product.id);
+  const inCart = isInCart(product.id);
+  const isSoldOut = (product.inventory ?? 0) === 0;
+
+  const handleCompareClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (inCompare) {
+      removeFromCompare(product.id);
+    } else {
+      if (canAddMore()) {
+        addToCompare(product);
+      } else {
+        alert(language === 'ar' 
+          ? `يمكنك إضافة ما يصل إلى 4 منتجات للمقارنة. يرجى إزالة منتج أولاً.`
+          : `You can add up to 4 products to compare. Please remove a product first.`
+        );
+      }
+    }
+  };
+
+  const handleCartClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (!isSoldOut) {
+      addToCart(product, 1);
+    }
+  };
 
   const features = [
     { key: 'cold' as const, value: product.cold, icon: Snowflake, color: 'bg-blue-100 text-blue-700 border-blue-200' },
@@ -28,8 +60,6 @@ export function ProductCard({ product }: ProductCardProps) {
     { key: 'ai' as const, value: product.ai, icon: Brain, color: 'bg-pink-100 text-pink-700 border-pink-200' },
   ].filter(f => f.value);
 
-  const isSoldOut = (product.inventory ?? 0) === 0;
-
   return (
     <Link href={`/products/${product.id}`} className="h-full flex">
       <div className="bg-slate-800 rounded-lg transition-all duration-300 overflow-hidden group flex flex-col w-full h-full relative">
@@ -38,6 +68,32 @@ export function ProductCard({ product }: ProductCardProps) {
             {t('soldOut')}
           </div>
         )}
+        <div className="absolute top-2 left-2 z-10 flex flex-col gap-2">
+          <button
+            onClick={handleCompareClick}
+            className={`p-2 rounded-full transition-colors ${
+              inCompare
+                ? 'bg-primary text-white'
+                : 'bg-slate-700/80 text-gray-300 hover:bg-primary hover:text-white'
+            }`}
+            title={inCompare ? (language === 'ar' ? 'إزالة من المقارنة' : 'Remove from compare') : (language === 'ar' ? 'إضافة للمقارنة' : 'Add to compare')}
+          >
+            <Scale className="w-4 h-4" />
+          </button>
+          {!isSoldOut && (
+            <button
+              onClick={handleCartClick}
+              className={`p-2 rounded-full transition-colors ${
+                inCart
+                  ? 'bg-green-600 text-white'
+                  : 'bg-slate-700/80 text-gray-300 hover:bg-green-600 hover:text-white'
+              }`}
+              title={inCart ? (language === 'ar' ? 'في السلة' : 'In cart') : (language === 'ar' ? 'إضافة للسلة' : 'Add to cart')}
+            >
+              <ShoppingCart className="w-4 h-4" />
+            </button>
+          )}
+        </div>
         {product.image_url && (
           <div className={`relative w-full h-48 bg-gradient-to-br from-slate-700 to-slate-800 overflow-hidden flex-shrink-0 ${isSoldOut ? 'opacity-60' : ''}`}>
             <Image

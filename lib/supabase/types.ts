@@ -39,6 +39,7 @@ export interface Product {
   additional_specs_ar: string | null;
   additional_specs_en: string | null;
   image_url: string | null;
+  images: string[] | null;
   brand_id: string | null;
   category_id: string | null;
   created_at: string;

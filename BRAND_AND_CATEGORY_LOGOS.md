@@ -136,3 +136,4 @@
    - Maximum 2MB file size
    - Square aspect ratio recommended
 
+

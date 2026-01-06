@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <defs>
+    <style>
+      .snowflake-path {
+        fill: none;
+        stroke: #60a5fa;
+        stroke-width: 1.5;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+    </style>
+  </defs>
+  
+  <!-- Main vertical line -->
+  <line x1="50" y1="5" x2="50" y2="95" class="snowflake-path"/>
+  
+  <!-- Main horizontal line -->
+  <line x1="5" y1="50" x2="95" y2="50" class="snowflake-path"/>
+  
+  <!-- Diagonal lines at 60 degrees -->
+  <line x1="18.66" y1="18.66" x2="81.34" y2="81.34" class="snowflake-path"/>
+  <line x1="81.34" y1="18.66" x2="18.66" y2="81.34" class="snowflake-path"/>
+  
+  <!-- Top vertical branches -->
+  <line x1="50" y1="5" x2="42" y2="18" class="snowflake-path"/>
+  <line x1="50" y1="5" x2="58" y2="18" class="snowflake-path"/>
+  <line x1="50" y1="12" x2="45" y2="22" class="snowflake-path"/>
+  <line x1="50" y1="12" x2="55" y2="22" class="snowflake-path"/>
+  
+  <!-- Bottom vertical branches -->
+  <line x1="50" y1="95" x2="42" y2="82" class="snowflake-path"/>
+  <line x1="50" y1="95" x2="58" y2="82" class="snowflake-path"/>
+  <line x1="50" y1="88" x2="45" y2="78" class="snowflake-path"/>
+  <line x1="50" y1="88" x2="55" y2="78" class="snowflake-path"/>
+  
+  <!-- Left horizontal branches -->
+  <line x1="5" y1="50" x2="18" y2="42" class="snowflake-path"/>
+  <line x1="5" y1="50" x2="18" y2="58" class="snowflake-path"/>
+  <line x1="12" y1="50" x2="22" y2="45" class="snowflake-path"/>
+  <line x1="12" y1="50" x2="22" y2="55" class="snowflake-path"/>
+  
+  <!-- Right horizontal branches -->
+  <line x1="95" y1="50" x2="82" y2="42" class="snowflake-path"/>
+  <line x1="95" y1="50" x2="82" y2="58" class="snowflake-path"/>
+  <line x1="88" y1="50" x2="78" y2="45" class="snowflake-path"/>
+  <line x1="88" y1="50" x2="78" y2="55" class="snowflake-path"/>
+  
+  <!-- Top-left diagonal branches -->
+  <line x1="18.66" y1="18.66" x2="28" y2="28" class="snowflake-path"/>
+  <line x1="18.66" y1="18.66" x2="12" y2="12" class="snowflake-path"/>
+  <line x1="25" y1="25" x2="32" y2="32" class="snowflake-path"/>
+  <line x1="25" y1="25" x2="20" y2="20" class="snowflake-path"/>
+  
+  <!-- Bottom-right diagonal branches -->
+  <line x1="81.34" y1="81.34" x2="72" y2="72" class="snowflake-path"/>
+  <line x1="81.34" y1="81.34" x2="88" y2="88" class="snowflake-path"/>
+  <line x1="75" y1="75" x2="68" y2="68" class="snowflake-path"/>
+  <line x1="75" y1="75" x2="80" y2="80" class="snowflake-path"/>
+  
+  <!-- Top-right diagonal branches -->
+  <line x1="81.34" y1="18.66" x2="72" y2="28" class="snowflake-path"/>
+  <line x1="81.34" y1="18.66" x2="88" y2="12" class="snowflake-path"/>
+  <line x1="75" y1="25" x2="68" y2="32" class="snowflake-path"/>
+  <line x1="75" y1="25" x2="80" y2="20" class="snowflake-path"/>
+  
+  <!-- Bottom-left diagonal branches -->
+  <line x1="18.66" y1="81.34" x2="28" y2="72" class="snowflake-path"/>
+  <line x1="18.66" y1="81.34" x2="12" y2="88" class="snowflake-path"/>
+  <line x1="25" y1="75" x2="32" y2="68" class="snowflake-path"/>
+  <line x1="25" y1="75" x2="20" y2="80" class="snowflake-path"/>
+  
+  <!-- Center hexagon -->
+  <polygon points="50,45 55,48 55,52 50,55 45,52 45,48" class="snowflake-path" fill="#60a5fa" opacity="0.3"/>
+</svg>

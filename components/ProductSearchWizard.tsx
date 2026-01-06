@@ -120,26 +120,6 @@ export function ProductSearchWizard() {
       </div>
 
       <div className="bg-slate-800 rounded-lg p-6 md:p-8">
-        {/* Progress Steps */}
-        <div className="flex items-center justify-center mb-8 gap-2 md:gap-4">
-          {[1, 2, 3, 4].map((s) => (
-            <div key={s} className="flex items-center">
-              <div
-                className={`w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center text-sm md:text-base font-bold transition-all ${
-                  step >= s
-                    ? 'bg-primary text-white'
-                    : 'bg-gray-700 text-gray-400'
-                }`}
-              >
-                {s}
-              </div>
-              {s < 4 && (
-                <ChevronRight className="w-4 h-4 md:w-6 md:h-6 text-gray-600 mx-1 md:mx-2" />
-              )}
-            </div>
-          ))}
-        </div>
-
         {/* Step 1: Category Selection */}
         {step === 1 && (
           <div>
@@ -291,8 +271,29 @@ export function ProductSearchWizard() {
             )}
           </div>
         )}
+
+        {/* Progress Steps - Bottom */}
+        <div className="flex items-center justify-center mt-8 gap-2 md:gap-4">
+          {[1, 2, 3, 4].map((s) => (
+            <div key={s} className="flex items-center">
+              <div
+                className={`w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center text-sm md:text-base font-bold transition-all ${
+                  step >= s
+                    ? 'bg-primary text-white'
+                    : 'bg-gray-700 text-gray-400'
+                }`}
+              >
+                {s}
+              </div>
+              {s < 4 && (
+                <ChevronRight className="w-4 h-4 md:w-6 md:h-6 text-gray-600 mx-1 md:mx-2" />
+              )}
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );
 }
+
 

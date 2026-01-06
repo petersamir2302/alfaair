@@ -11,3 +11,4 @@ export default async function AdminBrandsPage() {
   return <AdminBrandsClient brands={brands || []} />;
 }
 
+

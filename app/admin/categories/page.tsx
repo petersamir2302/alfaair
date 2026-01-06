@@ -11,3 +11,4 @@ export default async function AdminCategoriesPage() {
   return <AdminCategoriesClient categories={categories || []} />;
 }
 
+

@@ -1,12 +1,12 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { Product, Brand, Category } from '@/lib/supabase/types';
 import { createClient } from '@/lib/supabase/client';
 import { useLanguage } from './LanguageProvider';
 import { getTranslation } from '@/lib/i18n';
-import { Upload, X } from 'lucide-react';
+import { Upload, X, Plus } from 'lucide-react';
 import Image from 'next/image';
 
 interface ProductFormProps {
@@ -28,12 +28,12 @@ export function ProductForm({ product }: ProductFormProps) {
     hot: product?.hot || false,
     inverter: product?.inverter || false,
     power_hp: product?.power_hp?.toString() || '',
-    color: product?.color || '',
+    color: product?.color || 'white',
     smart: product?.smart || false,
     digital_screen: product?.digital_screen || false,
     plasma: product?.plasma || false,
     ai: product?.ai || false,
-    warranty_years: product?.warranty_years?.toString() || '',
+    warranty_years: product?.warranty_years?.toString() || '5',
     price: product?.price?.toString() || '',
     inventory: product?.inventory?.toString() || '0',
     coverage_area_sqm: product?.coverage_area_sqm?.toString() || '',
@@ -45,8 +45,16 @@ export function ProductForm({ product }: ProductFormProps) {
 
   const [brands, setBrands] = useState<Brand[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
-  const [imageFile, setImageFile] = useState<File | null>(null);
-  const [imagePreview, setImagePreview] = useState<string | null>(product?.image_url || null);
+  const [imageFiles, setImageFiles] = useState<File[]>([]);
+  const [imagePreviews, setImagePreviews] = useState<string[]>(() => {
+    if (product?.images && product.images.length > 0) {
+      return product.images;
+    }
+    if (product?.image_url) {
+      return [product.image_url];
+    }
+    return [];
+  });
   const [uploading, setUploading] = useState(false);
   const [saving, setSaving] = useState(false);
 
@@ -65,47 +73,76 @@ export function ProductForm({ product }: ProductFormProps) {
   }, []);
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      setImageFile(file);
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setImagePreview(reader.result as string);
-      };
-      reader.readAsDataURL(file);
+    const files = Array.from(e.target.files || []);
+    if (files.length > 0) {
+      const newFiles = [...imageFiles, ...files];
+      setImageFiles(newFiles);
+      
+      // Create previews for new files
+      files.forEach((file) => {
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          setImagePreviews((prev) => [...prev, reader.result as string]);
+        };
+        reader.readAsDataURL(file);
+      });
     }
   };
 
-  const uploadImage = async (): Promise<string | null> => {
-    if (!imageFile) return product?.image_url || null;
+  const removeImage = (index: number) => {
+    setImagePreviews((prev) => prev.filter((_, i) => i !== index));
+    setImageFiles((prev) => prev.filter((_, i) => i !== index));
+  };
+
+  const uploadImages = async (): Promise<string[]> => {
+    // Get existing images from previews (these are the ones that weren't removed)
+    const existingImageUrls = imagePreviews.filter((preview) => 
+      preview.startsWith('http') || preview.startsWith('https')
+    );
+    
+    if (imageFiles.length === 0) {
+      // Return existing images if no new files
+      return existingImageUrls.length > 0 
+        ? existingImageUrls 
+        : (product?.images && product.images.length > 0 
+          ? product.images 
+          : (product?.image_url ? [product.image_url] : []));
+    }
 
     setUploading(true);
+    const uploadedUrls: string[] = [];
     
     try {
-      // Use the API route which handles authentication properly
-      const formData = new FormData();
-      formData.append('file', imageFile);
+      // Upload all new files
+      for (const file of imageFiles) {
+        const formData = new FormData();
+        formData.append('file', file);
 
-      const response = await fetch('/api/upload', {
-        method: 'POST',
-        body: formData,
-      });
+        const response = await fetch('/api/upload', {
+          method: 'POST',
+          body: formData,
+        });
 
-      if (!response.ok) {
-        const error = await response.json();
-        alert(error.error || 'Failed to upload image');
-        setUploading(false);
-        return null;
+        if (!response.ok) {
+          const error = await response.json();
+          alert(error.error || 'Failed to upload image');
+          setUploading(false);
+          return [];
+        }
+
+        const { url } = await response.json();
+        uploadedUrls.push(url);
       }
 
-      const { url } = await response.json();
+      // Combine existing images (from previews) with new uploaded ones
+      const allImages = [...existingImageUrls, ...uploadedUrls];
       setUploading(false);
-      return url;
+      return allImages;
     } catch (error) {
       console.error('Upload error:', error);
-      alert('Failed to upload image. Please try again.');
+      alert('Failed to upload images. Please try again.');
       setUploading(false);
-      return null;
+      return [];
     }
   };
 
@@ -113,11 +150,14 @@ export function ProductForm({ product }: ProductFormProps) {
     e.preventDefault();
     setSaving(true);
 
-    const imageUrl = await uploadImage();
-    if (imageFile && !imageUrl) {
+    const images = await uploadImages();
+    if (imageFiles.length > 0 && images.length === 0) {
       setSaving(false);
       return;
     }
+
+    // Use first image as image_url for backward compatibility
+    const imageUrl = images.length > 0 ? images[0] : (product?.image_url || null);
 
     const productData = {
       ...formData,
@@ -126,7 +166,8 @@ export function ProductForm({ product }: ProductFormProps) {
       price: formData.price ? parseFloat(formData.price) : null,
       inventory: formData.inventory ? parseInt(formData.inventory) : 0,
       coverage_area_sqm: formData.coverage_area_sqm ? parseFloat(formData.coverage_area_sqm) : null,
-      image_url: imageUrl || product?.image_url || null,
+      image_url: imageUrl,
+      images: images.length > 0 ? images : null,
       brand_id: formData.brand_id || null,
       category_id: formData.category_id || null,
     };
@@ -269,6 +310,7 @@ export function ProductForm({ product }: ProductFormProps) {
               step="0.1"
               value={formData.power_hp}
               onChange={(e) => setFormData({ ...formData, power_hp: e.target.value })}
+              onWheel={(e) => e.currentTarget.blur()}
               className="w-full px-4 py-2 bg-white text-gray-900 border border-primary/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
             />
           </div>
@@ -277,12 +319,14 @@ export function ProductForm({ product }: ProductFormProps) {
             <label className="block text-sm font-medium text-secondary mb-2">
               {t('color')}
             </label>
-            <input
-              type="text"
+            <select
               value={formData.color}
               onChange={(e) => setFormData({ ...formData, color: e.target.value })}
               className="w-full px-4 py-2 bg-white text-gray-900 border border-primary/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-            />
+            >
+              <option value="white">{language === 'ar' ? 'أبيض' : 'White'}</option>
+              <option value="black">{language === 'ar' ? 'أسود' : 'Black'}</option>
+            </select>
           </div>
 
           <div>
@@ -293,6 +337,7 @@ export function ProductForm({ product }: ProductFormProps) {
               type="number"
               value={formData.warranty_years}
               onChange={(e) => setFormData({ ...formData, warranty_years: e.target.value })}
+              onWheel={(e) => e.currentTarget.blur()}
               className="w-full px-4 py-2 bg-white text-gray-900 border border-primary/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
             />
           </div>
@@ -306,6 +351,7 @@ export function ProductForm({ product }: ProductFormProps) {
               step="0.01"
               value={formData.price}
               onChange={(e) => setFormData({ ...formData, price: e.target.value })}
+              onWheel={(e) => e.currentTarget.blur()}
               className="w-full px-4 py-2 bg-white text-gray-900 border border-primary/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
             />
           </div>
@@ -319,6 +365,7 @@ export function ProductForm({ product }: ProductFormProps) {
               min="0"
               value={formData.inventory}
               onChange={(e) => setFormData({ ...formData, inventory: e.target.value })}
+              onWheel={(e) => e.currentTarget.blur()}
               className="w-full px-4 py-2 bg-white text-gray-900 border border-primary/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
             />
           </div>
@@ -333,6 +380,7 @@ export function ProductForm({ product }: ProductFormProps) {
               min="0"
               value={formData.coverage_area_sqm}
               onChange={(e) => setFormData({ ...formData, coverage_area_sqm: e.target.value })}
+              onWheel={(e) => e.currentTarget.blur()}
               placeholder={language === 'ar' ? 'متر مربع' : 'Square meters'}
               className="w-full px-4 py-2 bg-white text-gray-900 border border-primary/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
             />
@@ -399,24 +447,25 @@ export function ProductForm({ product }: ProductFormProps) {
       <div className="bg-white p-6 rounded-lg shadow-md border border-primary/10">
         <h2 className="text-xl font-bold text-primary mb-4">{t('image')}</h2>
 
-        {imagePreview && (
-          <div className="relative w-48 h-48 mb-4 rounded-lg overflow-hidden border border-primary/10">
-            <Image
-              src={imagePreview}
-              alt="Preview"
-              fill
-              className="object-cover"
-            />
-            <button
-              type="button"
-              onClick={() => {
-                setImagePreview(null);
-                setImageFile(null);
-              }}
-              className="absolute top-2 right-2 p-1 bg-red-500 text-white rounded-full hover:bg-red-600"
-            >
-              <X className="w-4 h-4" />
-            </button>
+        {imagePreviews.length > 0 && (
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+            {imagePreviews.map((preview, index) => (
+              <div key={index} className="relative w-full h-48 rounded-lg overflow-hidden border border-primary/10">
+                <Image
+                  src={preview}
+                  alt={`Preview ${index + 1}`}
+                  fill
+                  className="object-cover"
+                />
+                <button
+                  type="button"
+                  onClick={() => removeImage(index)}
+                  className="absolute top-2 right-2 p-1 bg-red-500 text-white rounded-full hover:bg-red-600"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              </div>
+            ))}
           </div>
         )}
 
@@ -424,12 +473,13 @@ export function ProductForm({ product }: ProductFormProps) {
           <div className="flex flex-col items-center justify-center pt-5 pb-6">
             <Upload className="w-8 h-8 mb-2 text-secondary" />
             <p className="text-sm text-secondary">
-              {imagePreview ? t('changeImage') : t('selectImage')}
+              {imagePreviews.length > 0 ? t('changeImage') : t('selectImage')} ({language === 'ar' ? 'يمكن إضافة عدة صور' : 'Multiple images allowed'})
             </p>
           </div>
           <input
             type="file"
             accept="image/*"
+            multiple
             onChange={handleImageChange}
             className="hidden"
           />

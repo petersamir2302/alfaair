@@ -56,3 +56,4 @@ If you prefer to use the Service Role Key we already have, you can modify the co
 3. You can then use MCP tools to execute SQL and manage your database
 
 
+
