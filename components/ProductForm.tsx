@@ -24,21 +24,19 @@ export function ProductForm({ product }: ProductFormProps) {
     name_en: product?.name_en || '',
     description_ar: product?.description_ar || '',
     description_en: product?.description_en || '',
-    cold: product?.cold || false,
+    cold: product?.cold ?? (product ? false : true),
     hot: product?.hot || false,
     inverter: product?.inverter || false,
     power_hp: product?.power_hp?.toString() || '',
     color: product?.color || 'white',
     smart: product?.smart || false,
-    digital_screen: product?.digital_screen || false,
+    digital_screen: product?.digital_screen ?? (product ? false : true),
     plasma: product?.plasma || false,
     ai: product?.ai || false,
     warranty_years: product?.warranty_years?.toString() || '5',
     price: product?.price?.toString() || '',
-    inventory: product?.inventory?.toString() || '0',
+    inventory: product?.inventory?.toString() || '',
     coverage_area_sqm: product?.coverage_area_sqm?.toString() || '',
-    additional_specs_ar: product?.additional_specs_ar || '',
-    additional_specs_en: product?.additional_specs_en || '',
     brand_id: product?.brand_id || '',
     category_id: product?.category_id || '',
   });
@@ -57,6 +55,7 @@ export function ProductForm({ product }: ProductFormProps) {
   });
   const [uploading, setUploading] = useState(false);
   const [saving, setSaving] = useState(false);
+  const isSubmittingRef = useRef(false);
 
   useEffect(() => {
     const fetchBrandsAndCategories = async () => {
@@ -148,11 +147,19 @@ export function ProductForm({ product }: ProductFormProps) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Prevent double submission
+    if (isSubmittingRef.current || saving || uploading) {
+      return;
+    }
+    
+    isSubmittingRef.current = true;
     setSaving(true);
 
     const images = await uploadImages();
     if (imageFiles.length > 0 && images.length === 0) {
       setSaving(false);
+      isSubmittingRef.current = false;
       return;
     }
 
@@ -164,7 +171,7 @@ export function ProductForm({ product }: ProductFormProps) {
       power_hp: formData.power_hp ? parseFloat(formData.power_hp) : null,
       warranty_years: formData.warranty_years ? parseFloat(formData.warranty_years) : null,
       price: formData.price ? parseFloat(formData.price) : null,
-      inventory: formData.inventory ? parseInt(formData.inventory) : 0,
+      inventory: formData.inventory ? parseInt(formData.inventory) : null,
       coverage_area_sqm: formData.coverage_area_sqm ? parseFloat(formData.coverage_area_sqm) : null,
       image_url: imageUrl,
       images: images.length > 0 ? images : null,
@@ -180,6 +187,8 @@ export function ProductForm({ product }: ProductFormProps) {
       
       if (error) {
         alert(error.message);
+        setSaving(false);
+        isSubmittingRef.current = false;
       } else {
         router.push('/admin/products');
         router.refresh();
@@ -204,12 +213,13 @@ export function ProductForm({ product }: ProductFormProps) {
       
       if (error) {
         alert(error.message);
+        setSaving(false);
+        isSubmittingRef.current = false;
       } else {
         router.push('/admin/products');
         router.refresh();
       }
     }
-    setSaving(false);
   };
 
   return (
@@ -422,38 +432,6 @@ export function ProductForm({ product }: ProductFormProps) {
               <span className="text-sm text-secondary">{label}</span>
             </label>
           ))}
-        </div>
-      </div>
-
-      <div className="bg-white p-6 rounded-lg shadow-md border border-primary/10">
-        <h2 className="text-xl font-bold text-primary mb-4">
-          {t('additionalSpecs')}
-        </h2>
-
-        <div className="grid md:grid-cols-2 gap-4">
-          <div>
-            <label className="block text-sm font-medium text-secondary mb-2">
-              {t('additionalSpecs')} (AR)
-            </label>
-            <textarea
-              value={formData.additional_specs_ar}
-              onChange={(e) => setFormData({ ...formData, additional_specs_ar: e.target.value })}
-              rows={4}
-              className="w-full px-4 py-2 bg-white text-gray-900 border border-primary/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-secondary mb-2">
-              {t('additionalSpecs')} (EN)
-            </label>
-            <textarea
-              value={formData.additional_specs_en}
-              onChange={(e) => setFormData({ ...formData, additional_specs_en: e.target.value })}
-              rows={4}
-              className="w-full px-4 py-2 bg-white text-gray-900 border border-primary/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-            />
-          </div>
         </div>
       </div>
 
