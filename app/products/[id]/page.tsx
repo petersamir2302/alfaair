@@ -44,7 +44,8 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
       title: `${productName} | AlfaAir`,
       description: productDescription,
       url: productUrl,
-      type: "product",
+      type: "website",
+      siteName: "AlfaAir",
       images: [
         {
           url: productImage,
@@ -53,9 +54,6 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
           alt: productName,
         },
       ],
-      ...(price && {
-        siteName: "AlfaAir",
-      }),
     },
     twitter: {
       card: "summary_large_image",

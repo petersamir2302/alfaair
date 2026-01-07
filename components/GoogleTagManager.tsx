@@ -1,5 +1,3 @@
-'use client';
-
 import Script from 'next/script';
 
 const GTM_ID = 'GTM-TG6HDXMP';
