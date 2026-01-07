@@ -12,6 +12,7 @@ import { useState } from 'react';
 import { BackButton } from './BackButton';
 import { Breadcrumbs } from './Breadcrumbs';
 import Link from 'next/link';
+import { SimilarProducts } from './SimilarProducts';
 
 interface ProductDetailProps {
   product: Product;
@@ -417,6 +418,29 @@ export function ProductDetail({ product }: ProductDetailProps) {
 
       {/* Spacer to prevent content from being hidden behind sticky bar */}
       {!isSoldOut && <div className="h-20 md:h-24" />}
+
+      {/* Similar Products Sections */}
+      <div className="pb-24 md:pb-32">
+        {product.brand_id && (
+          <SimilarProducts
+            productId={product.id}
+            brandId={product.brand_id}
+            powerHp={product.power_hp}
+            filterType="brand"
+            limit={4}
+          />
+        )}
+        
+        {product.power_hp !== null && (
+          <SimilarProducts
+            productId={product.id}
+            brandId={product.brand_id}
+            powerHp={product.power_hp}
+            filterType="horsepower"
+            limit={4}
+          />
+        )}
+      </div>
     </div>
   );
 }
