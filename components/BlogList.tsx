@@ -20,7 +20,7 @@ const categoryLabels = {
     'buying-guide': 'Buying Guide',
     'energy-saving': 'Energy Saving',
   },
-};
+} as const;
 
 export function BlogList() {
   const { language } = useLanguage();
