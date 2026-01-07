@@ -7,6 +7,7 @@ import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { CallButton } from "@/components/CallButton";
 import { Loader } from "@/components/Loader";
 import { GoogleTagManager, GoogleTagManagerNoscript } from "@/components/GoogleTagManager";
+import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 import { Cairo } from "next/font/google";
 import { Suspense } from "react";
 
@@ -109,6 +110,7 @@ export default function RootLayout({
   return (
     <html lang="ar" dir="rtl" className={`light scroll-smooth ${cairo.variable}`}>
       <body className="text-gray-900 font-sans">
+        <GoogleAnalytics />
         <GoogleTagManager />
         <GoogleTagManagerNoscript />
         <LanguageProvider>
