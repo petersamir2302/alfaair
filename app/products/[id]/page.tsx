@@ -23,26 +23,34 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   }
 
   const productName = product.name_ar || product.name_en;
-  const productDescription = product.description_ar || product.description_en || `Buy ${productName} - Premium air conditioning unit from AlfaAir. Best prices and warranty included.`;
+  const productDescriptionAr = product.description_ar || `شراء ${productName} - مكيف هواء من AlfaAir. أفضل الأسعار مع ضمان شامل.`;
+  const productDescriptionEn = product.description_en || `Buy ${productName} - Premium air conditioning unit from AlfaAir. Best prices and warranty included.`;
+  const productDescription = `${productDescriptionAr} ${productDescriptionEn}`;
   const productImage = product.images?.[0] || product.image_url || '/logo-v2.png';
   const productUrl = `${siteUrl}/products/${id}`;
   const price = product.price ? `${product.price} EGP` : undefined;
 
   return {
-    title: productName,
+    title: `${productName} | شراء من موقع بيع تكييفات AlfaAir`,
     description: productDescription,
     keywords: [
       productName,
+      "شراء تكييف",
+      "بيع تكييفات",
+      "موقع بيع تكييفات",
+      "مكيف للبيع",
+      "تكييف للبيع",
       "air conditioning",
       "AC unit",
       "مكيف",
       "تكييف",
       product.brand_id || "",
       "Egypt",
-      "AlfaAir"
+      "AlfaAir",
+      "buy AC online"
     ].filter(Boolean),
     openGraph: {
-      title: `${productName} | AlfaAir`,
+      title: `${productName} | شراء من موقع بيع تكييفات AlfaAir`,
       description: productDescription,
       url: productUrl,
       type: "website",
@@ -94,6 +102,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
     "@context": "https://schema.org",
     "@type": "Product",
     "name": productName,
+    "alternateName": product.name_en && product.name_en !== productName ? product.name_en : undefined,
     "description": productDescription,
     "image": productImage ? [productImage] : [],
     "brand": product.brand_id ? {

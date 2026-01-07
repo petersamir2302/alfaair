@@ -23,11 +23,23 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://alfaair.shop';
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "AlfaAir - AC Trading Company | Premium Air Conditioning Solutions",
-    template: "%s | AlfaAir"
+    default: "AlfaAir - موقع بيع تكييفات في مصر | متجر تكييفات أونلاين | Premium Air Conditioning Solutions",
+    template: "%s | AlfaAir - موقع بيع تكييفات"
   },
-  description: "AlfaAir offers premium air conditioning solutions in Egypt. Browse our wide selection of AC units from top brands including Beko, Carrier, Haier, Gree, Midea, and York. Best prices, warranty, and professional installation services.",
+  description: "AlfaAir - موقع بيع تكييفات في مصر | متجر تكييفات أونلاين | أفضل أسعار مكيفات الهواء من بيكو، كاريير، هاير، جري، ميديا، يورك. ضمان شامل وخدمة تركيب احترافية. AlfaAir offers premium air conditioning solutions in Egypt. Browse our wide selection of AC units from top brands including Beko, Carrier, Haier, Gree, Midea, and York. Best prices, warranty, and professional installation services.",
   keywords: [
+    "موقع بيع تكييفات",
+    "بيع تكييفات",
+    "شراء تكييف",
+    "متجر تكييفات",
+    "تكييفات للبيع",
+    "مكيفات للبيع",
+    "موقع تكييفات",
+    "شراء مكيفات",
+    "تكييفات مصر",
+    "مكيفات مصر",
+    "تكييفات أونلاين",
+    "مكيفات أونلاين",
     "air conditioning",
     "AC units",
     "air conditioner Egypt",
@@ -42,7 +54,9 @@ export const metadata: Metadata = {
     "inverter AC",
     "smart AC",
     "AC installation",
-    "AC maintenance"
+    "AC maintenance",
+    "buy AC online Egypt",
+    "AC store Egypt"
   ],
   authors: [{ name: "AlfaAir" }],
   creator: "AlfaAir",
@@ -58,8 +72,8 @@ export const metadata: Metadata = {
     alternateLocale: ["en_US"],
     url: siteUrl,
     siteName: "AlfaAir",
-    title: "AlfaAir - AC Trading Company | Premium Air Conditioning Solutions",
-    description: "Premium air conditioning solutions in Egypt. Browse our wide selection of AC units from top brands. Best prices, warranty, and professional installation services.",
+    title: "AlfaAir - موقع بيع تكييفات في مصر | متجر تكييفات أونلاين | Premium Air Conditioning Solutions",
+    description: "موقع بيع تكييفات في مصر - متجر تكييفات أونلاين مع أفضل الأسعار. مكيفات من بيكو، كاريير، هاير، جري، ميديا، يورك. ضمان شامل وخدمة تركيب احترافية. Premium air conditioning solutions in Egypt. Browse our wide selection of AC units from top brands. Best prices, warranty, and professional installation services.",
     images: [
       {
         url: "/logo-v2.png",

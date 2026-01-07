@@ -12,11 +12,25 @@ import type { Metadata } from 'next';
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://alfaair.shop';
 
 export const metadata: Metadata = {
-  title: "Home",
-  description: "AlfaAir offers premium air conditioning solutions in Egypt. Browse our wide selection of AC units from top brands including Beko, Carrier, Haier, Gree, Midea, and York. Best prices, warranty, and professional installation services.",
+  title: "موقع بيع تكييفات في مصر - AlfaAir | متجر تكييفات أونلاين",
+  description: "موقع بيع تكييفات في مصر - AlfaAir متجر تكييفات أونلاين مع أفضل الأسعار. مكيفات من بيكو، كاريير، هاير، جري، ميديا، يورك. ضمان شامل وخدمة تركيب احترافية. AlfaAir offers premium air conditioning solutions in Egypt. Browse our wide selection of AC units from top brands including Beko, Carrier, Haier, Gree, Midea, and York. Best prices, warranty, and professional installation services.",
+  keywords: [
+    "موقع بيع تكييفات",
+    "بيع تكييفات",
+    "شراء تكييف",
+    "متجر تكييفات",
+    "تكييفات للبيع",
+    "مكيفات للبيع",
+    "موقع تكييفات",
+    "شراء مكيفات",
+    "تكييفات مصر",
+    "مكيفات مصر",
+    "تكييفات أونلاين",
+    "مكيفات أونلاين"
+  ],
   openGraph: {
-    title: "AlfaAir - Premium Air Conditioning Solutions in Egypt",
-    description: "Browse our wide selection of AC units from top brands. Best prices, warranty, and professional installation services.",
+    title: "AlfaAir - موقع بيع تكييفات في مصر | متجر تكييفات أونلاين",
+    description: "موقع بيع تكييفات في مصر - متجر تكييفات أونلاين مع أفضل الأسعار. مكيفات من بيكو، كاريير، هاير، جري، ميديا، يورك. ضمان شامل وخدمة تركيب احترافية. Browse our wide selection of AC units from top brands. Best prices, warranty, and professional installation services.",
     url: siteUrl,
     images: [
       {
@@ -73,8 +87,9 @@ export default async function HomePage() {
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    "name": "AlfaAir",
-    "description": "Premium Air Conditioning Solutions in Egypt",
+    "name": "AlfaAir - موقع بيع تكييفات",
+    "alternateName": "ألفا إير - موقع بيع تكييفات في مصر",
+    "description": "موقع بيع تكييفات في مصر - متجر تكييفات أونلاين مع أفضل الأسعار. Premium Air Conditioning Solutions in Egypt",
     "url": siteUrl,
     "logo": `${siteUrl}/logo-v2.png`,
     "image": `${siteUrl}/hero-v2.jpeg`,
@@ -94,7 +109,8 @@ export default async function HomePage() {
     },
     "hasOfferCatalog": {
       "@type": "OfferCatalog",
-      "name": "Air Conditioning Units",
+      "name": "تكييفات ومكيفات للبيع | Air Conditioning Units",
+      "alternateName": "Air Conditioning Units",
       "itemListElement": sortedProducts?.slice(0, 10).map((product: any, index: number) => ({
         "@type": "Offer",
         "position": index + 1,
@@ -118,11 +134,63 @@ export default async function HomePage() {
     }
   };
 
+  // FAQ structured data for SEO
+  const faqStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "أين يمكنني شراء تكييفات في مصر؟",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "يمكنك شراء تكييفات من موقع AlfaAir - موقع بيع تكييفات في مصر. نحن متجر تكييفات أونلاين يوفر أفضل الأسعار على مكيفات من بيكو، كاريير، هاير، جري، ميديا، يورك مع ضمان شامل وخدمة تركيب احترافية."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "ما هي أفضل ماركة تكييف في مصر؟",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "نوفر في AlfaAir أفضل ماركات التكييفات مثل بيكو، كاريير، هاير، جري، ميديا، يورك. جميع الماركات متوفرة بأسعار تنافسية مع ضمان شامل."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "هل تقدمون خدمة تركيب التكييفات؟",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "نعم، نقدم خدمة تركيب احترافية لجميع التكييفات التي تشتريها من موقعنا. فريقنا من الفنيين المحترفين جاهز لتركيب التكييف في منزلك أو مكتبك."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "ما هي أسعار التكييفات في موقعكم؟",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "نوفر في AlfaAir أفضل الأسعار على التكييفات في مصر. الأسعار تختلف حسب الماركة والمواصفات. يمكنك تصفح موقعنا لمشاهدة جميع الأسعار والعروض المتاحة."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "هل التكييفات التي تبيعونها أصلية وموثوقة؟",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "نعم، جميع التكييفات التي نبيعها أصلية 100% من وكلاء معتمدين. نقدم ضمان شامل على جميع المنتجات ونضمن جودة عالية وموثوقية."
+        }
+      }
+    ]
+  };
+
   return (
     <main className="min-h-screen">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqStructuredData) }}
       />
       <Header />
       <div className="container mx-auto px-4 py-4 pt-20 md:py-8 md:pt-24">
