@@ -165,7 +165,7 @@ export function CompareView() {
           <table className="w-full min-w-[800px]">
             <thead>
               <tr className="border-b-2 border-gray-700 bg-slate-900">
-                <th className="px-4 md:px-6 py-5 text-right text-gray-300 font-semibold sticky right-0 bg-slate-900 z-20 min-w-[180px] md:min-w-[200px]">
+                <th className="px-2 md:px-6 py-5 text-right text-gray-300 font-semibold sticky right-0 bg-slate-900 z-20 min-w-[120px] md:min-w-[200px] text-sm md:text-base">
                   {language === 'ar' ? 'المميزات' : 'Features'}
                 </th>
                 {compareItems.map((product) => (
@@ -178,7 +178,7 @@ export function CompareView() {
                       <X className="w-4 h-4" />
                     </button>
                     <Link href={`/products/${product.id}`} className="block hover:opacity-90 transition-opacity group">
-                      <div className="relative w-full h-40 md:h-48 mb-4 bg-slate-900 rounded-lg overflow-hidden">
+                      <div className="relative w-full h-24 md:h-32 mb-3 bg-slate-900 rounded-lg overflow-hidden">
                         {(product.images && product.images.length > 0 ? product.images[0] : product.image_url) && (
                           <Image
                             src={product.images && product.images.length > 0 ? product.images[0] : product.image_url!}
@@ -213,7 +213,7 @@ export function CompareView() {
             <tbody>
               {/* Price */}
               <tr className="border-b border-gray-700/50 hover:bg-slate-700/30 transition-colors">
-                <td className="px-4 md:px-6 py-4 text-gray-300 font-semibold sticky right-0 bg-slate-800 z-10">
+                <td className="px-2 md:px-6 py-4 text-gray-300 font-semibold sticky right-0 bg-slate-800 z-10 text-sm md:text-base">
                   {t('price')}
                 </td>
                 {compareItems.map((product) => (
@@ -240,7 +240,7 @@ export function CompareView() {
 
               {/* Power */}
               <tr className="border-b border-gray-700/50 hover:bg-slate-700/30 transition-colors">
-                <td className="px-4 md:px-6 py-4 text-gray-300 font-semibold sticky right-0 bg-slate-800 z-10">
+                <td className="px-2 md:px-6 py-4 text-gray-300 font-semibold sticky right-0 bg-slate-800 z-10 text-sm md:text-base">
                   {t('power')}
                 </td>
                 {compareItems.map((product) => (
@@ -258,7 +258,7 @@ export function CompareView() {
 
               {/* Color */}
               <tr className="border-b border-gray-700/50 hover:bg-slate-700/30 transition-colors">
-                <td className="px-4 md:px-6 py-4 text-gray-300 font-semibold sticky right-0 bg-slate-800 z-10">
+                <td className="px-2 md:px-6 py-4 text-gray-300 font-semibold sticky right-0 bg-slate-800 z-10 text-sm md:text-base">
                   {t('color')}
                 </td>
                 {compareItems.map((product) => (
@@ -279,7 +279,7 @@ export function CompareView() {
 
               {/* Warranty */}
               <tr className="border-b border-gray-700/50 hover:bg-slate-700/30 transition-colors">
-                <td className="px-4 md:px-6 py-4 text-gray-300 font-semibold sticky right-0 bg-slate-800 z-10">
+                <td className="px-2 md:px-6 py-4 text-gray-300 font-semibold sticky right-0 bg-slate-800 z-10 text-sm md:text-base">
                   {t('warranty')}
                 </td>
                 {compareItems.map((product) => (
@@ -297,7 +297,7 @@ export function CompareView() {
 
               {/* Coverage Area */}
               <tr className="border-b border-gray-700/50 hover:bg-slate-700/30 transition-colors">
-                <td className="px-4 md:px-6 py-4 text-gray-300 font-semibold sticky right-0 bg-slate-800 z-10">
+                <td className="px-2 md:px-6 py-4 text-gray-300 font-semibold sticky right-0 bg-slate-800 z-10 text-sm md:text-base">
                   {t('coverageArea')}
                 </td>
                 {compareItems.map((product) => (
@@ -325,7 +325,7 @@ export function CompareView() {
               {/* Features */}
               {features.map(({ key, label }) => (
                 <tr key={key} className="border-b border-gray-700/50 hover:bg-slate-700/30 transition-colors">
-                  <td className="px-4 md:px-6 py-3 text-gray-300 font-medium sticky right-0 bg-slate-800 z-10">
+                  <td className="px-2 md:px-6 py-3 text-gray-300 font-medium sticky right-0 bg-slate-800 z-10 text-sm md:text-base">
                     {label}
                   </td>
                   {compareItems.map((product) => (
@@ -350,7 +350,7 @@ export function CompareView() {
 
               {/* Description */}
               <tr className="border-b border-gray-700/50">
-                <td className="px-4 md:px-6 py-4 text-gray-300 font-semibold sticky right-0 bg-slate-800 z-10 align-top pt-4">
+                <td className="px-2 md:px-6 py-4 text-gray-300 font-semibold sticky right-0 bg-slate-800 z-10 align-top pt-4 text-sm md:text-base">
                   {t('description')}
                 </td>
                 {compareItems.map((product) => (
@@ -364,7 +364,7 @@ export function CompareView() {
 
               {/* Actions */}
               <tr className="bg-slate-900/30">
-                <td className="px-4 md:px-6 py-6 sticky right-0 bg-slate-900/30 z-10"></td>
+                <td className="px-2 md:px-6 py-6 sticky right-0 bg-slate-900/30 z-10"></td>
                 {compareItems.map((product) => {
                   const inCart = isInCart(product.id);
                   const isSoldOut = (product.inventory ?? 0) === 0;

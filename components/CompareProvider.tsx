@@ -5,7 +5,7 @@ import { Product } from '@/lib/supabase/types';
 
 interface CompareContextType {
   compareItems: Product[];
-  addToCompare: (product: Product) => void;
+  addToCompare: (product: Product) => boolean; // Returns true if should redirect to compare page
   removeFromCompare: (productId: string) => void;
   isInCompare: (productId: string) => boolean;
   clearCompare: () => void;
@@ -43,7 +43,8 @@ export function CompareProvider({ children }: { children: ReactNode }) {
     }
   }, [compareItems]);
 
-  const addToCompare = (product: Product) => {
+  const addToCompare = (product: Product): boolean => {
+    let shouldRedirect = false;
     setCompareItems((prev) => {
       // Check if already in compare
       if (prev.some((p) => p.id === product.id)) {
@@ -53,8 +54,13 @@ export function CompareProvider({ children }: { children: ReactNode }) {
       if (prev.length >= MAX_COMPARE_ITEMS) {
         return prev;
       }
+      // If this will be the second item, mark for redirect
+      if (prev.length === 1) {
+        shouldRedirect = true;
+      }
       return [...prev, product];
     });
+    return shouldRedirect;
   };
 
   const canAddMore = () => {

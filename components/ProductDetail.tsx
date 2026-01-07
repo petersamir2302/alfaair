@@ -6,6 +6,7 @@ import { useLanguage } from './LanguageProvider';
 import { getTranslation } from '@/lib/i18n';
 import { useCompare } from './CompareProvider';
 import { useCart } from './CartProvider';
+import { useRouter } from 'next/navigation';
 import { Check, X, Scale, ShoppingCart, Plus, Minus, Star } from 'lucide-react';
 import { useState } from 'react';
 import { BackButton } from './BackButton';
@@ -19,8 +20,9 @@ interface ProductDetailProps {
 export function ProductDetail({ product }: ProductDetailProps) {
   const { language } = useLanguage();
   const t = (key: keyof typeof import('@/lib/i18n').translations.ar) => getTranslation(language, key);
-  const { addToCompare, removeFromCompare, isInCompare, canAddMore } = useCompare();
+  const { addToCompare, removeFromCompare, isInCompare, canAddMore, compareItems } = useCompare();
   const { addToCart, isInCart } = useCart();
+  const router = useRouter();
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [quantity, setQuantity] = useState(1);
   
@@ -34,7 +36,20 @@ export function ProductDetail({ product }: ProductDetailProps) {
       removeFromCompare(product.id);
     } else {
       if (canAddMore()) {
-        addToCompare(product);
+        // Check if this is the first product
+        if (compareItems.length === 0) {
+          addToCompare(product);
+          alert(language === 'ar' 
+            ? `تمت إضافة المنتج للمقارنة. يرجى إضافة منتج آخر للمقارنة.`
+            : `Product added to compare. Please add another product to compare.`
+          );
+        } else {
+          // This will be the second product, redirect to compare page
+          const shouldRedirect = addToCompare(product);
+          if (shouldRedirect) {
+            router.push('/compare');
+          }
+        }
       } else {
         alert(language === 'ar' 
           ? `يمكنك إضافة ما يصل إلى 4 منتجات للمقارنة. يرجى إزالة منتج أولاً.`
