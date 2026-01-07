@@ -33,7 +33,7 @@ export function Header() {
               <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
                 <Image
                   src="/logo-v2.png"
-                  alt="AlfaAir"
+                  alt="AlfaAir - AC Trading Company Logo"
                   width={180}
                   height={60}
                   className="h-14 md:h-16 w-auto"
@@ -174,7 +174,7 @@ export function Header() {
               <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
                 <Image
                   src="/logo-v2.png"
-                  alt="AlfaAir"
+                  alt="AlfaAir - AC Trading Company Logo"
                   width={180}
                   height={60}
                   className="h-14 md:h-16 w-auto"
