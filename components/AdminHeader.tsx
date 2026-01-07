@@ -7,7 +7,7 @@ import { createClient } from '@/lib/supabase/client';
 import { useLanguage } from './LanguageProvider';
 import { getTranslation } from '@/lib/i18n';
 import { LanguageSwitcher } from './LanguageSwitcher';
-import { LogOut, Package, LayoutDashboard, Tag, FolderTree, ExternalLink, ShoppingCart } from 'lucide-react';
+import { LogOut, Package, LayoutDashboard, Tag, FolderTree, ExternalLink, ShoppingCart, BookOpen } from 'lucide-react';
 
 export function AdminHeader() {
   const router = useRouter();
@@ -72,6 +72,13 @@ export function AdminHeader() {
             >
               <ShoppingCart className="w-4 h-4" />
               <span>{t('orders')}</span>
+            </Link>
+            <Link
+              href="/admin/blog"
+              className="flex items-center gap-2 px-3 py-2 rounded-lg text-white hover:text-primary-lighter hover:bg-white/60 transition-all duration-200 font-medium text-sm"
+            >
+              <BookOpen className="w-4 h-4" />
+              <span>{language === 'ar' ? 'المدونة' : 'Blog'}</span>
             </Link>
             <div className="pl-2 border-r border-primary/20 h-6"></div>
             <a

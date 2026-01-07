@@ -3,8 +3,7 @@ import "./globals.css";
 import { LanguageProvider } from "@/components/LanguageProvider";
 import { CompareProvider } from "@/components/CompareProvider";
 import { CartProvider } from "@/components/CartProvider";
-import { WhatsAppButton } from "@/components/WhatsAppButton";
-import { CallButton } from "@/components/CallButton";
+import { ContactFAB } from "@/components/ContactFAB";
 import { Loader } from "@/components/Loader";
 import { GoogleTagManager, GoogleTagManagerNoscript } from "@/components/GoogleTagManager";
 import { GoogleAnalytics } from "@/components/GoogleAnalytics";
@@ -134,8 +133,7 @@ export default function RootLayout({
                 <Loader />
               </Suspense>
               {children}
-              <WhatsAppButton />
-              <CallButton />
+              <ContactFAB />
             </CartProvider>
           </CompareProvider>
         </LanguageProvider>

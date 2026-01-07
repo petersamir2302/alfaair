@@ -19,7 +19,7 @@ export function AdminDashboardClient({ totalProducts, totalBrands, totalCategori
   return (
     <div>
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-primary mb-2">
+        <h1 className="text-3xl font-bold text-white mb-2">
           {t('dashboard')}
         </h1>
         <p className="text-secondary">{t('welcomeMessage')}</p>
@@ -69,7 +69,7 @@ export function AdminDashboardClient({ totalProducts, totalBrands, totalCategori
 
       <div className="bg-white p-6 rounded-lg shadow-md border border-primary/10">
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-xl font-bold text-primary">{t('quickActions')}</h2>
+          <h2 className="text-xl font-bold text-white">{t('quickActions')}</h2>
         </div>
         <div className="flex flex-wrap gap-3">
           <Link

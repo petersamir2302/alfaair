@@ -61,7 +61,7 @@ export function AdminBlogClient({ initialPosts }: AdminBlogClientProps) {
     <div>
       <div className="mb-8 flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-primary mb-2">
+          <h1 className="text-3xl font-bold text-white mb-2">
             {language === 'ar' ? 'المدونة' : 'Blog'}
           </h1>
           <p className="text-secondary">

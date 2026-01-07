@@ -59,7 +59,7 @@ export function AdminOrdersClient({ orders: initialOrders }: AdminOrdersClientPr
       <Breadcrumbs />
       <BackButton />
       <div className="flex items-center justify-between mb-6">
-        <h1 className="text-3xl font-bold text-primary">{t('orders')}</h1>
+        <h1 className="text-3xl font-bold text-white">{t('orders')}</h1>
       </div>
 
       <div className="mb-6">
