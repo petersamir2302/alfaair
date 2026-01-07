@@ -2,16 +2,17 @@
 
 import { useLanguage } from './LanguageProvider';
 import { getTranslation } from '@/lib/i18n';
-import { Package, Plus, Tag, FolderTree, BookOpen } from 'lucide-react';
+import { Package, Plus, Tag, FolderTree, BookOpen, ShoppingCart } from 'lucide-react';
 import Link from 'next/link';
 
 interface AdminDashboardClientProps {
   totalProducts: number;
   totalBrands: number;
   totalCategories: number;
+  totalOrders: number;
 }
 
-export function AdminDashboardClient({ totalProducts, totalBrands, totalCategories }: AdminDashboardClientProps) {
+export function AdminDashboardClient({ totalProducts, totalBrands, totalCategories, totalOrders }: AdminDashboardClientProps) {
   const { language } = useLanguage();
   const t = (key: keyof typeof import('@/lib/i18n').translations.ar) => getTranslation(language, key);
 
@@ -24,7 +25,7 @@ export function AdminDashboardClient({ totalProducts, totalBrands, totalCategori
         <p className="text-secondary">{t('welcomeMessage')}</p>
       </div>
 
-      <div className="grid md:grid-cols-3 gap-6 mb-8">
+      <div className="grid md:grid-cols-4 gap-6 mb-8">
         <div className="bg-white p-6 rounded-lg shadow-md border border-primary/10">
           <div className="flex items-center justify-between">
             <div>
@@ -52,6 +53,18 @@ export function AdminDashboardClient({ totalProducts, totalBrands, totalCategori
             <FolderTree className="w-12 h-12 text-primary/20" />
           </div>
         </div>
+        <Link
+          href="/admin/orders"
+          className="bg-white p-6 rounded-lg shadow-md border border-primary/10 hover:shadow-lg transition-shadow cursor-pointer"
+        >
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-secondary text-sm mb-1">{t('totalOrders')}</p>
+              <p className="text-3xl font-bold text-primary">{totalOrders || 0}</p>
+            </div>
+            <ShoppingCart className="w-12 h-12 text-primary/20" />
+          </div>
+        </Link>
       </div>
 
       <div className="bg-white p-6 rounded-lg shadow-md border border-primary/10">

@@ -154,6 +154,17 @@ export const translations = {
     backToBlog: 'العودة إلى المدونة',
     addBlogPost: 'مقال جديد',
     editBlogPost: 'تعديل المقال',
+    
+    // Orders
+    orders: 'الطلبات',
+    totalOrders: 'إجمالي الطلبات',
+    order: 'الطلب',
+    customerName: 'اسم العميل',
+    customerPhone: 'رقم الهاتف',
+    customerEmail: 'البريد الإلكتروني',
+    orderDate: 'تاريخ الطلب',
+    orderStatus: 'حالة الطلب',
+    noOrders: 'لا توجد طلبات',
   },
   en: {
     // Navigation
@@ -306,6 +317,17 @@ export const translations = {
     backToBlog: 'Back to Blog',
     addBlogPost: 'New Post',
     editBlogPost: 'Edit Post',
+    
+    // Orders
+    orders: 'Orders',
+    totalOrders: 'Total Orders',
+    order: 'Order',
+    customerName: 'Customer Name',
+    customerPhone: 'Phone Number',
+    customerEmail: 'Email',
+    orderDate: 'Order Date',
+    orderStatus: 'Status',
+    noOrders: 'No orders found',
   },
 };
 

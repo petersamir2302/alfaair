@@ -7,7 +7,7 @@ import { createClient } from '@/lib/supabase/client';
 import { useLanguage } from './LanguageProvider';
 import { getTranslation } from '@/lib/i18n';
 import { LanguageSwitcher } from './LanguageSwitcher';
-import { LogOut, Package, LayoutDashboard, Tag, FolderTree, ExternalLink } from 'lucide-react';
+import { LogOut, Package, LayoutDashboard, Tag, FolderTree, ExternalLink, ShoppingCart } from 'lucide-react';
 
 export function AdminHeader() {
   const router = useRouter();
@@ -66,6 +66,13 @@ export function AdminHeader() {
               <FolderTree className="w-4 h-4" />
               <span>{t('categories')}</span>
             </Link>
+            <Link
+              href="/admin/orders"
+              className="flex items-center gap-2 px-3 py-2 rounded-lg text-white hover:text-primary-lighter hover:bg-white/60 transition-all duration-200 font-medium text-sm"
+            >
+              <ShoppingCart className="w-4 h-4" />
+              <span>{t('orders')}</span>
+            </Link>
             <div className="pl-2 border-r border-primary/20 h-6"></div>
             <a
               href="/"
@@ -79,7 +86,7 @@ export function AdminHeader() {
             <LanguageSwitcher />
             <button
               onClick={handleLogout}
-              className="flex items-center gap-2 px-4 py-2 rounded-lg text-red-600 hover:text-red-700 hover:bg-red-50/50 transition-all duration-200 font-medium"
+              className="flex items-center gap-2 px-4 py-2 rounded-lg bg-red-600 hover:bg-red-700 text-white transition-all duration-200 font-medium"
             >
               <LogOut className="w-4 h-4" />
               <span>{t('logout')}</span>
