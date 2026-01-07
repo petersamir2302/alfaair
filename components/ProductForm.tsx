@@ -181,7 +181,8 @@ export function ProductForm({ product }: ProductFormProps) {
     }
 
     // Use first image as image_url for backward compatibility
-    const imageUrl = images.length > 0 ? images[0] : (product?.image_url || null);
+    // If no images, set to null (don't fall back to old image_url)
+    const imageUrl = images.length > 0 ? images[0] : null;
 
     const productData = {
       ...formData,
