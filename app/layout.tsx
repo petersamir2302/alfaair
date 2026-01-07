@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { LanguageProvider } from "@/components/LanguageProvider";
 import { CompareProvider } from "@/components/CompareProvider";
+import { FavoriteProvider } from "@/components/FavoriteProvider";
 import { CartProvider } from "@/components/CartProvider";
 import { ContactFAB } from "@/components/ContactFAB";
 import { Loader } from "@/components/Loader";
@@ -122,19 +123,21 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ar" dir="rtl" className={`light scroll-smooth ${cairo.variable}`}>
-      <body className="text-gray-900 font-sans">
+      <body className="text-gray-900 font-sans overflow-x-hidden">
         <GoogleAnalytics />
         <GoogleTagManager />
         <GoogleTagManagerNoscript />
         <LanguageProvider>
           <CompareProvider>
-            <CartProvider>
-              <Suspense fallback={null}>
-                <Loader />
-              </Suspense>
-              {children}
-              <ContactFAB />
-            </CartProvider>
+            <FavoriteProvider>
+              <CartProvider>
+                <Suspense fallback={null}>
+                  <Loader />
+                </Suspense>
+                {children}
+                <ContactFAB />
+              </CartProvider>
+            </FavoriteProvider>
           </CompareProvider>
         </LanguageProvider>
       </body>

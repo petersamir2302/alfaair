@@ -7,8 +7,9 @@ import { useLanguage } from './LanguageProvider';
 import { getTranslation } from '@/lib/i18n';
 import { useCompare } from './CompareProvider';
 import { useCart } from './CartProvider';
+import { useFavorites } from './FavoriteProvider';
 import { useRouter } from 'next/navigation';
-import { Snowflake, Flame, Zap, Smartphone, Monitor, Wind, Brain, Scale, ShoppingCart, Star } from 'lucide-react';
+import { Snowflake, Flame, Zap, Smartphone, Monitor, Wind, Brain, Scale, ShoppingCart, Star, Heart } from 'lucide-react';
 
 interface ProductCardProps {
   product: Product;
@@ -19,12 +20,14 @@ export function ProductCard({ product }: ProductCardProps) {
   const t = (key: keyof typeof import('@/lib/i18n').translations.ar) => getTranslation(language, key);
   const { addToCompare, removeFromCompare, isInCompare, canAddMore, compareItems } = useCompare();
   const { addToCart, isInCart } = useCart();
+  const { addToFavorites, removeFromFavorites, isInFavorites } = useFavorites();
   const router = useRouter();
 
   const name = language === 'ar' ? product.name_ar : product.name_en;
   const description = language === 'ar' ? product.description_ar : product.description_en;
   const inCompare = isInCompare(product.id);
   const inCart = isInCart(product.id);
+  const inFavorites = isInFavorites(product.id);
   const isSoldOut = (product.inventory ?? 0) === 0;
 
   const handleCompareClick = (e: React.MouseEvent) => {
@@ -65,6 +68,16 @@ export function ProductCard({ product }: ProductCardProps) {
     }
   };
 
+  const handleFavoriteClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (inFavorites) {
+      removeFromFavorites(product.id);
+    } else {
+      addToFavorites(product);
+    }
+  };
+
   const features = [
     { key: 'cold' as const, value: product.cold, icon: Snowflake, color: 'bg-blue-100 text-blue-700 border-blue-200' },
     { key: 'hot' as const, value: product.hot, icon: Flame, color: 'bg-orange-100 text-orange-700 border-orange-200' },
@@ -89,6 +102,17 @@ export function ProductCard({ product }: ProductCardProps) {
           </div>
         )}
         <div className="absolute top-2 left-2 z-10 flex flex-col gap-2">
+          <button
+            onClick={handleFavoriteClick}
+            className={`p-2 rounded-full transition-colors ${
+              inFavorites
+                ? 'bg-red-600 text-white'
+                : 'bg-slate-700/80 text-gray-300 hover:bg-red-600 hover:text-white'
+            }`}
+            title={inFavorites ? (language === 'ar' ? 'إزالة من المفضلة' : 'Remove from favorites') : (language === 'ar' ? 'إضافة للمفضلة' : 'Add to favorites')}
+          >
+            <Heart className={`w-4 h-4 ${inFavorites ? 'fill-current' : ''}`} />
+          </button>
           <button
             onClick={handleCompareClick}
             className={`p-2 rounded-full transition-colors ${

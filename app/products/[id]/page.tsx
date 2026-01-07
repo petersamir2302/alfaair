@@ -175,7 +175,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
       />
       <ProductViewTracker product={product} />
       <Header />
-      <div className="container mx-auto px-4 py-8 pt-24">
+      <div className="container mx-auto px-4 py-8 pt-20 md:pt-24">
         <ProductDetail product={product} />
       </div>
     </main>

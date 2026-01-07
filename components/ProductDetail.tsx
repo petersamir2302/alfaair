@@ -6,8 +6,9 @@ import { useLanguage } from './LanguageProvider';
 import { getTranslation } from '@/lib/i18n';
 import { useCompare } from './CompareProvider';
 import { useCart } from './CartProvider';
+import { useFavorites } from './FavoriteProvider';
 import { useRouter } from 'next/navigation';
-import { Check, X, Scale, ShoppingCart, Plus, Minus, Star } from 'lucide-react';
+import { Check, X, Scale, ShoppingCart, Plus, Minus, Star, Heart } from 'lucide-react';
 import { useState } from 'react';
 import { BackButton } from './BackButton';
 import { Breadcrumbs } from './Breadcrumbs';
@@ -23,12 +24,14 @@ export function ProductDetail({ product }: ProductDetailProps) {
   const t = (key: keyof typeof import('@/lib/i18n').translations.ar) => getTranslation(language, key);
   const { addToCompare, removeFromCompare, isInCompare, canAddMore, compareItems } = useCompare();
   const { addToCart, isInCart } = useCart();
+  const { addToFavorites, removeFromFavorites, isInFavorites } = useFavorites();
   const router = useRouter();
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [quantity, setQuantity] = useState(1);
   
   const inCompare = isInCompare(product.id);
   const inCart = isInCart(product.id);
+  const inFavorites = isInFavorites(product.id);
   const isSoldOut = (product.inventory ?? 0) === 0;
   const maxQuantity = product.inventory ?? Infinity;
 
@@ -67,6 +70,14 @@ export function ProductDetail({ product }: ProductDetailProps) {
     }
   };
 
+  const handleFavoriteClick = () => {
+    if (inFavorites) {
+      removeFromFavorites(product.id);
+    } else {
+      addToFavorites(product);
+    }
+  };
+
   const name = language === 'ar' ? product.name_ar : product.name_en;
   const description = language === 'ar' ? product.description_ar : product.description_en;
   const additionalSpecs = language === 'ar' ? product.additional_specs_ar : product.additional_specs_en;
@@ -93,8 +104,8 @@ export function ProductDetail({ product }: ProductDetailProps) {
       <Breadcrumbs />
       <BackButton />
 
-      <div className="bg-slate-800 rounded-lg overflow-hidden">
-        <div className="grid md:grid-cols-2 gap-8 p-8">
+      <div className="bg-slate-800 rounded-lg overflow-hidden mb-4">
+        <div className="grid md:grid-cols-2 gap-8 p-4 md:p-8">
           {selectedImage && (
             <div className="space-y-4">
               {/* Main image with hover zoom */}
@@ -223,29 +234,36 @@ export function ProductDetail({ product }: ProductDetailProps) {
         <div className="fixed bottom-0 left-0 right-0 z-50 bg-slate-800 border-t border-gray-700 shadow-lg md:hidden">
           <div className="container mx-auto px-3 py-3">
             <div className="flex items-center gap-2">
+              {/* Favorite Button */}
+              <button
+                onClick={handleFavoriteClick}
+                className={`flex items-center justify-center h-10 w-10 rounded-lg transition-colors flex-shrink-0 ${
+                  inFavorites
+                    ? 'bg-red-600 text-white'
+                    : 'bg-slate-700 text-gray-300 hover:bg-red-600 hover:text-white'
+                }`}
+                title={inFavorites ? (language === 'ar' ? 'إزالة من المفضلة' : 'Remove from favorites') : (language === 'ar' ? 'إضافة للمفضلة' : 'Add to favorites')}
+              >
+                <Heart className={`w-5 h-5 ${inFavorites ? 'fill-current' : ''}`} />
+              </button>
               {/* Compare Button */}
               <button
                 onClick={handleCompareClick}
-                className={`flex items-center gap-1.5 h-10 px-2 rounded-lg transition-colors flex-shrink-0 ${
+                className={`flex items-center justify-center h-10 w-10 rounded-lg transition-colors flex-shrink-0 ${
                   inCompare
                     ? 'bg-primary text-white'
                     : 'bg-slate-700 text-gray-300 hover:bg-primary hover:text-white'
                 }`}
+                title={inCompare ? (language === 'ar' ? 'إزالة من المقارنة' : 'Remove from compare') : (language === 'ar' ? 'إضافة للمقارنة' : 'Add to compare')}
               >
-                <Scale className="w-4 h-4 flex-shrink-0" />
-                <span className="text-xs whitespace-nowrap">
-                  {inCompare 
-                    ? (language === 'ar' ? 'إزالة' : 'Remove')
-                    : (language === 'ar' ? 'مقارنة' : 'Compare')
-                  }
-                </span>
+                <Scale className="w-5 h-5" />
               </button>
 
               {/* Price */}
               {product.price && product.price_before ? (
-                <div className="flex items-center gap-1 flex-shrink-0">
+                <div className="flex flex-col items-center gap-0.5 flex-shrink-0">
                   <span className="text-red-400 line-through text-xs">
-                    {product.price_before.toLocaleString()}
+                    {product.price_before.toLocaleString()} {language === 'ar' ? 'ج.م' : 'EGP'}
                   </span>
                   <span className="text-green-400 font-bold text-xs">
                     {product.price.toLocaleString()} {language === 'ar' ? 'ج.م' : 'EGP'}
@@ -329,9 +347,9 @@ export function ProductDetail({ product }: ProductDetailProps) {
                 <div className="flex-1 min-w-0">
                   <h3 className="text-white font-bold text-lg truncate">{name}</h3>
                   {product.price && product.price_before ? (
-                    <div>
-                      <span className="text-red-400 line-through text-sm mr-2">
-                        {product.price_before.toLocaleString()}
+                    <div className="flex flex-col">
+                      <span className="text-red-400 line-through text-sm">
+                        {product.price_before.toLocaleString()} {language === 'ar' ? 'ج.م' : 'EGP'}
                       </span>
                       <span className="text-green-400 font-bold text-xl">
                         {product.price.toLocaleString()} {language === 'ar' ? 'ج.م' : 'EGP'}
@@ -345,6 +363,23 @@ export function ProductDetail({ product }: ProductDetailProps) {
                 </div>
               </div>
 
+              {/* Favorite Button */}
+              <button
+                onClick={handleFavoriteClick}
+                className={`flex items-center gap-2 h-12 px-4 rounded-lg transition-colors ${
+                  inFavorites
+                    ? 'bg-red-600 text-white'
+                    : 'bg-slate-700 text-gray-300 hover:bg-red-600 hover:text-white'
+                }`}
+              >
+                <Heart className={`w-4 h-4 ${inFavorites ? 'fill-current' : ''}`} />
+                <span className="text-sm">
+                  {inFavorites 
+                    ? (language === 'ar' ? 'إزالة من المفضلة' : 'Remove from Favorites')
+                    : (language === 'ar' ? 'إضافة للمفضلة' : 'Add to Favorites')
+                  }
+                </span>
+              </button>
               {/* Compare Button */}
               <button
                 onClick={handleCompareClick}
@@ -417,10 +452,10 @@ export function ProductDetail({ product }: ProductDetailProps) {
       )}
 
       {/* Spacer to prevent content from being hidden behind sticky bar */}
-      {!isSoldOut && <div className="h-20 md:h-24" />}
+      {!isSoldOut && <div className="h-24 md:h-28" />}
 
       {/* Similar Products Sections */}
-      <div className="pb-24 md:pb-32">
+      <div className="pb-28 md:pb-36">
         {product.brand_id && (
           <SimilarProducts
             productId={product.id}
