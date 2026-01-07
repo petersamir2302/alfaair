@@ -8,8 +8,9 @@ import { getTranslation } from '@/lib/i18n';
 import { BackButton } from './BackButton';
 import { Breadcrumbs } from './Breadcrumbs';
 import { X, Plus, Minus, ShoppingCart, ArrowRight, Trash2 } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { CheckoutOrderForm } from './CheckoutOrderForm';
+import { trackBeginCheckout } from '@/lib/analytics';
 
 export function CartView() {
   const { language } = useLanguage();
@@ -49,6 +50,17 @@ export function CartView() {
   }
 
   const handleCheckout = () => {
+    // Track begin_checkout event
+    const items = cartItems.map((item) => ({
+      id: item.product.id,
+      name: language === 'ar' ? item.product.name_ar : item.product.name_en,
+      price: item.product.price || undefined,
+      quantity: item.quantity,
+      brand: undefined,
+      category: undefined,
+    }));
+    trackBeginCheckout(items);
+    
     setShowCheckoutForm(true);
   };
 

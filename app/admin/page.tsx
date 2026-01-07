@@ -3,10 +3,19 @@ import { AdminDashboardClient } from '@/components/AdminDashboardClient';
 
 export default async function AdminDashboard() {
   const supabase = await createClient();
-  const { count } = await supabase
-    .from('products')
-    .select('*', { count: 'exact', head: true });
+  
+  const [productsResult, brandsResult, categoriesResult] = await Promise.all([
+    supabase.from('products').select('*', { count: 'exact', head: true }),
+    supabase.from('brands').select('*', { count: 'exact', head: true }),
+    supabase.from('categories').select('*', { count: 'exact', head: true }),
+  ]);
 
-  return <AdminDashboardClient totalProducts={count || 0} />;
+  return (
+    <AdminDashboardClient 
+      totalProducts={productsResult.count || 0}
+      totalBrands={brandsResult.count || 0}
+      totalCategories={categoriesResult.count || 0}
+    />
+  );
 }
 

@@ -22,6 +22,11 @@ export function Loader() {
       const href = link.getAttribute('href');
       if (!href) return;
       
+      // Skip links that open in new tab/window
+      if (link.hasAttribute('target') && link.getAttribute('target') === '_blank') {
+        return;
+      }
+      
       // Skip external links, mailto, tel, hash-only links, and download links
       if (
         href.startsWith('mailto:') ||
@@ -83,8 +88,11 @@ export function Loader() {
 
   // Hide loader when pathname or searchParams change (page loaded)
   useEffect(() => {
+    // Always update current pathname
+    currentPathnameRef.current = pathname;
+    
+    // If we were navigating, hide the loader
     if (isNavigatingRef.current) {
-      currentPathnameRef.current = pathname;
       isNavigatingRef.current = false;
       // Small delay to ensure smooth transition
       const timer = setTimeout(() => {
@@ -92,9 +100,26 @@ export function Loader() {
       }, 100);
       return () => clearTimeout(timer);
     } else {
-      currentPathnameRef.current = pathname;
+      // Safety: hide loader if it's somehow still showing
+      if (loading) {
+        const timer = setTimeout(() => {
+          setLoading(false);
+        }, 500);
+        return () => clearTimeout(timer);
+      }
     }
-  }, [pathname, searchParams]);
+  }, [pathname, searchParams, loading]);
+
+  // Safety timeout: always hide loader after 5 seconds max
+  useEffect(() => {
+    if (loading) {
+      const safetyTimer = setTimeout(() => {
+        setLoading(false);
+        isNavigatingRef.current = false;
+      }, 5000);
+      return () => clearTimeout(safetyTimer);
+    }
+  }, [loading]);
 
   if (!loading) return null;
 

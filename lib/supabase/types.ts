@@ -49,4 +49,19 @@ export interface Product {
   updated_at: string;
 }
 
-
+export interface BlogPost {
+  id: string;
+  slug: string;
+  title_ar: string;
+  title_en: string;
+  excerpt_ar: string;
+  excerpt_en: string;
+  content_ar: string;
+  content_en: string;
+  author: string;
+  published_at: string;
+  image_url: string | null;
+  category: 'tips' | 'maintenance' | 'buying-guide' | 'energy-saving';
+  created_at: string;
+  updated_at: string;
+}

@@ -1,11 +1,12 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useLanguage } from './LanguageProvider';
 import { getTranslation } from '@/lib/i18n';
 import { Product } from '@/lib/supabase/types';
 import { ShoppingCart, Send, X } from 'lucide-react';
 import { useCart } from './CartProvider';
+import { trackBeginCheckout, trackPurchase } from '@/lib/analytics';
 
 interface CheckoutOrderFormProps {
   isOpen: boolean;
@@ -29,6 +30,21 @@ export function CheckoutOrderForm({ isOpen, onClose }: CheckoutOrderFormProps) {
   const [error, setError] = useState('');
 
   const hasSoldOutItems = cartItems.some(item => (item.product.inventory ?? 0) === 0);
+
+  // Track begin_checkout when form opens
+  useEffect(() => {
+    if (isOpen && cartItems.length > 0) {
+      const items = cartItems.map((item) => ({
+        id: item.product.id,
+        name: language === 'ar' ? item.product.name_ar : item.product.name_en,
+        price: item.product.price || undefined,
+        quantity: item.quantity,
+        brand: undefined,
+        category: undefined,
+      }));
+      trackBeginCheckout(items);
+    }
+  }, [isOpen, cartItems.length]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -67,7 +83,27 @@ export function CheckoutOrderForm({ isOpen, onClose }: CheckoutOrderFormProps) {
         return response.json();
       });
 
-      await Promise.all(orderPromises);
+      const orders = await Promise.all(orderPromises);
+
+      // Track purchase event
+      const totalValue = cartItems.reduce(
+        (sum, item) => sum + (item.product.price || 0) * item.quantity,
+        0
+      );
+      const transactionId = orders[0]?.id || `order_${Date.now()}`;
+      
+      trackPurchase({
+        transaction_id: transactionId,
+        value: totalValue,
+        items: cartItems.map((item) => ({
+          id: item.product.id,
+          name: language === 'ar' ? item.product.name_ar : item.product.name_en,
+          price: item.product.price || undefined,
+          quantity: item.quantity,
+          brand: undefined,
+          category: undefined,
+        })),
+      });
 
       setSuccess(true);
       setFormData({

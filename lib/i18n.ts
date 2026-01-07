@@ -138,6 +138,22 @@ export const translations = {
     submitOrder: 'تقديم الطلب',
     paymentMethod: 'طريقة الدفع',
     cod: 'الدفع عند الاستلام',
+    
+    // Blog
+    blog: 'المدونة',
+    readMore: 'اقرأ المزيد',
+    publishedOn: 'نشر في',
+    by: 'بواسطة',
+    category: 'الفئة',
+    allCategories: 'جميع الفئات',
+    tips: 'نصائح',
+    maintenance: 'صيانة',
+    buyingGuide: 'دليل الشراء',
+    energySaving: 'توفير الطاقة',
+    relatedArticles: 'مقالات ذات صلة',
+    backToBlog: 'العودة إلى المدونة',
+    addBlogPost: 'مقال جديد',
+    editBlogPost: 'تعديل المقال',
   },
   en: {
     // Navigation
@@ -274,6 +290,22 @@ export const translations = {
     submitOrder: 'Submit Order',
     paymentMethod: 'Payment Method',
     cod: 'Cash on Delivery (COD)',
+    
+    // Blog
+    blog: 'Blog',
+    readMore: 'Read More',
+    publishedOn: 'Published on',
+    by: 'By',
+    category: 'Category',
+    allCategories: 'All Categories',
+    tips: 'Tips',
+    maintenance: 'Maintenance',
+    buyingGuide: 'Buying Guide',
+    energySaving: 'Energy Saving',
+    relatedArticles: 'Related Articles',
+    backToBlog: 'Back to Blog',
+    addBlogPost: 'New Post',
+    editBlogPost: 'Edit Post',
   },
 };
 

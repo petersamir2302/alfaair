@@ -2,6 +2,7 @@
 
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { Product } from '@/lib/supabase/types';
+import { trackAddToCart } from '@/lib/analytics';
 
 export interface CartItem {
   product: Product;
@@ -18,6 +19,9 @@ interface CartContextType {
   getTotalPrice: () => number;
   isInCart: (productId: string) => boolean;
   getCartItem: (productId: string) => CartItem | undefined;
+  openCart: () => void;
+  closeCart: () => void;
+  isCartOpen: boolean;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -26,6 +30,7 @@ const STORAGE_KEY = 'alfaair_cart_items';
 
 export function CartProvider({ children }: { children: ReactNode }) {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const [isCartOpen, setIsCartOpen] = useState(false);
 
   // Load from localStorage on mount
   useEffect(() => {
@@ -63,17 +68,46 @@ export function CartProvider({ children }: { children: ReactNode }) {
           return prev; // Don't update if exceeds inventory
         }
         
-        return prev.map((item) =>
+        const updatedItems = prev.map((item) =>
           item.product.id === product.id
             ? { ...item, quantity: newQuantity }
             : item
         );
+        
+        // Track add to cart event (even for quantity updates)
+        trackAddToCart({
+          id: product.id,
+          name: product.name_en || product.name_ar,
+          price: product.price || undefined,
+          quantity: quantity, // Track the quantity added, not total
+          brand: undefined,
+          category: undefined,
+        });
+        
+        return updatedItems;
       } else {
         // Add new item to cart
-        return [...prev, { product, quantity }];
+        const newItems = [...prev, { product, quantity }];
+        
+        // Track add to cart event
+        trackAddToCart({
+          id: product.id,
+          name: product.name_en || product.name_ar,
+          price: product.price || undefined,
+          quantity: quantity,
+          brand: undefined,
+          category: undefined,
+        });
+        
+        return newItems;
       }
     });
+    // Open cart drawer when item is added
+    setIsCartOpen(true);
   };
+
+  const openCart = () => setIsCartOpen(true);
+  const closeCart = () => setIsCartOpen(false);
 
   const removeFromCart = (productId: string) => {
     setCartItems((prev) => prev.filter((item) => item.product.id !== productId));
@@ -135,6 +169,9 @@ export function CartProvider({ children }: { children: ReactNode }) {
         getTotalPrice,
         isInCart,
         getCartItem,
+        openCart,
+        closeCart,
+        isCartOpen,
       }}
     >
       {children}

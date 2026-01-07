@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation';
 import { createClient } from '@/lib/supabase/server';
 import { Header } from '@/components/Header';
 import { ProductDetail } from '@/components/ProductDetail';
+import { ProductViewTracker } from '@/components/ProductViewTracker';
 import type { Metadata } from 'next';
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://alfaair.shop';
@@ -163,6 +164,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
+      <ProductViewTracker product={product} />
       <Header />
       <div className="container mx-auto px-4 py-8 pt-24">
         <ProductDetail product={product} />

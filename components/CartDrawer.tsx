@@ -9,12 +9,7 @@ import { getTranslation } from '@/lib/i18n';
 import { X, Plus, Minus, ShoppingCart, ArrowRight } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
-interface CartDrawerProps {
-  isOpen: boolean;
-  onClose: () => void;
-}
-
-export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
+export function CartDrawer() {
   const { language } = useLanguage();
   const t = (key: keyof typeof import('@/lib/i18n').translations.ar) => getTranslation(language, key);
   const router = useRouter();
@@ -25,21 +20,23 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
     clearCart,
     getTotalItems,
     getTotalPrice,
+    isCartOpen,
+    closeCart,
   } = useCart();
 
   const handleCheckout = () => {
-    onClose();
+    closeCart();
     router.push('/cart');
   };
 
-  if (!isOpen) return null;
+  if (!isCartOpen) return null;
 
   return (
     <>
       {/* Backdrop */}
       <div
         className="fixed inset-0 bg-black/50 z-[9998]"
-        onClick={onClose}
+        onClick={closeCart}
       />
       
       {/* Drawer */}
@@ -56,7 +53,7 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
             )}
           </h2>
           <button
-            onClick={onClose}
+            onClick={closeCart}
             className="p-2 text-gray-300 hover:text-white hover:bg-gray-700 rounded-lg transition-colors"
           >
             <X className="w-5 h-5" />
@@ -73,7 +70,7 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
               </p>
               <Link
                 href="/#products"
-                onClick={onClose}
+                onClick={closeCart}
                 className="px-6 py-3 bg-primary hover:bg-primary-dark text-white rounded-lg transition-colors"
               >
                 {language === 'ar' ? 'تصفح المنتجات' : 'Browse Products'}
@@ -98,7 +95,7 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
                     {imageUrl && (
                       <Link
                         href={`/products/${item.product.id}`}
-                        onClick={onClose}
+                        onClick={closeCart}
                         className="relative w-20 h-20 flex-shrink-0 bg-slate-600 rounded-lg overflow-hidden"
                       >
                         <Image
@@ -112,7 +109,7 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
                     <div className="flex-1 min-w-0">
                       <Link
                         href={`/products/${item.product.id}`}
-                        onClick={onClose}
+                        onClick={closeCart}
                         className="block"
                       >
                         <h3 className="text-white font-medium mb-1 truncate">{name}</h3>
