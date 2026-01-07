@@ -132,7 +132,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
             </div>
           )}
 
-          <div>
+          <div className="flex flex-col md:block">
             <div className="flex items-center gap-4 mb-4 flex-wrap relative">
               <h1 className="text-3xl font-bold text-white">{name}</h1>
               {product.best_seller && (product.inventory ?? 0) > 0 && (
@@ -146,11 +146,8 @@ export function ProductDetail({ product }: ProductDetailProps) {
                 </span>
               )}
             </div>
-            {description && (
-              <p className="text-gray-300 mb-6 leading-relaxed">{description}</p>
-            )}
 
-            <div className="space-y-4 mb-6">
+            <div className="space-y-4 mb-6 order-1 md:order-none">
               {product.price && product.price_before ? (
                 <div className="mb-2">
                   <div className="text-red-400 line-through text-lg mb-1">
@@ -185,7 +182,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
               )}
             </div>
 
-            <div className="mb-6">
+            <div className="mb-6 order-2 md:order-none">
               <h3 className="font-bold text-white mb-3">{language === 'ar' ? 'المميزات' : 'Features'}</h3>
               <div className="grid grid-cols-2 gap-3">
                 {features.map(({ key, value, label }) => (
@@ -202,9 +199,18 @@ export function ProductDetail({ product }: ProductDetailProps) {
             </div>
 
             {additionalSpecs && (
-              <div>
+              <div className="order-3 md:order-none">
                 <h3 className="font-bold text-white mb-3">{t('additionalSpecs')}</h3>
                 <p className="text-gray-300 leading-relaxed">{additionalSpecs}</p>
+              </div>
+            )}
+
+            {description && (
+              <div className="order-4 md:order-none">
+                <div 
+                  className="text-gray-300 mb-6 leading-relaxed prose prose-invert max-w-none"
+                  dangerouslySetInnerHTML={{ __html: description }}
+                />
               </div>
             )}
           </div>

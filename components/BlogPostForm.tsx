@@ -73,12 +73,12 @@ export function BlogPostForm({ post }: BlogPostFormProps) {
   const handleImageUpload = async (file: File, editor: any) => {
     setUploadingImage(true);
     try {
-      const formData = new FormData();
-      formData.append('file', file);
+      const uploadFormData = new FormData();
+      uploadFormData.append('file', file);
 
       const response = await fetch('/api/upload', {
         method: 'POST',
-        body: formData,
+        body: uploadFormData,
       });
 
       if (!response.ok) {
@@ -102,12 +102,12 @@ export function BlogPostForm({ post }: BlogPostFormProps) {
   const handleBlogImageUpload = async (file: File) => {
     setUploadingImage(true);
     try {
-      const formData = new FormData();
-      formData.append('file', file);
+      const uploadFormData = new FormData();
+      uploadFormData.append('file', file);
 
       const response = await fetch('/api/upload', {
         method: 'POST',
-        body: formData,
+        body: uploadFormData,
       });
 
       if (!response.ok) {
@@ -119,7 +119,7 @@ export function BlogPostForm({ post }: BlogPostFormProps) {
 
       const { url } = await response.json();
       setImagePreview(url);
-      setFormData({ ...formData, image_url: url });
+      setFormData((prev) => ({ ...prev, image_url: url }));
       setUploadingImage(false);
     } catch (error) {
       console.error('Upload error:', error);

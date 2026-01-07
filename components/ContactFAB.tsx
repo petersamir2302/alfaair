@@ -118,7 +118,7 @@ export function ContactFAB() {
   }, [isOpen]);
 
   // Calculate position for each contact option button
-  const getButtonPosition = (angle: number, distance: number) => {
+  const getButtonPosition = (angle: number, distance: number): React.CSSProperties => {
     const radians = (angle * Math.PI) / 180;
     const x = Math.sin(radians) * distance;
     const y = -Math.cos(radians) * distance;
@@ -127,7 +127,7 @@ export function ContactFAB() {
         ? `translate(${x}px, ${y}px) scale(1)` 
         : 'translate(0, 0) scale(0)',
       opacity: isOpen ? 1 : 0,
-      pointerEvents: isOpen ? 'auto' : 'none',
+      pointerEvents: (isOpen ? 'auto' : 'none') as React.CSSProperties['pointerEvents'],
     };
   };
 
