@@ -10,6 +10,7 @@ import { GoogleTagManager, GoogleTagManagerNoscript } from "@/components/GoogleT
 import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 import { Cairo } from "next/font/google";
 import { Suspense } from "react";
+import { organizationSchema, websiteSchema } from "@/lib/seo";
 
 const cairo = Cairo({
   subsets: ["arabic", "latin"],
@@ -124,6 +125,11 @@ export default function RootLayout({
   return (
     <html lang="ar" dir="rtl" className={`light scroll-smooth ${cairo.variable}`}>
       <body className="text-gray-900 font-sans overflow-x-hidden">
+        {/* Site-wide entity data so search engines and AI assistants can identify AlfaAir */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify([organizationSchema(), websiteSchema()]) }}
+        />
         <GoogleAnalytics />
         <GoogleTagManager />
         <GoogleTagManagerNoscript />

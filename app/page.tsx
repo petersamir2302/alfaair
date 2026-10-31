@@ -8,6 +8,8 @@ import { ContactSection } from '@/components/ContactSection';
 import { createClient } from '@/lib/supabase/server';
 import Image from 'next/image';
 import type { Metadata } from 'next';
+import { FaqSection } from '@/components/FaqSection';
+import { faqSchema, orgId } from '@/lib/seo';
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://alfaair.shop';
 
@@ -83,114 +85,52 @@ export default async function HomePage() {
     return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
   });
 
-  // Generate structured data for homepage
-  const structuredData = {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": "AlfaAir - موقع بيع تكييفات",
-    "alternateName": "ألفا إير - موقع بيع تكييفات في مصر",
-    "description": "موقع بيع تكييفات في مصر - متجر تكييفات أونلاين مع أفضل الأسعار. Premium Air Conditioning Solutions in Egypt",
-    "url": siteUrl,
-    "logo": `${siteUrl}/logo-v2.png`,
-    "image": `${siteUrl}/hero-v2.jpeg`,
-    "telephone": "+201288215167",
-    "address": {
-      "@type": "PostalAddress",
-      "addressCountry": "EG",
-      "addressLocality": "Egypt"
-    },
-    "sameAs": [
-      // Add your social media links here when available
-    ],
-    "priceRange": "$$",
-    "areaServed": {
-      "@type": "Country",
-      "name": "Egypt"
-    },
-    "hasOfferCatalog": {
-      "@type": "OfferCatalog",
-      "name": "تكييفات ومكيفات للبيع | Air Conditioning Units",
-      "alternateName": "Air Conditioning Units",
-      "itemListElement": sortedProducts?.slice(0, 10).map((product: any, index: number) => ({
-        "@type": "Offer",
-        "position": index + 1,
-        "itemOffered": {
-          "@type": "Product",
-          "name": product.name_ar || product.name_en,
-          "description": product.description_ar || product.description_en,
-          "image": product.images?.[0] || product.image_url,
-          "brand": product.brand_id ? {
-            "@type": "Brand",
-            "name": product.brand_id
-          } : undefined,
-          "offers": product.price ? {
-            "@type": "Offer",
-            "price": product.price,
-            "priceCurrency": "EGP",
-            "availability": product.inventory > 0 ? "https://schema.org/InStock" : "https://schema.org/OutOfStock"
-          } : undefined
-        }
-      })) || []
-    }
+  // Brand names (products only store brand_id, which is meaningless to search engines / AI)
+  const { data: brands } = await supabase.from('brands').select('id, name_ar, name_en');
+  const brandName = (id: string | null) => {
+    const b = brands?.find((x: any) => x.id === id);
+    return b ? (b.name_en || b.name_ar) : undefined;
   };
 
-  // FAQ structured data for SEO
-  const faqStructuredData = {
+  // Catalog of what AlfaAir sells, linked to the site-wide Organization entity
+  const catalogStructuredData = {
     "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "أين يمكنني شراء تكييفات في مصر؟",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "يمكنك شراء تكييفات من موقع AlfaAir - موقع بيع تكييفات في مصر. نحن متجر تكييفات أونلاين يوفر أفضل الأسعار على مكيفات من بيكو، كاريير، هاير، جري، ميديا، يورك مع ضمان شامل وخدمة تركيب احترافية."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "ما هي أفضل ماركة تكييف في مصر؟",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "نوفر في AlfaAir أفضل ماركات التكييفات مثل بيكو، كاريير، هاير، جري، ميديا، يورك. جميع الماركات متوفرة بأسعار تنافسية مع ضمان شامل."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "هل تقدمون خدمة تركيب التكييفات؟",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "نعم، نقدم خدمة تركيب احترافية لجميع التكييفات التي تشتريها من موقعنا. فريقنا من الفنيين المحترفين جاهز لتركيب التكييف في منزلك أو مكتبك."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "ما هي أسعار التكييفات في موقعكم؟",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "نوفر في AlfaAir أفضل الأسعار على التكييفات في مصر. الأسعار تختلف حسب الماركة والمواصفات. يمكنك تصفح موقعنا لمشاهدة جميع الأسعار والعروض المتاحة."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "هل التكييفات التي تبيعونها أصلية وموثوقة؟",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "نعم، جميع التكييفات التي نبيعها أصلية 100% من وكلاء معتمدين. نقدم ضمان شامل على جميع المنتجات ونضمن جودة عالية وموثوقية."
-        }
+    "@type": "ItemList",
+    "name": "تكييفات للبيع من AlfaAir | Air conditioners for sale at AlfaAir",
+    "url": siteUrl,
+    "numberOfItems": sortedProducts?.length || 0,
+    "itemListElement": (sortedProducts || []).slice(0, 30).map((product: any, index: number) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "url": `${siteUrl}/products/${product.id}`,
+      "item": {
+        "@type": "Product",
+        "name": product.name_ar || product.name_en,
+        "alternateName": product.name_en || undefined,
+        "url": `${siteUrl}/products/${product.id}`,
+        "image": product.images?.[0] || product.image_url || undefined,
+        "brand": brandName(product.brand_id) ? { "@type": "Brand", "name": brandName(product.brand_id) } : undefined,
+        "offers": product.price ? {
+          "@type": "Offer",
+          "price": product.price,
+          "priceCurrency": "EGP",
+          "itemCondition": "https://schema.org/NewCondition",
+          "availability": product.inventory > 0 ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
+          "seller": { "@id": orgId }
+        } : undefined
       }
-    ]
+    }))
   };
 
   return (
     <main className="min-h-screen">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(catalogStructuredData) }}
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqStructuredData) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema()) }}
       />
       <Header />
       <div className="container mx-auto px-4 py-4 pt-20 md:py-8 md:pt-24">
@@ -219,6 +159,8 @@ export default async function HomePage() {
         <WhyChooseUsSection />
 
         <AboutSection />
+
+        <FaqSection />
 
         <ContactSection />
       </div>
