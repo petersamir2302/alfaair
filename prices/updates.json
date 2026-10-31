@@ -1,1 +1,124 @@
-{"updates": [{"id": "44d9ae69-5f7c-4220-966b-52c67cea41e7", "price": 19174, "price_before": 23430}, {"id": "fc50e8c6-2f10-4b0f-b20f-f7fd2c6c684b", "price": 20853, "price_before": 25435}, {"id": "b4fae391-2044-4bd2-850b-000bd2789fa1", "price": 29150, "price_before": 34595}, {"id": "9da3d24c-1ba3-4acb-ad77-c933f89c7936", "price": 32113, "price_before": 38060}, {"id": "e33d37b7-4bee-4104-bacf-4032d6af3639", "price": 36903, "price_before": 42345}, {"id": "2e1f865b-025f-40ba-bf53-d4dce0c8e5f3", "price": 39672, "price_before": 45535}, {"id": "9976c9c4-a24e-4543-a0ea-ee46657944b4", "price": 23208, "price_before": 27525}, {"id": "af9518da-e9d9-4780-a31d-9e594f78c001", "price": 25366, "price_before": 29990}, {"id": "dbed0f44-ec86-4c4a-8715-eb0b37ad98b9", "price": 34512, "price_before": 40510}, {"id": "ed194ed0-eb81-4fcf-bddb-f0374cc9a0fa", "price": 37363, "price_before": 43815}, {"id": "8b3be4af-233b-4469-82f3-2a493482ae16", "price": 40498, "price_before": 46050}, {"id": "aabf4330-9be6-4b8e-be17-af1cda452a67", "price": 43819, "price_before": 49800}, {"id": "915b4885-c193-45c0-86e3-b536bc062d3e", "price": 21748, "price_before": 26415}, {"id": "dd0129cc-8a96-46cf-89de-1f4bd4bb9af9", "price": 23598, "price_before": 28630}, {"id": "ac0d0336-bcfe-4d83-9daa-a35eca3468b6", "price": 31588, "price_before": 37325}, {"id": "767e0a56-4620-4aa0-9d5f-230c2d305d12", "price": 34495, "price_before": 40730}, {"id": "8d6458cf-2306-40c4-9441-eb264da694aa", "price": 39083, "price_before": 44705}, {"id": "2cc76a64-c7ec-4bff-80f2-e19c115d8915", "price": 42166, "price_before": 48200}, {"id": "5afc8596-f221-401b-a8ad-065ad68c2dde", "price": 21748, "price_before": 26415}, {"id": "66d749b7-e158-41ee-8440-36041e008c93", "price": 27937, "price_before": 33105}, {"id": "acc2a76c-ae55-442d-8476-6fab2cf1e8d8", "price": 38246, "price_before": 44910}, {"id": "94addd22-d5be-46a2-b843-48a159017b8a", "price": 41357, "price_before": 48565}, {"id": "186d995a-0fbd-4b11-8863-d6f04d29c72b", "price": 44827, "price_before": 50995}, {"id": "e619028a-6fee-4e0b-87ba-6aa12bf61d68", "price": 48475, "price_before": 55140}]}
+{
+ "updates": [
+  {
+   "id": "44d9ae69-5f7c-4220-966b-52c67cea41e7",
+   "price": 19174,
+   "price_before": 23430
+  },
+  {
+   "id": "fc50e8c6-2f10-4b0f-b20f-f7fd2c6c684b",
+   "price": 20853,
+   "price_before": 25435
+  },
+  {
+   "id": "b4fae391-2044-4bd2-850b-000bd2789fa1",
+   "price": 29150,
+   "price_before": 34595
+  },
+  {
+   "id": "9da3d24c-1ba3-4acb-ad77-c933f89c7936",
+   "price": 32113,
+   "price_before": 38060
+  },
+  {
+   "id": "e33d37b7-4bee-4104-bacf-4032d6af3639",
+   "price": 36903,
+   "price_before": 42345
+  },
+  {
+   "id": "2e1f865b-025f-40ba-bf53-d4dce0c8e5f3",
+   "price": 39672,
+   "price_before": 45535
+  },
+  {
+   "id": "9976c9c4-a24e-4543-a0ea-ee46657944b4",
+   "price": 23208,
+   "price_before": 27525
+  },
+  {
+   "id": "af9518da-e9d9-4780-a31d-9e594f78c001",
+   "price": 25366,
+   "price_before": 29990
+  },
+  {
+   "id": "dbed0f44-ec86-4c4a-8715-eb0b37ad98b9",
+   "price": 34512,
+   "price_before": 40510
+  },
+  {
+   "id": "ed194ed0-eb81-4fcf-bddb-f0374cc9a0fa",
+   "price": 37363,
+   "price_before": 43815
+  },
+  {
+   "id": "8b3be4af-233b-4469-82f3-2a493482ae16",
+   "price": 40498,
+   "price_before": 46050
+  },
+  {
+   "id": "aabf4330-9be6-4b8e-be17-af1cda452a67",
+   "price": 43819,
+   "price_before": 49800
+  },
+  {
+   "id": "915b4885-c193-45c0-86e3-b536bc062d3e",
+   "price": 21748,
+   "price_before": 26415
+  },
+  {
+   "id": "dd0129cc-8a96-46cf-89de-1f4bd4bb9af9",
+   "price": 23598,
+   "price_before": 28630
+  },
+  {
+   "id": "ac0d0336-bcfe-4d83-9daa-a35eca3468b6",
+   "price": 31588,
+   "price_before": 37325
+  },
+  {
+   "id": "767e0a56-4620-4aa0-9d5f-230c2d305d12",
+   "price": 34495,
+   "price_before": 40730
+  },
+  {
+   "id": "8d6458cf-2306-40c4-9441-eb264da694aa",
+   "price": 39083,
+   "price_before": 44705
+  },
+  {
+   "id": "2cc76a64-c7ec-4bff-80f2-e19c115d8915",
+   "price": 42166,
+   "price_before": 48200
+  },
+  {
+   "id": "5afc8596-f221-401b-a8ad-065ad68c2dde",
+   "price": 21748,
+   "price_before": 26415
+  },
+  {
+   "id": "66d749b7-e158-41ee-8440-36041e008c93",
+   "price": 27937,
+   "price_before": 33105
+  },
+  {
+   "id": "acc2a76c-ae55-442d-8476-6fab2cf1e8d8",
+   "price": 38246,
+   "price_before": 44910
+  },
+  {
+   "id": "94addd22-d5be-46a2-b843-48a159017b8a",
+   "price": 41357,
+   "price_before": 48565
+  },
+  {
+   "id": "186d995a-0fbd-4b11-8863-d6f04d29c72b",
+   "price": 44827,
+   "price_before": 50995
+  },
+  {
+   "id": "e619028a-6fee-4e0b-87ba-6aa12bf61d68",
+   "price": 48475,
+   "price_before": 55140
+  }
+ ]
+}
