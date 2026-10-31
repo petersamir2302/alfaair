@@ -1,0 +1,44 @@
+name: Update prices
+
+# Runs when prices/updates.json changes on master and sends it to the site's price API.
+# Needs the repository secret PRICE_API_TOKEN (same value as the Vercel env var).
+
+on:
+  push:
+    branches: [master]
+    paths: ['prices/updates.json']
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate JSON
+        run: jq -e '.updates | length > 0' prices/updates.json
+
+      - name: Send prices to alfaair.shop
+        env:
+          PRICE_API_TOKEN: ${{ secrets.PRICE_API_TOKEN }}
+        run: |
+          if [ -z "$PRICE_API_TOKEN" ]; then echo "::error::PRICE_API_TOKEN secret is not set"; exit 1; fi
+          code=$(curl -sS -o resp.json -w '%{http_code}' -X PATCH \
+            https://www.alfaair.shop/api/admin/prices \
+            -H "Authorization: Bearer $PRICE_API_TOKEN" \
+            -H 'Content-Type: application/json' \
+            --data @prices/updates.json)
+          echo "HTTP $code"
+          jq '{updated: (.updated | length), failed}' resp.json
+          test "$code" = 200
+
+      - name: Verify prices
+        env:
+          PRICE_API_TOKEN: ${{ secrets.PRICE_API_TOKEN }}
+        run: |
+          curl -sS https://www.alfaair.shop/api/admin/prices -H "Authorization: Bearer $PRICE_API_TOKEN" > now.json
+          jq -n --slurpfile want prices/updates.json --slurpfile now now.json '
+            ($now[0].products | map({(.id): .}) | add) as $by
+            | [$want[0].updates[] | select(($by[.id].price != .price) or (.price_before != null and $by[.id].price_before != .price_before)) | .id]
+          ' > mismatch.json
+          cat mismatch.json
+          test "$(jq length mismatch.json)" = 0
