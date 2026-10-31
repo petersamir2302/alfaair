@@ -33,7 +33,7 @@ export function ContactFAB() {
   const whatsappMessage = encodeURIComponent('شفت موقعكم وعايز أسأل عن حاجة');
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
   const telUrl = `tel:${phoneNumber}`;
-  const facebookUrl = 'https://www.facebook.com/share/16koecbKnS/';
+  const facebookUrl = 'https://www.facebook.com/Alfa.Air.EG';
 
   // Contact options configuration - only phone, WhatsApp, and Facebook
   const contactOptions = [
