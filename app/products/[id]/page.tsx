@@ -4,6 +4,13 @@ import { Header } from '@/components/Header';
 import { ProductDetail } from '@/components/ProductDetail';
 import { ProductViewTracker } from '@/components/ProductViewTracker';
 import type { Metadata } from 'next';
+import { orgId } from '@/lib/seo';
+
+async function getBrandName(supabase: any, brandId: string | null) {
+  if (!brandId) return undefined;
+  const { data } = await supabase.from('brands').select('name_ar, name_en').eq('id', brandId).single();
+  return data ? (data.name_en || data.name_ar) as string : undefined;
+}
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://alfaair.shop';
 
@@ -29,6 +36,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   const productImage = product.images?.[0] || product.image_url || '/logo-v2.png';
   const productUrl = `${siteUrl}/products/${id}`;
   const price = product.price ? `${product.price} EGP` : undefined;
+  const brand = await getBrandName(supabase, product.brand_id);
 
   return {
     title: `${productName} | شراء من موقع بيع تكييفات AlfaAir`,
@@ -44,7 +52,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
       "AC unit",
       "مكيف",
       "تكييف",
-      product.brand_id || "",
+      brand || "",
       "Egypt",
       "AlfaAir",
       "buy AC online"
@@ -97,38 +105,39 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
   const productName = product.name_ar || product.name_en;
   const productDescription = product.description_ar || product.description_en;
   const productImage = product.images?.[0] || product.image_url;
-  
+  const brand = await getBrandName(supabase, product.brand_id);
+  const productUrl = `${siteUrl}/products/${id}`;
+
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "Product",
     "name": productName,
     "alternateName": product.name_en && product.name_en !== productName ? product.name_en : undefined,
-    "description": productDescription,
+    "url": productUrl,
+    "description": productDescription || `${productName} - تكييف ${brand || ''} ${product.power_hp ? product.power_hp + ' حصان' : ''} متاح للبيع في AlfaAir مصر مع ضمان وخدمة تركيب.`.replace(/\s+/g, ' '),
     "image": productImage ? [productImage] : [],
-    "brand": product.brand_id ? {
+    "brand": brand ? {
       "@type": "Brand",
-      "name": product.brand_id
+      "name": brand
     } : undefined,
     "offers": product.price ? {
       "@type": "Offer",
-      "url": `${siteUrl}/products/${id}`,
+      "url": productUrl,
       "priceCurrency": "EGP",
+      "itemCondition": "https://schema.org/NewCondition",
       "price": product.price,
       "priceValidUntil": new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
       "availability": product.inventory && product.inventory > 0 
         ? "https://schema.org/InStock" 
         : "https://schema.org/OutOfStock",
-      "seller": {
-        "@type": "Organization",
-        "name": "AlfaAir"
-      }
-    } : undefined,
-    "aggregateRating": product.best_seller ? {
-      "@type": "AggregateRating",
-      "ratingValue": "4.5",
-      "reviewCount": "50"
+      "seller": { "@id": orgId }
     } : undefined,
     "additionalProperty": [
+      product.coverage_area_sqm && {
+        "@type": "PropertyValue",
+        "name": "Coverage area",
+        "value": `${product.coverage_area_sqm} m²`
+      },
       product.power_hp && {
         "@type": "PropertyValue",
         "name": "Power",
@@ -172,6 +181,18 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "AlfaAir", "item": siteUrl },
+            { "@type": "ListItem", "position": 2, "name": "التكييفات", "item": `${siteUrl}/#products` },
+            { "@type": "ListItem", "position": 3, "name": productName, "item": productUrl },
+          ],
+        }) }}
       />
       <ProductViewTracker product={product} />
       <Header />

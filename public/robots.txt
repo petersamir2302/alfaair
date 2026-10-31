@@ -4,9 +4,24 @@ Allow: /
 Disallow: /admin/
 Disallow: /api/
 
-# Sitemap location
+# AI assistants and AI search engines are explicitly welcome, so AlfaAir
+# can be found and recommended in ChatGPT, Claude, Gemini, Perplexity, Copilot.
+User-agent: GPTBot
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: ClaudeBot
+User-agent: Claude-SearchBot
+User-agent: Claude-User
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+User-agent: Google-Extended
+User-agent: Applebot-Extended
+User-agent: Bingbot
+User-agent: CCBot
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+
+# Sitemap and AI-readable site summary
 Sitemap: https://alfaair.shop/sitemap.xml
-
-# Crawl-delay (optional, adjust as needed)
-Crawl-delay: 1
-
+# AI summary: https://alfaair.shop/llms.txt
