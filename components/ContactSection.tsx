@@ -50,10 +50,10 @@ export function ContactSection() {
     {
       type: 'facebook',
       icon: Facebook,
-      qr: '/qr/fb-warsha.png',
+      qr: '/qr/fb-alfaair.png',
       label: 'Facebook',
       value: language === 'ar' ? 'صفحة الفيسبوك' : 'Facebook Page',
-      link: 'https://www.facebook.com/share/16koecbKnS/',
+      link: 'https://www.facebook.com/Alfa.Air.EG',
       color: 'bg-blue-100 text-blue-700',
     },
     {
