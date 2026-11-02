@@ -22,3 +22,17 @@ Trend: first snapshot, no comparison yet.
 | B.TECH / 2B | Carrier Optimax Pro 1.5 HP cool 53KHCT12N-708 | not checked (pages unreachable this run) | 21,748 | — |
 
 Trend: flat to slightly rising. Midea Mission Pro 1.5 flat (20,790 → 20,785); Carrier XCOOL inverter 1.5 at 2B up ~6% (32,449 → 34,470). No news found of a new Miraco/Carrier/Midea price list. Ours still below all checked competitors.
+
+### 2026-11-02 – AC-only dealers (after our price raise: Carrier 4%, Midea 5% off dealer price)
+
+| Store | Model | Their price (EGP) | Ours new (EGP) | Link |
+|---|---|---|---|---|
+| Aqua Tech (Halan) | Carrier Optimax Pro 1.5 HP cool 53KHCT12N | 24,450 | 23,198 | https://shop.halan.com/en/Carrier-Optimax-pro-Split-Air-Conditioner-15-HP-Cold-Only-White-53KHCT-12N/664b192b840b5982138bfdba/p/Aqua-Tech |
+| Zahran / zs-eg | Carrier Optimax Pro 1.5 HP cool/heat 53QHCT12N-708F | 27,449 (out of stock) | 25,171 | https://zs-eg.com/en/product/carrier-optimax-pro-air-conditioner-1-5-hp-cool-heat-53qhct12n-708f |
+| Mega Air (Halan) | Carrier XCOOL inverter 1.5 HP cool/heat | 31,000 (out of stock) | 28,838 | https://shop.halan.com/en/Carrier-x-cool-Inverter-Air-Conditioner-15-HP-Cooling-Heating-Digital-Plasma-QHEFT12DN/6964e1ca8d524e05680bb3c9/p/Mega-Air |
+| Kanawat (Halan) | Carrier XCOOL inverter 1.5 HP cool/heat | 31,825 | 28,838 | https://shop.halan.com/en/Carrier-Xcool-Split-Air-Conditioner-With-Inverter-Technology-Cooling-Heating-15-HP-White-53QHEFT12DN8708F/69e4d4d6e8777736ba053c4e/p/Kanawat |
+| XPRS | Carrier XCOOL inverter 1.5 HP cool/heat | 33,499 | 28,838 | https://myxprs.com/products/carrier-xcool-1-5hp-inverter-cool-heat-split-ac-53qheft12dn8-708f |
+| XPRS | Carrier XCOOL 2.25 HP cool (fixed) 53KHEFT18N8 | 36,999 | — (we list the inverter, 39,480) | https://myxprs.com/collections/carrier-air-conditioner-egypt-prices |
+| Kanawat (Halan) | Midea AI Eco Master inverter 1.5 HP cool | 26,600 (out of stock) | 23,707 | https://shop.halan.com/en/Midea-Ecomaster-Split-Air-Conditioner-With-Inverter-Technology-Cooling-Only-15-HP-White-M1SEFT12CRDN8FQ8/69e4d4dbe8777736ba053c52/p/Kanawat |
+
+After the raise we are still 5–14% below AC-only dealers on every model checked.
