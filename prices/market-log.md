@@ -36,3 +36,16 @@ Trend: flat to slightly rising. Midea Mission Pro 1.5 flat (20,790 → 20,785); 
 | Kanawat (Halan) | Midea AI Eco Master inverter 1.5 HP cool | 26,600 (out of stock) | 23,707 | https://shop.halan.com/en/Midea-Ecomaster-Split-Air-Conditioner-With-Inverter-Technology-Cooling-Only-15-HP-White-M1SEFT12CRDN8FQ8/69e4d4dbe8777736ba053c52/p/Kanawat |
 
 After the raise we are still 5–14% below AC-only dealers on every model checked.
+
+## 2026-11-04
+
+| Store | Model | Their price (EGP) | Ours (EGP) | Link |
+|---|---|---|---|---|
+| B.TECH (lowest seller; Coolify 20,899) | Midea Mission Pro 1.5 HP cool | 20,785 | 20,240 | https://btech.com/p/midea-mission-pro-air-conditioner-1-5hp-cooling |
+| Carrefour Egypt | Midea AI Eco Master inverter 1.5 HP cool M1SEFT-12CRDN8F-Q8 | 26,000 (was 27,000) | 23,707 | https://www.carrefouregypt.com/mafegy/en/air-conditioners/midea-ai-eco-master-1-5-hp-inverter-cool-only-split-ac-m1seft-12crdn8f-q8/p/2263858000016 |
+| Aqua Tech (Halan) | Carrier Optimax Pro 1.5 HP cool 53KHCT12N | 24,450 (cash, incl. install Cairo) | 23,198 | https://shop.halan.com/en/Carrier-Optimax-pro-Split-Air-Conditioner-15-HP-Cold-Only-White-53KHCT-12N/664b192b840b5982138bfdba/p/Aqua-Tech |
+| 2B | Carrier XCOOL inverter 1.5 HP cool/heat QHEFT12DN | 34,470 (was 47,499, -27%) | 28,838 | https://2b.com.eg/en/carrier-air-conditioner-1-5-hp-xcool-split-inverter-cooling-heating-white-qheft12dn.html |
+| XPRS | Carrier XCOOL 2.25 HP cool/heat (fixed) 53QHEFT18N8 | 39,999 (was 47,999) | — | https://myxprs.com/collections/carrier-air-conditioner-egypt-prices |
+| XPRS | Carrier XCOOL 2.25 HP cool (fixed) 53KHEFT18N8 | 36,999 (was 44,399) | — | https://myxprs.com/collections/carrier-air-conditioner-egypt-prices |
+
+Trend: flat. Every reference price unchanged vs 2026-11-02 (Mission Pro 20,785, AI Eco Master 26,000, Optimax Pro 24,450, XCOOL inv 34,470). No news found of a new Miraco/Carrier/Midea price list. Ours still below all checked competitors (Mission Pro 1.5 by ~3%).
