@@ -49,3 +49,17 @@ After the raise we are still 5–14% below AC-only dealers on every model checke
 | XPRS | Carrier XCOOL 2.25 HP cool (fixed) 53KHEFT18N8 | 36,999 (was 44,399) | — | https://myxprs.com/collections/carrier-air-conditioner-egypt-prices |
 
 Trend: flat. Every reference price unchanged vs 2026-11-02 (Mission Pro 20,785, AI Eco Master 26,000, Optimax Pro 24,450, XCOOL inv 34,470). No news found of a new Miraco/Carrier/Midea price list. Ours still below all checked competitors (Mission Pro 1.5 by ~3%).
+
+## 2026-11-06
+
+| Store | Model | Their price (EGP) | Ours (EGP) | Link |
+|---|---|---|---|---|
+| Halan (Halan store) | Midea Mission Pro 1.5 HP cool | 21,822 (was 22,971; sold out) | 20,240 | https://shop.halan.com/en/Midea-Mission-Pro-Spilt-Air-Conditioner-15-HP-Cooling-only-White-With-5-Years-Warranty/68d0fe513a03e77bb5e7d8aa/p/Halan |
+| Zahran / zs-eg | Midea Mission Pro 1.5 HP cool MSC1T-12CR-N | 24,999 (was 28,500) | 20,240 | https://zs-eg.com/en/?p=28355 |
+| Zahran / zs-eg | Midea Mission Pro 2.25 HP cool MSC1T-18CR-N | 32,999 | 30,101 | https://zs-eg.com/en/product/midea-mission-pro-air-conditioner-2-25-hp-cooling-only-msc1t-18cr-n-f |
+| Carrefour Egypt | Midea AI Eco Master inverter 1.5 HP cool M1SEFT-12CRDN8F-Q8 | 26,000 (was 27,000) | 23,707 | https://www.carrefouregypt.com/mafegy/en/air-conditioners/midea-ai-eco-master-1-5-hp-inverter-cool-only-split-ac-m1seft-12crdn8f-q8/p/2263858000016 |
+| Aqua Tech (Halan) | Carrier Optimax Pro 1.5 HP cool 53KHCT12N | 24,450 (cash) | 23,198 | https://shop.halan.com/en/Carrier-Optimax-pro-Split-Air-Conditioner-15-HP-Cold-Only-White-53KHCT-12N/664b192b840b5982138bfdba/p/Aqua-Tech |
+| 2B | Carrier XCOOL inverter 1.5 HP cool/heat QHEFT12DN | 34,470 (was 47,499, -27%) | 28,838 | https://2b.com.eg/en/carrier-air-conditioner-1-5-hp-xcool-split-inverter-cooling-heating-white-qheft12dn.html |
+| XPRS | Carrier XCOOL inverter 1.5 HP cool/heat 53QHEFT12DN8-708F | 33,499 (was 39,411) | 28,838 | https://myxprs.com/products/carrier-xcool-1-5hp-inverter-cool-heat-split-ac-53qheft12dn8-708f |
+
+Trend: flat. AI Eco Master 26,000, Optimax Pro 24,450, XCOOL inv 34,470 (2B) / 33,499 (XPRS) all unchanged vs 2026-11-04 / 11-02. B.TECH page not reachable this run. XPRS now shows only installment prices for XCOOL 2.25 (not comparable). No news found of a new Miraco/Carrier/Midea price list. Ours still below all checked competitors.
