@@ -75,3 +75,17 @@ Trend: flat. AI Eco Master 26,000, Optimax Pro 24,450, XCOOL inv 34,470 (2B) / 3
 | XPRS | Carrier XCOOL 2.25 HP cool / cool-heat | installments only (1,875 / 2,042 per month x24) | — | https://myxprs.com/collections/carrier-air-conditioner-egypt-prices |
 
 Trend: flat. AI Eco Master 26,000 and Optimax Pro 24,450 unchanged vs 2026-11-06. Mission Pro 1.5 not verifiable this run (B.TECH, XPRS and Halan pages unreachable); last seen 20,785 (B.TECH, 11-04). No news found of a new Miraco/Carrier/Midea price list (latest market roundup found is from June 2026). Ours still below all checked competitors.
+
+## 2026-11-10
+
+| Store | Model | Their price (EGP) | Ours (EGP) | Link |
+|---|---|---|---|---|
+| carrier-egy.com | Midea Mission Pro 1.5 HP cool | 22,500 (was 25,000) | 20,240 | https://carrier-egy.com/products/midea-1-5-hp-cooling-mission-pro-air-conditioner |
+| Zahran / zs-eg | Midea Mission Pro 1.5 HP cool MSC1T-12CR-N | 24,999 (was 28,500) | 20,240 | https://zs-eg.com/en/?p=28355 |
+| Zahran / zs-eg | Midea Mission Pro 2.25 HP cool MSC1T-18CR-N | 35,499 (was 36,500; 32,999 on 11-06) | 30,101 | https://zs-eg.com/en/?p=28355 |
+| Zahran / zs-eg | Carrier Optimax Pro 3 HP cool 42KHCT24N-708 | 44,200 (was 55,000) | — | https://zs-eg.com/en/?p=28355 |
+| Carrefour Egypt | Midea AI Eco Master inverter 1.5 HP cool M1SEFT-12CRDN8F-Q8 | 26,000 (was 27,000) | 23,707 | https://www.carrefouregypt.com/mafegy/en/air-conditioners/midea-ai-eco-master-1-5-hp-inverter-cool-only-split-ac-m1seft-12crdn8f-q8/p/2263858000016 |
+| Aqua Tech (Halan) | Carrier Optimax Pro 1.5 HP cool 53KHCT12N | 24,450 (cash) | 23,198 | https://shop.halan.com/en/Carrier-Optimax-pro-Split-Air-Conditioner-15-HP-Cold-Only-White-53KHCT-12N/664b192b840b5982138bfdba/p/Aqua-Tech |
+| 2B | Carrier XCOOL inverter 1.5 HP cool/heat QHEFT12DN | 34,470 (was 47,499, -27%; in stock) | 28,838 | https://2b.com.eg/en/carrier-air-conditioner-1-5-hp-xcool-split-inverter-cooling-heating-white-qheft12dn.html |
+
+Trend: flat. AI Eco Master 26,000, Optimax Pro 24,450, XCOOL inv 34,470 all unchanged vs 2026-11-08. Only move: zs-eg Mission Pro 2.25 up 32,999 → 35,499. No news found of a new Miraco/Carrier/Midea price list. Ours still below all checked competitors (cheapest 1.5 HP fixed competitor 22,500 vs our 20,240).
