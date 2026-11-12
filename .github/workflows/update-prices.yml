@@ -6,7 +6,7 @@ name: Update prices
 on:
   push:
     branches: [master]
-    paths: ['prices/updates.json']
+    paths: ['prices/updates.json', 'prices/new-products.json']
   workflow_dispatch:
 
 jobs:
@@ -17,6 +17,21 @@ jobs:
 
       - name: Validate JSON
         run: jq -e '.updates | length > 0' prices/updates.json
+
+      - name: Create new products
+        if: hashFiles('prices/new-products.json') != ''
+        env:
+          PRICE_API_TOKEN: ${{ secrets.PRICE_API_TOKEN }}
+        run: |
+          if [ -z "$PRICE_API_TOKEN" ]; then echo "::error::PRICE_API_TOKEN secret is not set"; exit 1; fi
+          code=$(curl -sS -o created.json -w '%{http_code}' -X POST \
+            https://www.alfaair.shop/api/admin/prices \
+            -H "Authorization: Bearer $PRICE_API_TOKEN" \
+            -H 'Content-Type: application/json' \
+            --data @prices/new-products.json)
+          echo "HTTP $code"
+          jq -r '(.created[] | "CREATED\t\(.id)\t\(.name_en)"), (.skipped[] | "EXISTS\t\(.id)\t\(.name_en)"), (.failed[]? | "FAILED\t\(.name_en)\t\(.error)")' created.json
+          test "$code" = 200
 
       - name: Send prices to alfaair.shop
         env:
@@ -53,4 +68,5 @@ jobs:
         if: always()
         run: |
           test -s now.json || exit 0
-          jq -r '.products[] | [.id, .brands.name_en, .power_hp, (if .cold then "C" else "-" end) + (if .hot then "H" else "-" end) + (if .inverter then "I" else "-" end), .price, .price_before, .name_ar, .name_en, ((.images // []) | join(" ")), ((.description_ar // "") | gsub("\\s+"; " ") | .[0:160])] | @tsv' now.json
+          jq -r '.categories[]? | "CATEGORY\t\(.id)\t\(.name_ar)\t\(.name_en)"' now.json
+          jq -r '.products[] | [.id, .category_id, .brands.name_en, .power_hp, (if .cold then "C" else "-" end) + (if .hot then "H" else "-" end) + (if .inverter then "I" else "-" end), .price, .price_before, .name_ar, .name_en, ((.images // []) | join(" ")), ((.description_ar // "") | gsub("\\s+"; " ") | .[0:160])] | @tsv' now.json
