@@ -42,7 +42,7 @@ jobs:
             | [$want[0].updates[] as $u
                | select(($by[$u.id].price != $u.price)
                    or ($u.price_before != null and $by[$u.id].price_before != $u.price_before)
-                   or any(("name_ar","name_en","description_ar","description_en","cold","hot","inverter");
+                   or any(("name_ar","name_en","description_ar","description_en","cold","hot","inverter","images");
                           . as $k | ($u | has($k)) and $by[$u.id][$k] != $u[$k]))
                | $u.id]
           ' > mismatch.json
@@ -53,4 +53,4 @@ jobs:
         if: always()
         run: |
           test -s now.json || exit 0
-          jq -r '.products[] | [.id, .brands.name_en, .power_hp, (if .cold then "C" else "-" end) + (if .hot then "H" else "-" end) + (if .inverter then "I" else "-" end), .price, .price_before, .name_ar, .name_en, ((.description_ar // "") | gsub("\\s+"; " ") | .[0:160])] | @tsv' now.json
+          jq -r '.products[] | [.id, .brands.name_en, .power_hp, (if .cold then "C" else "-" end) + (if .hot then "H" else "-" end) + (if .inverter then "I" else "-" end), .price, .price_before, .name_ar, .name_en, ((.images // []) | join(" ")), ((.description_ar // "") | gsub("\\s+"; " ") | .[0:160])] | @tsv' now.json

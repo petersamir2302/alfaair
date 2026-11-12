@@ -1,0 +1,30 @@
+name: Fetch image candidates
+
+# Manual helper: downloads candidate product photos listed in images/sources.json
+# and pushes them to the image-candidates branch for review. Does not touch the site.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: pip install pillow
+      - run: python3 scripts/fetch_image_candidates.py
+      - name: Push candidates to image-candidates branch
+        run: |
+          cp -r images/candidates /tmp/candidates
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout --orphan image-candidates
+          git rm -rq --cached .
+          find . -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
+          cp -r /tmp/candidates ./candidates
+          git add candidates
+          git commit -qm "Image candidates $(date -u +%F)"
+          git push -f origin image-candidates

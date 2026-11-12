@@ -10,7 +10,8 @@ import { timingSafeEqual } from 'crypto';
  *
  * GET   /api/admin/prices  -> list products with their current prices
  * PATCH /api/admin/prices  -> body: { updates: [{ id, price, price_before?, name_ar?, name_en?,
- *                              description_ar?, description_en?, cold?, hot?, inverter? }] }
+ *                              description_ar?, description_en?, cold?, hot?, inverter?, images? }] }
+ *                              (images also sets image_url to the first image)
  */
 
 export const dynamic = 'force-dynamic';
@@ -35,7 +36,7 @@ export async function GET(request: NextRequest) {
   const { data, error } = await supabase
     .from('products')
     .select(
-      'id, name_ar, name_en, description_ar, description_en, power_hp, cold, hot, inverter, price, price_before, brands(name_ar, name_en)'
+      'id, name_ar, name_en, description_ar, description_en, power_hp, cold, hot, inverter, price, price_before, image_url, images, brands(name_ar, name_en)'
     )
     .order('name_ar');
 
@@ -56,7 +57,14 @@ type PriceUpdate = {
   cold?: boolean;
   hot?: boolean;
   inverter?: boolean;
+  images?: string[];
 };
+
+function isValidImages(v: unknown): boolean {
+  if (v === undefined) return true;
+  return Array.isArray(v) && v.length > 0 && v.length <= 12 &&
+    v.every((x) => typeof x === 'string' && x.length <= 2000 && (x.startsWith('/') || x.startsWith('https://')));
+}
 
 const TEXT_FIELDS = ['name_ar', 'name_en', 'description_ar', 'description_en'] as const;
 const FLAG_FIELDS = ['cold', 'hot', 'inverter'] as const;
@@ -94,7 +102,8 @@ export async function PATCH(request: NextRequest) {
         (u.price_before !== undefined && !isValidPrice(u.price_before)) ||
         !isValidText(u.name_ar, false) || !isValidText(u.name_en, false) ||
         !isValidText(u.description_ar, true) || !isValidText(u.description_en, true) ||
-        FLAG_FIELDS.some((k) => u[k] !== undefined && typeof u[k] !== 'boolean')) {
+        FLAG_FIELDS.some((k) => u[k] !== undefined && typeof u[k] !== 'boolean') ||
+        !isValidImages(u.images)) {
       return NextResponse.json({ error: 'Invalid update item', item: u }, { status: 400 });
     }
   }
@@ -102,13 +111,17 @@ export async function PATCH(request: NextRequest) {
   const supabase = createAdminClient();
   const results = await Promise.all(
     (updates as PriceUpdate[]).map((u) => {
-      const fields: Record<string, number | null | string | boolean> = {
+      const fields: Record<string, number | null | string | boolean | string[]> = {
         price: u.price,
         updated_at: new Date().toISOString(),
       };
       if (u.price_before !== undefined) fields.price_before = u.price_before;
       for (const k of TEXT_FIELDS) if (u[k] !== undefined) fields[k] = u[k] as string | null;
       for (const k of FLAG_FIELDS) if (u[k] !== undefined) fields[k] = u[k] as boolean;
+      if (u.images !== undefined) {
+        fields.images = u.images;
+        fields.image_url = u.images[0];
+      }
       return supabase
         .from('products')
         .update(fields)
