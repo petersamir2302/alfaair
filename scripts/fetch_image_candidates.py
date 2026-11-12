@@ -27,11 +27,15 @@ def shopify_images(url):
     p = urllib.parse.urlsplit(url)
     if "/products/" not in p.path:
         return []
-    js = urllib.parse.urlunsplit((p.scheme, p.netloc, p.path.rstrip("/") + ".json", "", ""))
+    base = urllib.parse.urlunsplit((p.scheme, p.netloc, p.path.rstrip("/"), "", ""))
     try:
-        data, _ = get(js)
-        imgs = json.loads(data)["product"]["images"]
-        return [i["src"] for i in imgs]
+        data, _ = get(base + ".json")
+        return [i["src"] for i in json.loads(data)["product"]["images"]]
+    except Exception:
+        pass
+    try:
+        data, _ = get(base + ".js")
+        return list(json.loads(data)["images"])
     except Exception:
         return []
 
@@ -46,6 +50,8 @@ def html_images(url):
             found.append(c.group(1))
     for m in re.finditer(r'"image"\s*:\s*(\[[^\]]*\]|"[^"]+")', html):
         found += re.findall(r'"(https?:[^"]+)"', m.group(1))
+    if found:  # og:image / JSON-LD are the product photos; skip page chrome
+        return [urllib.parse.urljoin(url, unescape(f).replace("\\/", "/")) for f in found]
     for m in re.finditer(r'(?:src|data-src|data-zoom-image|data-large_image|href)=["\']([^"\']+\.(?:jpe?g|png|webp)(?:\?[^"\']*)?)["\']', html, re.I):
         found.append(m.group(1))
     for m in re.finditer(r'srcset=["\']([^"\']+)["\']', html, re.I):
@@ -61,7 +67,9 @@ def html_images(url):
 
 def norm_shopify(u):
     # ask Shopify CDN for the original size
-    return re.sub(r'_(?:\d+x\d*|\d*x\d+|small|medium|large|grande|compact)(?=\.(?:jpe?g|png|webp))', "", u)
+    u = re.sub(r'_(?:\d+x\d*|\d*x\d+|small|medium|large|grande|compact)(?=\.(?:jpe?g|png|webp))', "", u)
+    u = re.sub(r'[&?](?:width|height|crop)=[^&]*', "", u)
+    return u if "?" in u or "&" not in u else u.replace("&", "?", 1)
 
 
 def main():
