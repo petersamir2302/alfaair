@@ -1,5 +1,5 @@
 {
- "_note": "Website products mapped to the Miraco price list of 2026-06-07. Selling price = dealer_price x (1 - discount). price_before = end_user_price. Products not listed here (4-5 HP, concealed) are not auto-priced.",
+ "_note": "Website products mapped to the Miraco price list of 2026-06-07. Selling price = dealer_price x (1 - discount). price_before = end_user_price. Intentionally not on the site: Carrier Elegant floor-standing units (owner's choice) and DECOR Inverter cassettes (no photo found yet).",
  "products": [
   {
    "id": "44d9ae69-5f7c-4220-966b-52c67cea41e7",
@@ -288,6 +288,114 @@
    "model": "53QHEFT24DN8-708F",
    "dealer_price": 50495,
    "end_user_price": 55140
+  },
+  {
+   "id": "ee838448-87a9-4290-9cc8-81165ca7e82c",
+   "name": "كاريير اوبتيماكس برو 4 بارد ساخن",
+   "brand": "Carrier",
+   "series": "Optimax Pro",
+   "type": "fixed",
+   "hp": 4,
+   "mode": "HP",
+   "model": "53QHABT30N-708F",
+   "dealer_price": 70800,
+   "end_user_price": 76460
+  },
+  {
+   "id": "2649f336-6b79-449d-8076-345cb78a2d38",
+   "name": "كاريير اوبتيماكس برو 5 بارد ساخن",
+   "brand": "Carrier",
+   "series": "Optimax Pro",
+   "type": "fixed",
+   "hp": 5,
+   "mode": "HP",
+   "model": "53QHABT36N-708F",
+   "dealer_price": 81330,
+   "end_user_price": 87850
+  },
+  {
+   "id": "a50c0fab-d4b3-4d1f-a6ae-c2f0b5d087c9",
+   "name": "ميديا ميشن برو 4 بارد ساخن",
+   "brand": "Midea",
+   "series": "Mission Pro",
+   "type": "fixed",
+   "hp": 4,
+   "mode": "HP",
+   "model": "M1SABT-30HRNF-Q8",
+   "dealer_price": 64795,
+   "end_user_price": 70235
+  },
+  {
+   "id": "0f3e5190-0596-40cc-bad7-c851f529abee",
+   "name": "ميديا ميشن برو 5 بارد ساخن",
+   "brand": "Midea",
+   "series": "Mission Pro",
+   "type": "fixed",
+   "hp": 5,
+   "mode": "HP",
+   "model": "M1SABT-36HRNF-Q8",
+   "dealer_price": 74480,
+   "end_user_price": 80690
+  },
+  {
+   "id": "9124c7c7-d0d5-4f58-a20e-1cefc8c89207",
+   "name": "كاريير كونسيلد كلاسيكول برو 1.5 بارد ساخن",
+   "brand": "Carrier",
+   "series": "ClassiCool Pro",
+   "type": "fixed",
+   "hp": 1.5,
+   "mode": "HP",
+   "model": "53QDMA6T12N-728",
+   "dealer_price": 36400,
+   "end_user_price": 41260
+  },
+  {
+   "id": "c9ed18c7-daa7-4cfb-b7c4-6fc8f9bace75",
+   "name": "كاريير كونسيلد كلاسيكول برو 2.25 بارد ساخن",
+   "brand": "Carrier",
+   "series": "ClassiCool Pro",
+   "type": "fixed",
+   "hp": 2.25,
+   "mode": "HP",
+   "model": "53QDMA6T18N-728",
+   "dealer_price": 47635,
+   "end_user_price": 53655
+  },
+  {
+   "id": "afb6f2d0-3261-4a54-af5c-9dec25d1021a",
+   "name": "كاريير كونسيلد كلاسيكول برو 3 بارد ساخن",
+   "brand": "Carrier",
+   "series": "ClassiCool Pro",
+   "type": "fixed",
+   "hp": 3,
+   "mode": "HP",
+   "model": "53QDMA6T24N-728",
+   "dealer_price": 57230,
+   "end_user_price": 64385
+  },
+  {
+   "id": "60bf239f-a599-4e89-84c5-17d4438999b6",
+   "name": "كاريير كونسيلد كلاسيكول انفرتر 2.25 بارد ساخن",
+   "brand": "Carrier",
+   "series": "ClassiCool Inverter",
+   "type": "inverter",
+   "hp": 2.25,
+   "mode": "HP",
+   "model": "53QDMA6T18DN-728",
+   "dealer_price": 57135,
+   "end_user_price": 64300
+  },
+  {
+   "id": "bf94304e-8b5d-4444-9534-d8ba7e9d3fed",
+   "name": "كاريير كونسيلد كلاسيكول انفرتر 3 بارد ساخن",
+   "brand": "Carrier",
+   "series": "ClassiCool Inverter",
+   "type": "inverter",
+   "hp": 3,
+   "mode": "HP",
+   "model": "53QDMA6T24DN-728",
+   "dealer_price": 65820,
+   "end_user_price": 74085
   }
  ]
 }

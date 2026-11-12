@@ -1,57 +1,115 @@
 {
  "updates": [
   {
-   "id": "9124c7c7-d0d5-4f58-a20e-1cefc8c89207",
-   "price": null,
+   "id": "ee838448-87a9-4290-9cc8-81165ca7e82c",
+   "price": 67260,
+   "price_before": 76460
+  },
+  {
+   "id": "2649f336-6b79-449d-8076-345cb78a2d38",
+   "price": 77264,
+   "price_before": 87850
+  },
+  {
+   "id": "a50c0fab-d4b3-4d1f-a6ae-c2f0b5d087c9",
+   "price": 60907,
+   "price_before": 70235,
    "images": [
-    "/products/carrier-concealed-ducted.webp"
+    "/products/2e1f865b-01.webp",
+    "https://vegnmkhjmuxinqgeaqkk.supabase.co/storage/v1/object/public/product-images/products/0.3062086010087668.png",
+    "https://vegnmkhjmuxinqgeaqkk.supabase.co/storage/v1/object/public/product-images/products/0.49687202175463907.png"
    ]
   },
   {
-   "id": "afb6f2d0-3261-4a54-af5c-9dec25d1021a",
-   "price": null,
+   "id": "0f3e5190-0596-40cc-bad7-c851f529abee",
+   "price": 70011,
+   "price_before": 80690,
    "images": [
-    "/products/carrier-concealed-ducted.webp"
+    "/products/2e1f865b-01.webp",
+    "https://vegnmkhjmuxinqgeaqkk.supabase.co/storage/v1/object/public/product-images/products/0.3062086010087668.png",
+    "https://vegnmkhjmuxinqgeaqkk.supabase.co/storage/v1/object/public/product-images/products/0.49687202175463907.png"
+   ]
+  },
+  {
+   "id": "9124c7c7-d0d5-4f58-a20e-1cefc8c89207",
+   "price": 34580,
+   "price_before": 41260,
+   "images": [
+    "/products/carrier-classicool-ducted.webp"
    ]
   },
   {
    "id": "c9ed18c7-daa7-4cfb-b7c4-6fc8f9bace75",
-   "price": null,
+   "price": 45253,
+   "price_before": 53655,
    "images": [
-    "/products/carrier-concealed-ducted.webp"
+    "/products/carrier-classicool-ducted.webp"
+   ]
+  },
+  {
+   "id": "afb6f2d0-3261-4a54-af5c-9dec25d1021a",
+   "price": 54369,
+   "price_before": 64385,
+   "images": [
+    "/products/carrier-classicool-ducted.webp"
    ]
   },
   {
    "id": "60bf239f-a599-4e89-84c5-17d4438999b6",
-   "price": null,
+   "price": 54278,
+   "price_before": 64300,
    "images": [
-    "/products/carrier-concealed-ducted.webp"
+    "/products/carrier-classicool-ducted.webp",
+    "/products/carrier-classicool-outdoor-inverter.webp"
    ]
   },
   {
    "id": "bf94304e-8b5d-4444-9534-d8ba7e9d3fed",
-   "price": null,
+   "price": 62529,
+   "price_before": 74085,
    "images": [
-    "/products/carrier-concealed-ducted.webp"
+    "/products/carrier-classicool-ducted.webp",
+    "/products/carrier-classicool-outdoor-inverter.webp"
    ]
   },
   {
-   "id": "5afc8596-f221-401b-a8ad-065ad68c2dde",
-   "price": 22957,
-   "price_before": 26415,
+   "id": "2e1f865b-025f-40ba-bf53-d4dce0c8e5f3",
+   "price": 39254,
+   "price_before": 45535,
    "images": [
-    "https://vegnmkhjmuxinqgeaqkk.supabase.co/storage/v1/object/public/product-images/products/0.15374690983311268.png",
-    "https://vegnmkhjmuxinqgeaqkk.supabase.co/storage/v1/object/public/product-images/products/0.4702703508786338.png"
+    "/products/2e1f865b-01.webp",
+    "https://vegnmkhjmuxinqgeaqkk.supabase.co/storage/v1/object/public/product-images/products/0.3062086010087668.png",
+    "https://vegnmkhjmuxinqgeaqkk.supabase.co/storage/v1/object/public/product-images/products/0.49687202175463907.png"
    ]
   },
   {
-   "id": "ee838448-87a9-4290-9cc8-81165ca7e82c",
-   "price": 66900,
-   "price_before": 69410,
+   "id": "e33d37b7-4bee-4104-bacf-4032d6af3639",
+   "price": 36514,
+   "price_before": 42345,
    "images": [
-    "https://vegnmkhjmuxinqgeaqkk.supabase.co/storage/v1/object/public/product-images/products/0.23409229793618813.png",
-    "https://vegnmkhjmuxinqgeaqkk.supabase.co/storage/v1/object/public/product-images/products/0.3586714955653525.png",
-    "https://vegnmkhjmuxinqgeaqkk.supabase.co/storage/v1/object/public/product-images/products/0.9664000977524199.png"
+    "/products/e33d37b7-01.webp",
+    "https://vegnmkhjmuxinqgeaqkk.supabase.co/storage/v1/object/public/product-images/products/0.2815254876470844.png",
+    "https://vegnmkhjmuxinqgeaqkk.supabase.co/storage/v1/object/public/product-images/products/0.3509690556050111.png"
+   ]
+  },
+  {
+   "id": "8b3be4af-233b-4469-82f3-2a493482ae16",
+   "price": 39654,
+   "price_before": 46050,
+   "images": [
+    "/products/8b3be4af-01.webp",
+    "/products/8b3be4af-02.webp",
+    "/products/8b3be4af-03.webp"
+   ]
+  },
+  {
+   "id": "aabf4330-9be6-4b8e-be17-af1cda452a67",
+   "price": 42906,
+   "price_before": 49800,
+   "images": [
+    "/products/aabf4330-01.webp",
+    "/products/aabf4330-02.webp",
+    "/products/aabf4330-03.webp"
    ]
   }
  ]
