@@ -75,7 +75,10 @@ def main():
         entries = []
         for page in pages:
             try:
-                urls = shopify_images(page) or html_images(page)
+                if re.search(r'\.(?:jpe?g|png|webp|avif)(?:\?|$)', page, re.I):
+                    urls = [page]
+                else:
+                    urls = shopify_images(page) or html_images(page)
             except Exception as e:
                 entries.append({"page": page, "error": str(e)[:200]})
                 print(f"[{key}] page failed {page}: {e}", file=sys.stderr)
@@ -94,7 +97,7 @@ def main():
                     w, h = im.size
                 except Exception:
                     continue
-                if min(w, h) < MIN_SIDE:
+                if min(w, h) < MIN_SIDE and not key.startswith("cur-"):
                     continue
                 n += 1
                 ext = (im.format or "jpg").lower().replace("jpeg", "jpg")
