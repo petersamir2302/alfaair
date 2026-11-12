@@ -1,43 +1,58 @@
 {
  "updates": [
   {
-   "id": "5afc8596-f221-401b-a8ad-065ad68c2dde",
-   "price": 22957,
-   "price_before": 26415,
-   "inverter": false,
-   "hot": false,
-   "cold": true,
-   "name_ar": "تكييف كاريير إكس كول 1.5 حصان بارد فقط (عادي)",
-   "name_en": "Carrier XCOOL 1.5 HP Cooling Only (Non-Inverter)",
-   "description_ar": "تكييف كاريير إكس كول 1.5 حصان بارد فقط - عادي (بدون إنفرتر)، موديل 53KHEFT12N8-708F.\nمواصفات ومميزات:\n- قدرة 1.5 حصان تبريد فقط.\n- يعمل بفريون R32 صديق البيئة.\n- مناسب للغرف حتى 14 متر مربع تقريباً.\n- لون أبيض.\n- ضمان 5 سنوات.",
-   "description_en": "Carrier XCOOL 1.5 HP split air conditioner, cooling only, non-inverter (fixed speed), model 53KHEFT12N8-708F.\n- 1.5 HP cooling only\n- R32 eco-friendly refrigerant\n- Suitable for rooms up to about 14 m²\n- White\n- 5-year warranty"
+   "id": "9124c7c7-d0d5-4f58-a20e-1cefc8c89207",
+   "price": null,
+   "images": [
+    "/products/carrier-concealed-ducted.webp"
+   ]
   },
   {
-   "id": "9976c9c4-a24e-4543-a0ea-ee46657944b4",
-   "price": 23458,
-   "price_before": 27525,
-   "hot": false
+   "id": "afb6f2d0-3261-4a54-af5c-9dec25d1021a",
+   "price": null,
+   "images": [
+    "/products/carrier-concealed-ducted.webp"
+   ]
   },
   {
    "id": "c9ed18c7-daa7-4cfb-b7c4-6fc8f9bace75",
    "price": null,
-   "name_ar": "تكييف كاريير كونسيلد 2.25 حصان بارد ساخن"
+   "images": [
+    "/products/carrier-concealed-ducted.webp"
+   ]
   },
   {
    "id": "60bf239f-a599-4e89-84c5-17d4438999b6",
    "price": null,
-   "name_ar": "تكييف كاريير كونسيلد انفرتر 2.25 حصان بارد ساخن"
+   "images": [
+    "/products/carrier-concealed-ducted.webp"
+   ]
   },
   {
    "id": "bf94304e-8b5d-4444-9534-d8ba7e9d3fed",
    "price": null,
-   "name_ar": "تكييف كاريير كونسيلد انفرتر 3 حصان بارد ساخن"
+   "images": [
+    "/products/carrier-concealed-ducted.webp"
+   ]
   },
   {
-   "id": "767e0a56-4620-4aa0-9d5f-230c2d305d12",
-   "price": 35620,
-   "price_before": 40730,
-   "name_en": "Carrier Optimax Pro 2.25 HP Cooling & Heating"
+   "id": "5afc8596-f221-401b-a8ad-065ad68c2dde",
+   "price": 22957,
+   "price_before": 26415,
+   "images": [
+    "https://vegnmkhjmuxinqgeaqkk.supabase.co/storage/v1/object/public/product-images/products/0.15374690983311268.png",
+    "https://vegnmkhjmuxinqgeaqkk.supabase.co/storage/v1/object/public/product-images/products/0.4702703508786338.png"
+   ]
+  },
+  {
+   "id": "ee838448-87a9-4290-9cc8-81165ca7e82c",
+   "price": 66900,
+   "price_before": 69410,
+   "images": [
+    "https://vegnmkhjmuxinqgeaqkk.supabase.co/storage/v1/object/public/product-images/products/0.23409229793618813.png",
+    "https://vegnmkhjmuxinqgeaqkk.supabase.co/storage/v1/object/public/product-images/products/0.3586714955653525.png",
+    "https://vegnmkhjmuxinqgeaqkk.supabase.co/storage/v1/object/public/product-images/products/0.9664000977524199.png"
+   ]
   }
  ]
 }
