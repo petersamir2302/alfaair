@@ -117,3 +117,15 @@ Trend: flat. Every checked price identical to 2026-11-10. No news found of a new
 | 2B | Carrier XCOOL inverter 1.5 HP cool/heat QHEFT12DN | 34,470 (was 47,499, -27%; in stock) | 28,838 | https://2b.com.eg/en/carrier-air-conditioner-1-5-hp-xcool-split-inverter-cooling-heating-white-qheft12dn.html |
 
 Trend: flat. Every checked price identical to 2026-11-12 (2B Optimax Pro page unreachable this run). No news found of a new Miraco/Carrier/Midea price list. Ours still below all checked competitors (cheapest 1.5 HP fixed competitor 22,500 vs our 20,240).
+
+## 2026-11-16
+
+| Store | Model | Their price (EGP) | Ours (EGP) | Link |
+|---|---|---|---|---|
+| Blue Cool (bluecool-eg) | Midea Mission Pro 1.5 HP cool | 19,500 (was 24,200; listed available) | 20,240 | https://bluecool-eg.com/en/product/midea-mission-pro-air-conditioner-1-5-hp-cooling-only-split-unit/ |
+| carrieregy.co | Midea Mission Pro 1.5 HP cool M1SCT-12CRN-Q8 | 22,305 (was 25,430; sold out) | 20,240 | https://carrieregy.co/products/midea-mission-pro-1-5-hp-cool-only-msc1t-12cr-n |
+| carrieregy.co | Carrier Optimax Pro 1.5 HP cool 53KHCT12N-708 | 25,165 (was 28,415; sold out) | 23,198 | https://carrieregy.co/products/carrier |
+| Air Group Egypt | Carrier Optimax Pro 1.5 HP cool 53KHCT12N-708 | 26,415 (cash, in stock) | 23,198 | https://airgroupegypt.com/en/carrier-air-conditioner-1-5-hp-optimax-cool-53khct-12.html |
+| Kazameeza | Carrier XCOOL inverter 1.5 HP cool/heat 53QHEFT12DN8-708F | 33,105 (in stock, 2 left) | 28,838 | https://www.kzameeza.com/en/product/appliances/major-appliances/heating-cooling/air-conditioner/carrier-xcool-split-air-conditioner-15-hp-inverter-cooling-heating-white-53qheft12dn8-708f |
+
+Trend: flat-to-slightly-down. Previously tracked pages (carrier-egy.com, zs-eg, Carrefour, Halan, 2B) could not be fetched this run; Amazon.eg blocks reading and Noon/Jumia errored. New find: Blue Cool lists Mission Pro 1.5 cool at 19,500, the first competitor seen below our 20,240 (unverified whether stock is real). XCOOL inv at Kazameeza 33,105 vs 34,470 at 2B last run. No news found of a new Miraco/Carrier/Midea price list.
