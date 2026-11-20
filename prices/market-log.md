@@ -144,3 +144,17 @@ Trend: flat-to-slightly-down. Previously tracked pages (carrier-egy.com, zs-eg, 
 | XPRS (myxprs) | Carrier XCOOL 2.25 HP cool 53KHEFT18N8-708F (fixed) | 49,999 | — | https://myxprs.com/products/carrier-xcool-1-5hp-inverter-cool-heat-split-ac-53qheft12dn8-708f |
 
 Trend: flat. Carrefour, Halan and 2B identical to 2026-11-14. Zahran Optimax Pro 1.5 cool 26,499 (new data point; no previous Zahran figure for this model). Blue Cool, Kazameeza, Air Group, carrier-egy and B.TECH pages could not be fetched this run, so the 19,500 Blue Cool Mission Pro price is unconfirmed. No news found of a new Miraco/Carrier/Midea price list. Cheapest confirmed 1.5 HP fixed competitor 23,000 (Jumia) vs our 20,240.
+
+## 2026-11-20
+
+| Store | Model | Their price (EGP) | Ours (EGP) | Link |
+|---|---|---|---|---|
+| Jumia | Midea Mission Pro 1.5 HP cool | 23,000 (2 left) | 20,240 | https://www.jumia.com.eg/ar/midea-mscit-12cr-n-130359172.html |
+| Aqua Tech (Halan) | Carrier Optimax Pro 1.5 HP cool 53KHCT12N | 24,450 (cash) | 23,198 | https://shop.halan.com/en/Carrier-Optimax-pro-Split-Air-Conditioner-15-HP-Cold-Only-White-53KHCT-12N/664b192b840b5982138bfdba/p/Aqua-Tech |
+| Zahran / zs-eg | Carrier Optimax Pro 1.5 HP cool 53KHCT12N-708 | 26,999 (was 32,199) | 23,198 | https://zs-eg.com/en/product/carrier-optimax-pro-air-conditioner-1-5-hp-cool-heat-53qhct12n-708f |
+| Zahran / zs-eg | Carrier Optimax Pro 1.5 HP cool/heat 53QHCT12N-708F | 27,449 (was 29,449; out of stock) | — | https://zs-eg.com/en/product/carrier-optimax-pro-air-conditioner-1-5-hp-cool-heat-53qhct12n-708f |
+| Carrefour Egypt | Midea AI Eco Master inverter 1.5 HP cool M1SEFT-12CRDN8F-Q8 | 26,000 (was 27,000) | 23,707 | https://www.carrefouregypt.com/mafegy/en/air-conditioners/midea-ai-eco-master-1-5-hp-inverter-cool-only-split-ac-m1seft-12crdn8f-q8/p/2263858000016 |
+| Carrefour Egypt | Carrier XCOOL inverter 1.5 HP cool/heat 53QHEFT12DN8-708F | 31,199 (2 left) | 28,838 | https://www.carrefouregypt.com/mafegy/en/air-conditioners/carrier-x-cool-split-air-conditioner-1-5-hp-cool-heat-inverter-wi-fi-white-53qheft12dn8-708f/p/2283159000044 |
+| 2B | Carrier XCOOL inverter 1.5 HP cool/heat QHEFT12DN | 34,470 (was 47,499; in stock) | 28,838 | https://2b.com.eg/en/carrier-air-conditioner-1-5-hp-xcool-split-inverter-cooling-heating-white-qheft12dn.html |
+
+Trend: flat. Jumia, Halan, Carrefour (Eco Master) and 2B identical to 2026-11-18. Zahran Optimax Pro 1.5 cool now 26,999 vs 26,499 (+500, slight rise). New data point: Carrefour XCOOL inv 1.5 cool/heat 31,199 (cheapest seen for that model, still above our 28,838). B.TECH and 2B Eco Master pages unreachable; myxprs product URLs now redirect to listings. No news found of a new Miraco/Carrier/Midea price list. Cheapest confirmed 1.5 HP fixed competitor 23,000 (Jumia) vs our 20,240.
